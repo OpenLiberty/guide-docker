@@ -1,0 +1,9 @@
+target/
+.settings/
+.project
+.classpath
+.factorypath
+README.html
+.DS_Store
+ibm-web-ext.xml
+.apt_generated/
