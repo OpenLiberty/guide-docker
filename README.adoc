@@ -9,6 +9,7 @@
 :page-layout: guide
 :page-duration: 20 minutes
 :page-description: Learn how to develop an application with Open Liberty and Docker.
+:page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: []
 :page-permalink: /guides/{projectid}
