@@ -11,7 +11,7 @@
 :page-description: Learn how to develop an application with Open Liberty and Docker.
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
-:page-related-guides: []
+:page-related-guides: ['rest-intro']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
