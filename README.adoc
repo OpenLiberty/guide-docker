@@ -97,7 +97,7 @@ runtime as the parent image.
 Before you write your Dockerfile, familiarize yourself with the types of instructions that are compatible
 with Dockerfiles. Use the following instructions to build a Dockerfile for this guide:
 
-[cols="70, 100"]
+[cols="70, 100", options="header"]
 |===
 | *Command* | *Description*
 | FROM <image> | This command initializes a new build stage and indicates the parent image from which your image
@@ -296,7 +296,7 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 
 The following table displays the functions of the flags:
 
-[cols="15, 100"]
+[cols="15, 100", options="header"]
 |===
 | *Flag* | *Description*
 | -d | This flag tells Docker to run the container in the background. Without this flag, Docker runs
