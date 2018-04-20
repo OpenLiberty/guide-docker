@@ -8,7 +8,7 @@
 :projectid: docker
 :page-layout: guide
 :page-duration: 20 minutes
-:page-description: Explore how to containerize a simple microservice using Docker and have the container pickup new changes automatically on rebuild.
+:page-description: Explore how to containerize a simple microservice using Docker and have the container pickup new changes automatically when that microservice rebuilds.
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: ['rest-intro']
@@ -17,7 +17,7 @@
 :source-highlighter: prettify
 = Containerizing and developing microservices with Docker
 
-Explore how to containerize a simple microservice using Docker and have the container pickup new changes automatically on rebuild.
+Explore how to containerize a simple microservice using Docker and have the container pickup new changes automatically when that microservice rebuilds.
 
 // =================================================================================================
 // Introduction
