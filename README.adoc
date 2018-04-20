@@ -115,7 +115,7 @@ to start any server you want since its easily overridable.
 
 For a complete list of available instructions, see the official https://docs.docker.com/engine/reference/builder[Docker documentation].
 
-=== Optional: Writing a `.dockerignore` file
+=== Optional: Writing a .dockerignore file
 
 When Docker runs a build, it sends all of the files and directories located in the same directory as the
 Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
