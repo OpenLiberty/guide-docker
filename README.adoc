@@ -8,7 +8,7 @@
 :projectid: docker
 :page-layout: guide
 :page-duration: 20 minutes
-:page-description: Explore how to containerize a simple microservice using Docker and have the container pickup new changes automatically when that microservice rebuilds.
+:page-description: Explore how to containerize a simple microservice by using Docker and have the container pick up new changes automatically when that microservice rebuilds.
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: ['rest-intro']
@@ -17,7 +17,7 @@
 :source-highlighter: prettify
 = Containerizing and developing microservices with Docker
 
-Explore how to containerize a simple microservice using Docker and have the container pickup new changes automatically when that microservice rebuilds.
+Explore how to containerize a simple microservice by using Docker and have the container pick up new changes automatically when that microservice rebuilds.
 
 // =================================================================================================
 // Introduction
@@ -98,32 +98,32 @@ include::finish/Dockerfile[tags=**]
 ----
 
 The `FROM` instruction initializes a new build stage and indicates the parent image from which your
-image is built. If you don't need a parent image, then use `FROM scratch`. This makes your image
-a base image. In this case, you're using the `openliberty/open-liberty:javaee7` image are your parent
+image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
+base image. In this case, you're using the `openliberty/open-liberty:javaee7` image as your parent
 image, which comes with the latest Open Liberty runtime.
 
 The `RUN` instruction executes various shell commands in a new layer on top of the current image.
-In this case, you're creating a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
-directory. This makes mounting your servers easier because you won't have to use long path names.
+In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
+directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
 The `CMD` and `ENTRYPOINT` instructions define a default command that executes when the image runs as
 a container. The only difference between the two is that `CMD` will be overridden with any arguments
 passed at the end of the `docker run` command while `ENTRYPOINT` requires the `--entrypoint` flag to
 be overridden. In this case, you're using the `ENTRYPOINT` instruction to start a Open Liberty server
-and the `CMD` instruction to indicate which server to start. The `CMD` instruction makes it convenient
-to start any server you want since its easily overridable.
+and the `CMD` instruction to indicate which server to start. Because the `CMD` instruction is easily
+overridden, starting any server is convenient.
 
-For a complete list of available instructions, see the official https://docs.docker.com/engine/reference/builder[Docker documentation].
+For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation].
 
 === Optional: Writing a .dockerignore file
 
-When Docker runs a build, it sends all of the files and directories located in the same directory as the
-Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
-To speed up the build, exclude all of the files and directories that aren't necessary for building
-your image by adding them to a `.dockerignore` file.
+When Docker runs a build, it sends all of the files and directories that are located in the same directory
+as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
+To make image building faster, add all files and directories that aren't necessary for building your
+image to a ``.dockerignore` file. This excludes them from the build context.
 
-A `.dockerignore` file has already been created for you under the `start` directory. This file includes the
-`app` directory and some system files. Feel free to add anything else that you want to exclude.
+A `.dockerignore` file is available to you in the `start` directory. This file includes the `app`
+directory and some system files. Feel free to add anything else that you want to exclude.
 
 
 // =================================================================================================
@@ -134,8 +134,8 @@ A `.dockerignore` file has already been created for you under the `start` direct
 
 To build your image, make sure that your Docker daemon is running and execute the Docker `build` command
 from the command line. If you execute your build from the same directory as your Dockerfile, you can
-use the `.` notation to specify the location for the build context. Otherwise, use the `-f` flag to
-point to your Dockerfile:
+use the period character (`.`) notation to specify the location for the build context. Otherwise, use
+the `-f` flag to point to your Dockerfile:
 
 ```
 docker build -t ol-runtime .
@@ -190,16 +190,16 @@ has the ID `dfef8073fe42`, and step 4 has the ID `ee99661593eb`, which is also t
 During the first build of your image, Docker caches every new layer as a separate image and reuses them
 for future builds for layers that didn't change. For example, if you run the build again, Docker reuses
 the images that it cached for steps 2 - 4. However, if you make a change in your Dockerfile, Docker would
-need to rebuild the subsequent layer since it also changed.
+need to rebuild the subsequent layer since this layer also changed.
 
-You can however completely disable the caching of intermediate layers by running the build with the
+However, you can also completely disable the caching of intermediate layers by running the build with the
 `--no-cache=true` flag:
 
 ```
 docker build -t ol-runtime --no-cache=true .
 ```
 
-Learn more about the image build process on the official Docker page: https://docs.docker.com/engine/reference/commandline/image_build
+Learn more about the image build process on the https://docs.docker.com/engine/reference/commandline/image_build[Docker documentation].
 
 
 // =================================================================================================
@@ -322,7 +322,7 @@ To stop your container, run the `docker stop rest-app` command from the command 
 If a problem occurs and your container exits prematurely, the container will not appear in the container
 list that the `docker ps` command displays. Instead, your container will appear with an `Exited`
 status when you run the `docker ps -a` command. Run the `docker logs rest-app` command to view the
-container logs for any potential problems and double check that your Dockerfile is correct. When you
+container logs for any potential problems and double-check that your Dockerfile is correct. When you
 find the cause of the issue, remove the faulty container with the `docker rm rest-app` command, rebuild
 your image, and start the container again.
 
