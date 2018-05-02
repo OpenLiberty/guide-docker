@@ -85,10 +85,10 @@ include::{common-includes}/gitclone.adoc[]
 
 == Creating the Dockerfile
 
-A Dockerfile is a collection of instructions to build a Docker image that you can then
-run as a container. Every Dockerfile begins with a parent or base image on top of which these instructions
-are executed. For example, you can start your image from scratch and execute commands that download Java,
-or you can start from an image that already contains a Java installation.
+A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
+container. Every Dockerfile begins with a parent or base image on top of which various commands
+are run. For example, you can start your image from scratch and execute commands that download and
+install Java, or you can start from an image that already contains a Java installation.
 
 Create a regular `start/Dockerfile` file:
 
@@ -107,11 +107,11 @@ In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directo
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
 The `CMD` and `ENTRYPOINT` instructions define a default command that executes when the image runs as
-a container. The only difference between the two is that `CMD` will be overridden with any arguments
-passed at the end of the `docker run` command while `ENTRYPOINT` requires the `--entrypoint` flag to
-be overridden. In this case, you're using the `ENTRYPOINT` instruction to start a Open Liberty server
-and the `CMD` instruction to indicate which server to start. Because the `CMD` instruction is easily
-overridden, starting any server is convenient.
+a container. These two instructions function the same way, except that the `CMD` instruction is overridden
+with any arguments that are passed at the end of the `docker run` command. In contrast, the
+`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
+the `ENTRYPOINT` instruction to start an Open Liberty server and the `CMD` instruction to indicate
+which server to start. Because the `CMD` instruction is easily overridden, starting any server is convenient.
 
 For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation].
 
@@ -146,7 +146,7 @@ Use the `-t` flag to give the image an optional name. In this case, `ol-runtime`
 The first build usually takes much longer to complete than subsequent builds because Docker needs to
 download all dependencies that your image requires, including the parent image.
 
-If your build runs successfully, you will see an output similar to the following:
+If your build runs successfully, you'll see an output similar to the following:
 
 [role="no_copy"]
 ----
@@ -319,8 +319,8 @@ You see the same JSON file that you saw previously.
 
 To stop your container, run the `docker stop rest-app` command from the command line.
 
-If a problem occurs and your container exits prematurely, the container will not appear in the container
-list that the `docker ps` command displays. Instead, your container will appear with an `Exited`
+If a problem occurs and your container exits prematurely, the container won't appear in the container
+list that the `docker ps` command displays. Instead, your container appears with an `Exited`
 status when you run the `docker ps -a` command. Run the `docker logs rest-app` command to view the
 container logs for any potential problems and double-check that your Dockerfile is correct. When you
 find the cause of the issue, remove the faulty container with the `docker rm rest-app` command, rebuild
