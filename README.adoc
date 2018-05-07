@@ -8,16 +8,16 @@
 :projectid: docker
 :page-layout: guide
 :page-duration: 20 minutes
-:page-description: Learn how to develop an application with Open Liberty and Docker.
+:page-description: Learn how to containerize a microservice with Docker for iterative development
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: ['rest-intro']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-= Developing an application with Open Liberty and Docker
+= Using Docker containers to develop microservices
 
-Learn how to develop an application with Open Liberty and Docker containers.
+Learn how to containerize a microservice with Docker for iterative development
 
 // =================================================================================================
 // Introduction
@@ -85,84 +85,46 @@ include::{common-includes}/gitclone.adoc[]
 
 == Creating the Dockerfile
 
-A Dockerfile is a collection of instructions to build a Docker image that you can then
-run as a container. Every Dockerfile begins
-with a parent or base image on top of which these instructions are run. For example, you can start
-your image from scratch and execute commands that download Java, or you can start from
-an image that already contains a Java installation.
-
-Use the `openliberty/open-liberty:javaee7` image that contains the Open Liberty
-runtime as the parent image.
-
-Before you write your Dockerfile, familiarize yourself with the types of instructions that are compatible
-with Dockerfiles. Use the following instructions to build a Dockerfile for this guide:
-
-[cols="70, 100", options="header"]
-|===
-| *Command* | *Description*
-| FROM <image> | This command initializes a new build stage and indicates the parent image from which your image
-is built, or you can use `FROM scratch` to indicate that your image is a base image.
-| RUN <commands> | This command executes the commands in a new layer on top of the current image.
-| CMD ["executable", "param1", "param2"] | This command defines the command to be executed when the image runs.
-| ENTRYPOINT ["executable", "param1", "param2"] | This command works similarly to the `CMD` command, but unlike
-`CMD`, only the `--entrypoint` flag can override `ENTRYPOINT`.
-|===
-
-For a more extensive and detailed list, see the official https://docs.docker.com/engine/reference/builder[Docker documentation].
-
-=== Writing your Dockerfile
-
-To begin, specify `openliberty/open-liberty:javaee7` as the parent image. This image contains the Open Liberty runtime.
+A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
+container. Every Dockerfile begins with a parent or base image on top of which various commands
+are run. For example, you can start your image from scratch and execute commands that download and
+install Java, or you can start from an image that already contains a Java installation.
 
 Create a regular `start/Dockerfile` file:
 
 [source, indent=0]
 ----
-include::finish/Dockerfile[tags=from]
+include::finish/Dockerfile[tags=**]
 ----
 
-By default, the Open Liberty runtime is downloaded to the `/opt/ol/wlp` directory.
+The `FROM` instruction initializes a new build stage and indicates the parent image from which your
+image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
+base image. In this case, you're using the `openliberty/open-liberty:javaee7` image as your parent
+image, which comes with the latest Open Liberty runtime.
 
-Next, create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers` directory.
-This symlink makes mounting your servers easier because you won't have to type long path names:
+The `RUN` instruction executes various shell commands in a new layer on top of the current image.
+In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
+directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
-[source, indent=0]
-----
-include::finish/Dockerfile[tags=link]
-----
+The `CMD` and `ENTRYPOINT` instructions define a default command that executes when the image runs as
+a container. These two instructions function the same way, except that the `CMD` instruction is overridden
+with any arguments that are passed at the end of the `docker run` command. In contrast, the
+`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
+the `ENTRYPOINT` instruction to start an Open Liberty server and the `CMD` instruction to indicate
+which server to start. Because the `CMD` instruction is easily overridden, starting any server is convenient.
 
-Although you have only one `RUN` instruction in your Dockerfile, you can tie multiple
-`RUN` instructions together to minimize the number of layers in your image and reduce build time. While
-maintaining readability, try to minimize the number of layers in your image, as shown in the following example:
+For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation].
 
-[role="no_copy"]
-----
-RUN mkdir dir1 \
-    && mv dir1 dir2 \
-    && cp dir2 dir3
-----
+=== Optional: Writing a .dockerignore file
 
-Finally, use the `ENTRYPOINT` instruction to run the `server` script and use the `CMD` instruction to
-specify which server to start. Because a user can override `CMD` calls, you can override the
-`defaultServer` name with another server name when running the container:
+When Docker runs a build, it sends all of the files and directories that are located in the same directory
+as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
+To make image building faster, add all files and directories that aren't necessary for building your
+image to a ``.dockerignore` file. This excludes them from the build context.
 
-[source, indent=0]
-----
-include::finish/Dockerfile[tags=default-start]
-----
+A `.dockerignore` file is available to you in the `start` directory. This file includes the `app`
+directory and some system files. Feel free to add anything else that you want to exclude.
 
-Your Dockerfile is complete. Use it to build your image.
-
-=== Optional: Writing a `.dockerignore` file
-
-When Docker runs a build, it sends all of the files and directories in the same directory as the
-Dockerfile to its build context. With all of the files and directories in the build context, you can
-use them in instructions like `ADD` and `COPY`. To increase build performance, exclude all of the files
-and directories that aren't necessary for building your image. Add these files and directories to a `.dockerignore` file.
-
-A `.dockerignore` file already exists in the `start` directory. This file includes the
-`app` directory and some system files. This directory and files are excluded from the build context
-when you execute a Docker build. Add any other files or directories that you want to exclude.
 
 // =================================================================================================
 // Building the image
@@ -172,7 +134,8 @@ when you execute a Docker build. Add any other files or directories that you wan
 
 To build your image, make sure that your Docker daemon is running and execute the Docker `build` command
 from the command line. If you execute your build from the same directory as your Dockerfile, you can
-use the `.` notation. Otherwise, use the `-f` flag to point to your Dockerfile:
+use the period character (`.`) notation to specify the location for the build context. Otherwise, use
+the `-f` flag to point to your Dockerfile:
 
 ```
 docker build -t ol-runtime .
@@ -183,7 +146,7 @@ Use the `-t` flag to give the image an optional name. In this case, `ol-runtime`
 The first build usually takes much longer to complete than subsequent builds because Docker needs to
 download all dependencies that your image requires, including the parent image.
 
-If your build runs successfully, an output appears that is similar to the following example:
+If your build runs successfully, you'll see an output similar to the following:
 
 [role="no_copy"]
 ----
@@ -222,20 +185,22 @@ Successfully built ee99661593eb
 Successfully tagged ol-runtime:latest
 ----
 
-Each step of the build has a unique ID, which is an ID of an intermediate image. For example, step 2
+Each step of the build has a unique ID, which represents the ID of an intermediate image. For example, step 2
 has the ID `dfef8073fe42`, and step 4 has the ID `ee99661593eb`, which is also the ID of the final image.
 During the first build of your image, Docker caches every new layer as a separate image and reuses them
-for future builds for steps that didn't change. For example, if you run the build again, Docker reuses
-the images that it cached for steps 2 - 4. However, you can tweak the `CMD` instruction and change the
-`defaultServer` server to the `testServer` server, and then Docker reuses the intermediate images for only steps 2 - 3.
+for future builds for layers that didn't change. For example, if you run the build again, Docker reuses
+the images that it cached for steps 2 - 4. However, if you make a change in your Dockerfile, Docker would
+need to rebuild the subsequent layer since this layer also changed.
 
-You can pass in the `--no-cache=true` command into the build to disable the caching of intermediate images:
+However, you can also completely disable the caching of intermediate layers by running the build with the
+`--no-cache=true` flag:
 
 ```
 docker build -t ol-runtime --no-cache=true .
 ```
 
-Learn more about the build process on the official Docker page: https://docs.docker.com/engine/reference/commandline/image_build
+Learn more about the image build process on the https://docs.docker.com/engine/reference/commandline/image_build[Docker documentation].
+
 
 // =================================================================================================
 // Building your application
@@ -294,7 +259,7 @@ Alternatively, you can also execute the `run` command to mount a single server i
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/app/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
 
-The following table displays the functions of the flags:
+Let's break down the flags:
 
 [cols="15, 100", options="header"]
 |===
@@ -323,8 +288,7 @@ Learn more about running containers on the official Docker page: https://docs.do
 == Testing the container
 
 Before you access your application from the browser, run the `docker ps` command from the
-command line to make sure that your container is running and didn't crash. The following example output
-is truncated for conciseness:
+command line to make sure that your container is running and didn't crash:
 
 [role="no_copy"]
 ----
@@ -355,11 +319,12 @@ You see the same JSON file that you saw previously.
 
 To stop your container, run the `docker stop rest-app` command from the command line.
 
-If a problem occurs and your container exits prematurely, the container does not appear in the container
+If a problem occurs and your container exits prematurely, the container won't appear in the container
 list that the `docker ps` command displays. Instead, your container appears with an `Exited`
-status when you run the `docker ps -a` command. Run the `docker rm rest-app` command to remove your container.
-Next, check your Dockerfile for potential problems. You can also run the container in the foreground to
-see whether any error messages are displayed.
+status when you run the `docker ps -a` command. Run the `docker logs rest-app` command to view the
+container logs for any potential problems and double-check that your Dockerfile is correct. When you
+find the cause of the issue, remove the faulty container with the `docker rm rest-app` command, rebuild
+your image, and start the container again.
 
 == Great work! You're done!
 
