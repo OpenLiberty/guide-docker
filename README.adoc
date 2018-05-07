@@ -15,7 +15,7 @@
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-= Containerizing and developing microservices with Docker
+= Using Docker containers to develop microservices
 
 Learn how to containerize a microservice with Docker for iterative development
 
