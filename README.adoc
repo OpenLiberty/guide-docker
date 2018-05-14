@@ -120,7 +120,7 @@ For a complete list of available instructions, see the https://docs.docker.com/e
 When Docker runs a build, it sends all of the files and directories that are located in the same directory
 as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
 To make image building faster, add all files and directories that aren't necessary for building your
-image to a ``.dockerignore` file. This excludes them from the build context.
+image to a `.dockerignore` file. This excludes them from the build context.
 
 A `.dockerignore` file is available to you in the `start` directory. This file includes the `app`
 directory and some system files. Feel free to add anything else that you want to exclude.
