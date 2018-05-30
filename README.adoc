@@ -79,6 +79,46 @@ and they take up only a fraction of the memory of a single image.
 
 include::{common-includes}/gitclone.adoc[]
 
+
+// =================================================================================================
+// Building your application
+// =================================================================================================
+
+== Building your application
+
+Before you being, build your application. To do this, navigate to the `start` directory and run the Maven 
+`clean` and `install` goals:
+
+[role="no_copy"]
+----
+mvn clean install
+----
+
+Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server,
+but you can tweak this configuration or add your own for another server:
+
+[source, xml, indent=0]
+----
+<!-- Install the app into the apps/ directory of defaultServer -->
+<execution>
+    <id>install-app</id>
+    <phase>package</phase>
+    <goals>
+        <goal>install-apps</goal>
+    </goals>
+    <configuration>
+        <appsDirectory>apps</appsDirectory>
+        <stripVersion>true</stripVersion>
+        <installAppPackages>project</installAppPackages>
+    </configuration>
+</execution>
+----
+
+The `install-apps` goal copies the application into the specified directory of the specified server.
+In this case, the goal copies the `rest.war` file into the `apps` directory of the `defaultServer` server.
+
+Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository].
+
 // =================================================================================================
 // Creating the Dockerfile
 // =================================================================================================
@@ -123,46 +163,7 @@ To make image building faster, add all files and directories that aren't necessa
 image to a `.dockerignore` file. This excludes them from the build context.
 
 A `.dockerignore` file is available to you in the `start` directory. This file includes the `app`
-directory and some system files. Feel free to add anything else that you want to exclude.
-
-
-// =================================================================================================
-// Building your application
-// =================================================================================================
-
-== Building your application
-
-To build your application, run the Maven `clean` and `install` goals from the `app` directory:
-
-[role="no_copy"]
-----
-mvn clean install
-----
-
-Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server,
-but you can tweak this configuration or add your own for another server:
-
-[source, xml, indent=0]
-----
-<!-- Install the app into the apps/ directory of defaultServer -->
-<execution>
-    <id>install-app</id>
-    <phase>package</phase>
-    <goals>
-        <goal>install-apps</goal>
-    </goals>
-    <configuration>
-        <appsDirectory>apps</appsDirectory>
-        <stripVersion>true</stripVersion>
-        <installAppPackages>project</installAppPackages>
-    </configuration>
-</execution>
-----
-
-The `install-apps` goal copies the application into the specified directory of the specified server.
-In this case, the goal copies the `rest.war` file into the `apps` directory of the `defaultServer` server.
-
-Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository].
+directory and some system files. Feel free to add anything else that you want to exclude
 
 
 // =================================================================================================
