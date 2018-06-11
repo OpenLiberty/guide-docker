@@ -1,6 +1,6 @@
 # tag::from[]
 # Start with OL runtime.
-FROM openliberty/open-liberty:javaee7
+FROM open-liberty
 # end::from[]
 
 # tag::link[]

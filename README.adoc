@@ -28,7 +28,7 @@ Learn how to containerize a microservice with Docker for iterative development
 You will learn how to run and continuously develop a simple REST application with Open Liberty and Docker.
 
 The REST application that you will run was written for you in advance and can be found in the
-`app` directory. To learn more about this application and how to build it, read
+`start/src` directory. To learn more about this application and how to build it, read
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
 
 To containerize your application, first build it with Maven and add it to the servers of
@@ -86,7 +86,7 @@ include::{common-includes}/gitclone.adoc[]
 
 == Building your application
 
-Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven 
+Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven
 `clean` and `install` goals:
 
 [role="no_copy"]
@@ -251,13 +251,13 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 Now that your image is built, execute the Docker `run` command from the command line to run it:
 
 ```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/app/target/liberty/wlp/usr/servers:/servers ol-runtime
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime
 ```
 
 Alternatively, you can also execute the `run` command to mount a single server instead of the whole `servers` directory:
 
 ```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/app/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
 
 Let's break down the flags:
@@ -277,7 +277,7 @@ server in the `CMD` instruction. For example, if your `servers` directory also c
 `testServer`, then it can be started as shown in the following example:
 
 ```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/app/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
 ```
 
 Learn more about running containers on the official Docker page: https://docs.docker.com/engine/reference/run
@@ -303,7 +303,7 @@ To view a full list of all available containers, run the `docker ps -a` command 
 If your container is running without problems, point your browser to `http://localhost:9080/LibertyProject/System/properties`,
 where you can see a JSON file that contains the system properties of the JVM in your container.
 
-Edit the `app/src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class and change the `@Path`
+Edit the `src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class and change the `@Path`
 annotation to `"properties-new"`. These edits change the endpoint of your application from `/properties` to `/properties-new`:
 
 [source, Java, indent=0]
