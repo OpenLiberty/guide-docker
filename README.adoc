@@ -12,6 +12,8 @@
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: ['rest-intro']
+:page-guide-category: basic
+:page-essential: true
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
