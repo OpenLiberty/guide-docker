@@ -14,6 +14,7 @@
 :page-related-guides: ['rest-intro']
 :page-guide-category: basic
 :page-essential: true
+:page-essential-order: 4
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
