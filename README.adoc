@@ -95,7 +95,6 @@ include::{common-includes}/gitclone.adoc[]
 Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven
 `clean` and `install` goals:
 
-[role="no_copy"]
 ----
 mvn clean install
 ----
