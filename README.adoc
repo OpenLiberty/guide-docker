@@ -99,24 +99,16 @@ Before you begin, build your application. To do this, navigate to the `start` di
 mvn clean install
 ----
 
-Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server,
-but you can tweak this configuration or add your own for another server:
-
-[source, xml, indent=0]
+[role="code_command hotspot=163-174", subs="quotes"]
 ----
-<!-- Install the app into the apps/ directory of defaultServer -->
-<execution>
-    <id>install-app</id>
-    <phase>package</phase>
-    <goals>
-        <goal>install-apps</goal>
-    </goals>
-    <configuration>
-        <appsDirectory>apps</appsDirectory>
-        <stripVersion>true</stripVersion>
-        <installAppPackages>project</installAppPackages>
-    </configuration>
-</execution>
+Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server,
+but you can tweak this configuration or add your own for another server.
+----
+
+pom.xml
+[source, xml, indent=0, linenums, role="code_column"]
+----
+include::finish/pom.xml[tags=**]
 ----
 
 The `install-apps` goal copies the application into the specified directory of the specified server.
@@ -141,7 +133,7 @@ Create a regular `start/Dockerfile` file:
 ----
 
 Dockerfile
-[source, indent=0, role="code_column"]
+[source, indent=0, linenums, role="code_column"]
 ----
 include::finish/Dockerfile[tags=**]
 ----
@@ -312,16 +304,21 @@ To view a full list of all available containers, run the `docker ps -a` command 
 If your container is running without problems, point your browser to `http://localhost:9080/LibertyProject/System/properties`,
 where you can see a JSON file that contains the system properties of the JVM in your container.
 
-Edit the `src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class and change the `@Path`
-annotation to `"properties-new"`. These edits change the endpoint of your application from `/properties` to `/properties-new`:
 
-[source, Java, indent=0]
+
+[role="code_command hotspot=31", subs="quotes"]
 ----
-@Path("properties-new")
-public class PropertiesResource {
-  ...
-}
+Replace the `src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class and change the `@Path`
+annotation to `"properties-new"`.
 ----
+
+PropertiesResource.java
+[source, Java, indent=0, linenums, role="code_column"]
+----
+include::src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**]
+----
+
+ These edits change the endpoint of your application from `/properties` to `/properties-new`.
 
 To see these changes reflected in the container, run the `mvn package` command from the command line to
 rebuild your application and point your browser to `http://localhost:9080/LibertyProject/System/properties-new`.
