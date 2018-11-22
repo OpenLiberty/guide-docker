@@ -308,7 +308,7 @@ where you can see a JSON file that contains the system properties of the JVM in 
 
 Change the endpoint of your application from `/properties` to `/properties-new` by replacing the `PropertiesResource.java` class and changing the `@Path`
 annotation to `"properties-new"`.*
-[role="code_command hotspot=30-31", subs="quotes"]
+[role="code_command hotspot=27-28", subs="quotes"]
 ----
 The endpoint of your application is changed from `/properties` to `/properties-new` because the `@Path` annotation is set to `"propertiess-new"`.
 ----
