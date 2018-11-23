@@ -82,7 +82,7 @@ and they take up only a fraction of the memory of a single image.
 // =================================================================================================
 // Getting Started
 // =================================================================================================
-
+[role='command']
 include::{common-includes}/gitclone.adoc[]
 
 
@@ -95,23 +95,22 @@ include::{common-includes}/gitclone.adoc[]
 Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven
 `clean` and `install` goals:
 
-----
-mvn clean install
-----
-Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server.
-
-[role="code_command hotspot=163-174", subs="quotes"]
-----
-But you can tweak this configuration or add your own for another server here.
-----
-
 pom.xml
 [source, xml, linenums, role="code_column"]
 ----
 include::finish/pom.xml[tags=**]
 ----
 
-The `install-apps` goal copies the application into the specified directory of the specified server.
+[role='command']
+```
+mvn clean install
+```
+Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server.
+
+But you can tweak this configuration or add your own for another server [hotspot=163-174]`here`.
+
+
+The [hotspot=166-168]`install-apps` goal copies the application into the specified directory of the specified server.
 In this case, the goal copies the `rest.war` file into the `apps` directory of the `defaultServer` server.
 
 Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository].
@@ -131,23 +130,22 @@ install Java, or you can start from an image that already contains a Java instal
 ----
 Create a regular `start/Dockerfile` file:
 ----
-
 Dockerfile
 [source, linenums, role="code_column"]
 ----
 include::finish/Dockerfile[tags=**]
 ----
 
-The `FROM` instruction initializes a new build stage and indicates the parent image from which your
+The [hotspot=1-2]`FROM` instruction initializes a new build stage and indicates the parent image from which your
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
 base image. In this case, you're using the `openliberty/open-liberty:javaee7` image as your parent
 image, which comes with the latest Open Liberty runtime.
 
-The `RUN` instruction executes various shell commands in a new layer on top of the current image.
+The [hotspot=4-5]`RUN` instruction executes various shell commands in a new layer on top of the current image.
 In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
-The `CMD` and `ENTRYPOINT` instructions define a default command that executes when the image runs as
+The [hotspot=9-10]`CMD` and [hotspot=7-8]`ENTRYPOINT` instructions define a default command that executes when the image runs as
 a container. These two instructions function the same way, except that the `CMD` instruction is overridden
 with any arguments that are passed at the end of the `docker run` command. In contrast, the
 `ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
@@ -177,7 +175,7 @@ To build your image, make sure that your Docker daemon is running and execute th
 from the command line. If you execute your build from the same directory as your Dockerfile, you can
 use the period character (`.`) notation to specify the location for the build context. Otherwise, use
 the `-f` flag to point to your Dockerfile:
-
+[role='command']
 ```
 docker build -t ol-runtime .
 ```
@@ -236,6 +234,7 @@ need to rebuild the subsequent layer since this layer also changed.
 However, you can also completely disable the caching of intermediate layers by running the build with the
 `--no-cache=true` flag:
 
+[role='command']
 ```
 docker build -t ol-runtime --no-cache=true .
 ```
@@ -251,12 +250,13 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 
 Now that your image is built, execute the Docker `run` command from the command line to run it:
 
+[role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime
 ```
 
 Alternatively, you can also execute the `run` command to mount a single server instead of the whole `servers` directory:
-
+[role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
@@ -277,6 +277,7 @@ You can pass in an optional server name at the end of the `run` command to overr
 server in the `CMD` instruction. For example, if your `servers` directory also contains a server called
 `testServer`, then it can be started as shown in the following example:
 
+[role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
 ```
@@ -303,20 +304,18 @@ To view a full list of all available containers, run the `docker ps -a` command 
 
 If your container is running without problems, point your browser to `http://localhost:9080/LibertyProject/System/properties`,
 where you can see a JSON file that contains the system properties of the JVM in your container.
-
-*Replace the `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class.*
-
-Change the endpoint of your application from `/properties` to `/properties-new` by replacing the `PropertiesResource.java` class and changing the `@Path`
-annotation to `"properties-new"`.*
-[role="code_command hotspot=27-28", subs="quotes"]
+[role="code_command hotspot=1-36", subs="quotes"]
 ----
-The endpoint of your application is changed from `/properties` to `/properties-new` because the `@Path` annotation is set to `"propertiess-new"`.
+Replace the `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class.
 ----
 PropertiesResource.java
 [source, Java, linenums, role="code_column"]
 ----
-include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**]
+include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**;!comment]
 ----
+
+Change the endpoint of your application from [hotspot=17-18]`/properties` to `/properties-new` by replacing the `PropertiesResource.java` class and changing the `@Path`
+annotation to `"properties-new"`.*
 
 To see these changes reflected in the container, run the `mvn package` command from the command line to
 rebuild your application and point your browser to `http://localhost:9080/LibertyProject/System/properties-new`.
@@ -338,3 +337,5 @@ and they will reflect automatically when the application rebuilds.
 
 
 include::{common-includes}/finish.adoc[]
+
+include::https://raw.githubusercontent.com/OpenLiberty/guides-common/multipane/attribution.adoc[subs="attributes"]
