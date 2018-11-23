@@ -128,7 +128,7 @@ install Java, or you can start from an image that already contains a Java instal
 
 [role="code_command hotspot=1-9",subs="quotes"]
 ----
-Create a regular `start/Dockerfile` file:
+Create the file `start/Dockerfile`.
 ----
 Dockerfile
 [source, linenums, role="code_column"]
