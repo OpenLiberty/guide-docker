@@ -306,7 +306,7 @@ If your container is running without problems, point your browser to `http://loc
 where you can see a JSON file that contains the system properties of the JVM in your container.
 [role="code_command hotspot=1-36", subs="quotes"]
 ----
-Replace the `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class.
+Edit the `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class.
 ----
 PropertiesResource.java
 [source, Java, linenums, role="code_column"]
