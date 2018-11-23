@@ -131,7 +131,7 @@ install Java, or you can start from an image that already contains a Java instal
 Create the file `start/Dockerfile`.
 ----
 Dockerfile
-[source, linenums, role="code_column"]
+[source, text, linenums, role="code_column"]
 ----
 include::finish/Dockerfile[tags=**]
 ----
