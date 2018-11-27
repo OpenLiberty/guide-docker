@@ -128,7 +128,8 @@ install Java, or you can start from an image that already contains a Java instal
 
 [role="code_command hotspot=1-9",subs="quotes"]
 ----
-Create the file `start/Dockerfile`.
+Create the Docker file.
+`start/Dockerfile`
 ----
 Dockerfile
 [source, text, linenums, role="code_column"]
@@ -306,7 +307,8 @@ If your container is running without problems, point your browser to `http://loc
 where you can see a JSON file that contains the system properties of the JVM in your container.
 [role="code_command hotspot=1-36", subs="quotes"]
 ----
-Edit the `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java` class.
+Edit the Properties Resource class file.
+`start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
 ----
 PropertiesResource.java
 [source, Java, linenums, role="code_column"]
