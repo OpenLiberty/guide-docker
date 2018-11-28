@@ -105,7 +105,7 @@ include::finish/pom.xml[tags=**]
 ```
 mvn clean install
 ```
-[role="code_command hotspot=1-228"]
+[role="code_command hotspot=1-228", subs="quotes"]
 ----
 Take a look at your `pom.xml` file.
 ----
