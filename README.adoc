@@ -95,22 +95,24 @@ include::{common-includes}/gitclone.adoc[]
 Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven
 `clean` and `install` goals:
 
-pom.xml
-[source, xml, linenums, role="code_column"]
-----
-include::finish/pom.xml[tags=**]
-----
+
 
 [role='command']
 ```
 mvn clean install
 ```
-[role="code_command hotspot=1-228", subs="quotes"]
-----
-Take a look at your `pom.xml` file.
-----
-Your `pom.xml` file is already configured to add your REST application to the `defaultServer` server.
+//[role="code_command hotspot=1-228", subs="quotes"]
+//----
+//Take a look at your `pom.xml` file.
+//----
 
+Your [hotspot=1-228]`pom.xml` file is already configured to add your REST application to the `defaultServer` server.
+pom.xml
+
+[source, xml, linenums, role="code_column"]
+----
+include::finish/pom.xml[tags=**]
+----
 But you can tweak this configuration or add your own for another server [hotspot=163-174]`here`.
 
 
@@ -141,16 +143,19 @@ Dockerfile
 include::finish/Dockerfile[tags=**]
 ----
 
-The [hotspot=1-2]`FROM` instruction initializes a new build stage and indicates the parent image from which your
+The [hotspot=2]`FROM` instruction initializes a new build stage and indicates the parent image from which your
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
-base image. In this case, you're using the `openliberty/open-liberty:javaee7` image as your parent
+base image. 
+
+In this case, you're using the `openliberty/open-liberty:javaee7` image as your parent
 image, which comes with the latest Open Liberty runtime.
 
-The [hotspot=4-5]`RUN` instruction executes various shell commands in a new layer on top of the current image.
+
+The [hotspot=5]`RUN` instruction executes various shell commands in a new layer on top of the current image.
 In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
-The [hotspot=9-10]`CMD` and [hotspot=7-8]`ENTRYPOINT` instructions define a default command that executes when the image runs as
+The [hotspot=9]`CMD` and [hotspot=8]`ENTRYPOINT` instructions define a default command that executes when the image runs as
 a container. These two instructions function the same way, except that the `CMD` instruction is overridden
 with any arguments that are passed at the end of the `docker run` command. In contrast, the
 `ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
@@ -320,7 +325,7 @@ PropertiesResource.java
 include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**;!comment]
 ----
 
-Change the endpoint of your application from [hotspot=17-18]`/properties` to `/properties-new` by replacing the `PropertiesResource.java` class and changing the `@Path`
+Change the endpoint of your application from [hotspot=18]`/properties` to `/properties-new` by replacing the `PropertiesResource.java` class and changing the `@Path`
 annotation to `"properties-new"`.*
 
 To see these changes reflected in the container, run the `mvn package` command from the command line to
