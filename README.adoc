@@ -95,32 +95,26 @@ include::{common-includes}/gitclone.adoc[]
 Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven
 `clean` and `install` goals:
 
-
-
 [role='command']
 ```
 mvn clean install
 ```
-//[role="code_command hotspot=1-228", subs="quotes"]
-//----
-//Take a look at your `pom.xml` file.
-//----
 
 Your [hotspot=1-228]`pom.xml` file is already configured to add your REST application to the `defaultServer` server.
 pom.xml
 
-[source, xml, linenums, role="code_column"]
-----
-include::finish/pom.xml[tags=**]
-----
-But you can tweak this configuration or add your own for another server [hotspot=163-174]`here`.
-
+But you can tweak this configuration or add your own for another server by updating the [hotspot=163-174]`</execution>` element.
 
 The [hotspot=166-168]`install-apps` goal copies the application into the specified directory of the specified server.
 In this case, the goal copies the `rest.war` file into the `apps` directory of the `defaultServer` server.
 
 Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository].
 
+pom.xml
+[source, xml, linenums, role="code_column"]
+----
+include::finish/pom.xml[tags=**]
+----
 // =================================================================================================
 // Creating the Dockerfile
 // =================================================================================================
