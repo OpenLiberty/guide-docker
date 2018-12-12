@@ -103,7 +103,7 @@ mvn clean install
 Your [hotspot=1-228]`pom.xml` file is already configured to add your REST application to the `defaultServer` server.
 pom.xml
 
-But you can tweak this configuration or add your own for another server by updating the [hotspot=154-62]`<execution/>` element.
+But you can tweak this configuration or add your own for another server by updating the [hotspot=154-162]`<execution/>` element.
 
 Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository].
 
