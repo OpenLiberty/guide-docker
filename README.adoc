@@ -85,6 +85,10 @@ and they take up only a fraction of the memory of a single image.
 [role='command']
 include::{common-includes}/gitclone.adoc[]
 
+[role='no_copy']
+```
+testing
+```
 
 // =================================================================================================
 // Building your application
