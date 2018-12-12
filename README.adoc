@@ -8,7 +8,7 @@
 :projectid: docker
 :page-layout: guide-multipane
 :page-duration: 20 minutes
-:page-description: Learn how to containerize a microservice with Docker for iterative development
+:page-description: Learn how to containerize a microservice with Docker for iterative development.
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: ['rest-intro']
@@ -33,7 +33,7 @@ Learn how to containerize a microservice with Docker for iterative development
 
 You will learn how to run and continuously develop a simple REST application with Open Liberty and Docker.
 
-The REST application that you will run was written for you in advance and can be found in the
+The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
 
@@ -84,11 +84,6 @@ and they take up only a fraction of the memory of a single image.
 // =================================================================================================
 [role='command']
 include::{common-includes}/gitclone.adoc[]
-
-[source, role='no_copy']
-```
-testing
-```
 
 // =================================================================================================
 // Building your application
