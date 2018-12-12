@@ -305,7 +305,7 @@ To view a full list of all available containers, run the `docker ps -a` command 
 
 If your container is running without problems, point your browser to `http://localhost:9080/LibertyProject/System/properties`,
 where you can see a JSON file that contains the system properties of the JVM in your container.
-[role="code_command hotspot=1-36", subs="quotes"]
+[role="code_command hotspot=20-36", subs="quotes"]
 ----
 Edit the `PropertiesResource` class.
 `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
