@@ -134,7 +134,7 @@ The [hotspot=2]`FROM` instruction initializes a new build stage and indicates th
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
 base image. 
 
-In this case, you're using the `openliberty/open-liberty:javaee7` image as your parent
+In this case, you're using the `openliberty/open-liberty:javaee8` image as your parent
 image, which comes with the latest Open Liberty runtime.
 
 
@@ -186,43 +186,40 @@ If your build runs successfully, you'll see an output similar to the following:
 
 [role="no_copy"]
 ----
-Sending build context to Docker daemon  3.072kB
-Step 1/4 : FROM openliberty/open-liberty:javaee7
-javaee7: Pulling from openliberty/open-liberty
-660c48dd555d: Pull complete
-4c7380416e78: Pull complete
-421e436b5f80: Pull complete
-e4ce6c3651b3: Pull complete
-be588e74bd34: Pull complete
-6da4611cbdb3: Pull complete
-3cbd5728a38e: Pull complete
-38f12bc85354: Pull complete
-540c270bda6a: Pull complete
-bbd56d34f762: Pull complete
-8f181e95aa97: Pull complete
-4c14e095e68e: Pull complete
-bed46b62b8c3: Pull complete
-Digest: sha256:d6793b7865d86ad43e5cc7c02089f7eefd2b1af3e312bc453e4779f4f24c28a6
-Status: Downloaded newer image for openliberty/open-liberty:javaee7
- ---> d71303f77e8d
+Sending build context to Docker daemon  148.9MB
+Step 1/4 : FROM open-liberty
+latest: Pulling from library/open-liberty
+7b8b6451c85f: Pull complete 
+ab4d1096d9ba: Pull complete 
+e6797d1788ac: Pull complete 
+e25c5c290bde: Pull complete 
+27b2fbbc72b1: Pull complete 
+aa35dfd74487: Pull complete 
+1ade56d64661: Pull complete 
+3493ef172f60: Pull complete 
+cd6dff6d245d: Pull complete 
+82450af30afc: Pull complete 
+Digest: sha256:b7576e4278030537765d4185c4641ee2769194226263f979109ed4fa0e1aa4e4
+Status: Downloaded newer image for open-liberty:latest
+ ---> 45d4b67ace5b
 Step 2/4 : RUN ln -s /opt/ol/wlp/usr/servers /servers
- ---> Running in 191078d2ce16
- ---> dfef8073fe42
-Removing intermediate container 191078d2ce16
-Step 3/4 : ENTRYPOINT /opt/ol/wlp/bin/server run
- ---> Running in 38e48bae6dd7
- ---> 1015cbcdcf37
-Removing intermediate container 38e48bae6dd7
-Step 4/4 : CMD defaultServer
- ---> Running in 3fea454efdcd
- ---> ee99661593eb
-Removing intermediate container 3fea454efdcd
-Successfully built ee99661593eb
+ ---> Running in cbeb275770ab
+Removing intermediate container cbeb275770ab
+ ---> 937183f8460b
+Step 3/4 : ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
+ ---> Running in 856a4bdec82b
+Removing intermediate container 856a4bdec82b
+ ---> 6cf732381877
+Step 4/4 : CMD ["defaultServer"]
+ ---> Running in 1a543a9e37d8
+Removing intermediate container 1a543a9e37d8
+ ---> 8fdcad065d25
+Successfully built 8fdcad065d25
 Successfully tagged ol-runtime:latest
 ----
 
 Each step of the build has a unique ID, which represents the ID of an intermediate image. For example, step 2
-has the ID `dfef8073fe42`, and step 4 has the ID `ee99661593eb`, which is also the ID of the final image.
+has the ID `937183f8460b`, and step 4 has the ID `8fdcad065d25`, which is also the ID of the final image.
 During the first build of your image, Docker caches every new layer as a separate image and reuses them
 for future builds for layers that didn't change. For example, if you run the build again, Docker reuses
 the images that it cached for steps 2 - 4. However, if you make a change in your Dockerfile, Docker would
@@ -319,7 +316,11 @@ To see these changes reflected in the container, run the `mvn package` command f
 rebuild your application and point your browser to `http://localhost:9080/LibertyProject/System/properties-new`.
 You see the same JSON file that you saw previously.
 
-To stop your container, run the `docker stop rest-app` command from the command line.
+To stop your container, run the following command from the command line.
+[role='command']
+```
+docker stop rest-app
+```
 
 If a problem occurs and your container exits prematurely, the container won't appear in the container
 list that the `docker ps` command displays. Instead, your container appears with an `Exited`
