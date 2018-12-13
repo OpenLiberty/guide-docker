@@ -49,9 +49,9 @@ can think of Docker like a virtual machine that runs various applications. Howev
 machine, you can run these applications simultaneously on a single system and independent of
 one another.
 
-Learn more about Docker on the official Docker page: https://www.docker.com/what-docker
+Learn more about Docker on the https://www.docker.com/what-docker[official Docker page].
 
-Learn how to install Docker on the official instructions page: https://docs.docker.com/engine/installation
+Learn how to install Docker on the https://docs.docker.com/engine/installation[official instructions page].
 
 === What is a container?
 
@@ -60,7 +60,7 @@ with the entire environment that it needs to run. Containers are small compared 
 run on any environment where Docker is set up. Moreover, you can run multiple containers on a single
 machine at the same time in isolation from each other.
 
-Learn more about containers on the official Docker page: https://www.docker.com/what-container
+Learn more about containers on the https://www.docker.com/what-container[official Docker page].
 
 === Why use containers?
 
