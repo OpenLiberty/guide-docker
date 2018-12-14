@@ -276,7 +276,7 @@ server in the `CMD` instruction. For example, if your `servers` directory also c
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
 ```
 
-Learn more about running containers on the official Docker page: https://docs.docker.com/engine/reference/run
+Learn more about running containers on the https://docs.docker.com/engine/reference/run[official Docker page]
 
 // =================================================================================================
 // Testing the container
