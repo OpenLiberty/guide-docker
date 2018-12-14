@@ -138,11 +138,11 @@ In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directo
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
 The [hotspot=8]`ENTRYPOINT` and [hotspot=9]`CMD` instructions define a default command that executes when the image runs as
-a container. These two instructions function the same way, except that the `CMD` instruction is overridden
+a container. These two instructions function the same way, except that the [hotspot=9]`CMD` instruction is overridden
 with any arguments that are passed at the end of the `docker run` command. In contrast, the
-`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
-the `ENTRYPOINT` instruction to start an Open Liberty server and the `CMD` instruction to indicate
-which server to start. Because the `CMD` instruction is easily overridden, starting any server is convenient.
+[hotspot=8]`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
+the [hotspot=8]`ENTRYPOINT` instruction to start an Open Liberty server and the [hotspot=9]`CMD` instruction to indicate
+which server to start. Because the [hotspot=9]`CMD` instruction is easily overridden, starting any server is convenient.
 
 For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation].
 
@@ -308,8 +308,12 @@ Edit the `PropertiesResource` class.
 Change the endpoint of your application from [hotspot=18]`properties` to `properties-new` by changing the `@Path`
 annotation to `"properties-new"`.
 
-To see these changes reflected in the container, run the `mvn package` command from the command line to
+To see these changes reflected in the container, run the following command from the command line to
 rebuild your application and point your browser to `http://localhost:9080/LibertyProject/System/properties-new`.
+[role='command']
+```
+mvn package
+```
 You see the same JSON file that you saw previously.
 
 To stop your container, run the following command from the command line.
