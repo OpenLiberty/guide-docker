@@ -124,11 +124,6 @@ install Java, or you can start from an image that already contains a Java instal
 Create the `Dockerfile`.
 `start/Dockerfile`
 ----
-Dockerfile
-[source, text, linenums, role="code_column"]
-----
-include::finish/Dockerfile[tags=**]
-----
 
 The [hotspot=2]`FROM` instruction initializes a new build stage and indicates the parent image from which your
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
@@ -161,6 +156,11 @@ image to a `.dockerignore` file. This excludes them from the build context.
 A `.dockerignore` file is available to you in the `start` directory. This file includes the `src`
 directory, the `pom.xml` file, and some system files. Feel free to add anything else that you want to exclude
 
+Dockerfile
+[source, text, linenums, role="code_column"]
+----
+include::finish/Dockerfile[tags=**]
+----
 
 // =================================================================================================
 // Building the image
@@ -303,11 +303,6 @@ where you can see a JSON file that contains the system properties of the JVM in 
 Edit the `PropertiesResource` class.
 `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
 ----
-PropertiesResource.java
-[source, Java, linenums, role="code_column"]
-----
-include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**;!comment]
-----
 
 Change the endpoint of your application from [hotspot=18]`properties` to `properties-new` by changing the `@Path`
 annotation to `"properties-new"`.
@@ -328,6 +323,12 @@ status when you run the `docker ps -a` command. Run the `docker logs rest-app` c
 container logs for any potential problems and double-check that your Dockerfile is correct. When you
 find the cause of the issue, remove the faulty container with the `docker rm rest-app` command, rebuild
 your image, and start the container again.
+
+PropertiesResource.java
+[source, Java, linenums, role="code_column"]
+----
+include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**;!comment]
+----
 
 == Great work! You're done!
 
