@@ -73,23 +73,8 @@ xsi:schemaLocation=
             <version>1.0.4</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-<<<<<<< HEAD
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jaxrs-2.1</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jsonp-1.1</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
         <!-- Support for JDK 9 and above -->
         <dependency>
-=======
->>>>>>> 9204c25c04d0646a40d9fe8ab9cfccd48aacd6c5
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
