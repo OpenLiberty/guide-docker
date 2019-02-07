@@ -304,10 +304,12 @@ where you can see a JSON file that contains the system properties of the JVM in 
 ----
 #Edit the `PropertiesResource` class.#
 `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
-----
-
+[role="edit_command_text"]
 Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=18]`@Path`
 annotation to `"properties-new"`.
+----
+
+
 
 To see these changes reflected in the container, run the following command from the command line to
 rebuild your application and point your browser to `http://localhost:9080/LibertyProject/System/properties-new`.
