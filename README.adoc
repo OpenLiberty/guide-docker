@@ -298,7 +298,7 @@ CONTAINER ID        IMAGE               CREATED             STATUS              
 
 To view a full list of all available containers, run the `docker ps -a` command from the command line.
 
-If your container is running without problems, point your browser to `http://localhost:9080/LibertyProject/System/properties`,
+If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties,
 where you can see a JSON file that contains the system properties of the JVM in your container.
 [role="code_command hotspot=19-36", subs="quotes"]
 ----
