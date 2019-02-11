@@ -120,7 +120,7 @@ container. Every Dockerfile begins with a parent or base image on top of which v
 are run. For example, you can start your image from scratch and execute commands that download and
 install Java, or you can start from an image that already contains a Java installation.
 
-[role="code_command hotspot=1-9",subs="quotes"]
+[role="code_command hotspot",subs="quotes"]
 ----
 #Create the `Dockerfile`.#
 `start/Dockerfile`
@@ -300,9 +300,9 @@ To view a full list of all available containers, run the `docker ps -a` command 
 
 If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties,
 where you can see a JSON file that contains the system properties of the JVM in your container.
-[role="code_command hotspot=19-36", subs="quotes"]
+[role="code_command hotspot=18", subs="quotes"]
 ----
-#Edit the `PropertiesResource` class.#
+#Update the `PropertiesResource` class.#
 `start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
 ----
 
