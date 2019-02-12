@@ -36,7 +36,7 @@ You will learn how to run and continuously develop a simple REST application wit
 
 The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
-https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
+https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
 To containerize your application, first build it with Maven and add it to the servers of
 your choice. Second, create a Docker image that contains an Open Liberty runtime. Third, run this image
@@ -50,9 +50,9 @@ can think of Docker like a virtual machine that runs various applications. Howev
 machine, you can run these applications simultaneously on a single system and independent of
 one another.
 
-Learn more about Docker on the https://www.docker.com/what-docker[official Docker page].
+Learn more about Docker on the https://www.docker.com/what-docker[official Docker page^].
 
-Learn how to install Docker on the https://docs.docker.com/engine/installation[official instructions page].
+Learn how to install Docker on the https://docs.docker.com/engine/installation[official instructions page^].
 
 === What is a container?
 
@@ -61,7 +61,7 @@ with the entire environment that it needs to run. Containers are small compared 
 run on any environment where Docker is set up. Moreover, you can run multiple containers on a single
 machine at the same time in isolation from each other.
 
-Learn more about containers on the https://www.docker.com/what-container[official Docker page].
+Learn more about containers on the https://www.docker.com/what-container[official Docker page^].
 
 === Why use containers?
 
@@ -102,7 +102,7 @@ mvn clean install
 
 Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=181-192]`<execution/>` element.
 
-Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository].
+Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository^].
 
 pom.xml
 [source, xml, linenums, role="code_column"]
@@ -145,7 +145,7 @@ with any arguments that are passed at the end of the `docker run` command. In co
 the [hotspot=8]`ENTRYPOINT` instruction to start an Open Liberty server and the [hotspot=9]`CMD` instruction to indicate
 which server to start. Because the [hotspot=9]`CMD` instruction is easily overridden, starting any server is convenient.
 
-For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation].
+For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation^].
 
 Dockerfile
 [source, text, linenums, role="code_column"]
@@ -235,7 +235,7 @@ However, you can also completely disable the caching of intermediate layers by r
 docker build -t ol-runtime --no-cache=true .
 ```
 
-Learn more about the image build process on the https://docs.docker.com/engine/reference/commandline/image_build[Docker documentation].
+Learn more about the image build process on the https://docs.docker.com/engine/reference/commandline/image_build[Docker documentation^].
 
 
 // =================================================================================================
@@ -278,7 +278,7 @@ server in the `CMD` instruction. For example, if your `servers` directory also c
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
 ```
 
-Learn more about running containers on the https://docs.docker.com/engine/reference/run[official Docker page]
+Learn more about running containers on the https://docs.docker.com/engine/reference/run[official Docker page^]
 
 // =================================================================================================
 // Testing the container
