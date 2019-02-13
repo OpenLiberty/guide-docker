@@ -93,11 +93,11 @@ include::{common-includes}/gitclone.adoc[]
 == Building your application
 
 Before you begin, build your application. To do this, navigate to the `start` directory and run the Maven
-`clean` and `install` goals:
+`install` goal:
 
 [role='command']
 ```
-mvn clean install
+mvn install
 ```
 
 Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=181-192]`<execution/>` element.
@@ -120,10 +120,12 @@ container. Every Dockerfile begins with a parent or base image on top of which v
 are run. For example, you can start your image from scratch and execute commands that download and
 install Java, or you can start from an image that already contains a Java installation.
 
+Navigate to your `start` directory.
+
 [role="code_command hotspot",subs="quotes"]
 ----
 #Create the `Dockerfile`.#
-`start/Dockerfile`
+`Dockerfile`
 ----
 
 The [hotspot=2]`FROM` instruction initializes a new build stage and indicates the parent image from which your
@@ -161,7 +163,7 @@ To make image building faster, add all files and directories that aren't necessa
 image to a `.dockerignore` file. This excludes them from the build context.
 
 A `.dockerignore` file is available to you in the `start` directory. This file includes the `src`
-directory, the `pom.xml` file, and some system files. Feel free to add anything else that you want to exclude
+directory, the `pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
 
 
 // =================================================================================================
@@ -244,7 +246,7 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 
 == Containerize your application
 
-Now that your image is built, execute the Docker `run` command with the absolute path to this guide, from the command line to run it:
+Now that your image is built, execute the Docker `run` command with the absolute path to this guide:
 
 [role='command']
 ```
@@ -273,7 +275,7 @@ You can pass in an optional server name at the end of the `run` command to overr
 server in the `CMD` instruction. For example, if your `servers` directory also contains a server called
 `testServer`, then it can be started as shown in the following example:
 
-[role='command']
+[role='no_copy']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
 ```
@@ -303,7 +305,7 @@ where you can see a JSON file that contains the system properties of the JVM in 
 [role="code_command hotspot=18", subs="quotes"]
 ----
 #Update the `PropertiesResource` class.#
-`start/src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
+`src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
 ----
 
 [role="edit_command_text"]
