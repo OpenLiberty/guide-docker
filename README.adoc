@@ -271,7 +271,7 @@ Let's break down the flags:
 | *Flag* | *Description*
 | -d | This flag tells Docker to run the container in the background. Without this flag, Docker runs
 the container in the foreground.
-| --name | This flag gives the container a name.
+| --name | This flag specifies a name for the container.
 | -p | This flag maps the container ports to the host ports.
 | -v | This flag mounts a directory or file to the file system of the container.
 |===
