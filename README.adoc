@@ -128,7 +128,7 @@ Navigate to your `start` directory.
 `Dockerfile`
 ----
 
-The [hotspot=2]`FROM` instruction initializes a new build stage and indicates the parent image from which your
+The [hotspot=2 file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
 base image. 
 
@@ -136,16 +136,16 @@ In this case, you're using the `openliberty/open-liberty:javaee8` image as your 
 image, which comes with the latest Open Liberty runtime.
 
 
-The [hotspot=5]`RUN` instruction executes various shell commands in a new layer on top of the current image.
+The [hotspot=5 file=0]`RUN` instruction executes various shell commands in a new layer on top of the current image.
 In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 
-The [hotspot=8]`ENTRYPOINT` and [hotspot=9]`CMD` instructions define a default command that executes when the image runs as
-a container. These two instructions function the same way, except that the [hotspot=9]`CMD` instruction is overridden
+The [hotspot=8 file=0]`ENTRYPOINT` and [hotspot=9]`CMD` instructions define a default command that executes when the image runs as
+a container. These two instructions function the same way, except that the [hotspot=9 file=0]`CMD` instruction is overridden
 with any arguments that are passed at the end of the `docker run` command. In contrast, the
-[hotspot=8]`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
-the [hotspot=8]`ENTRYPOINT` instruction to start an Open Liberty server and the [hotspot=9]`CMD` instruction to indicate
-which server to start. Because the [hotspot=9]`CMD` instruction is easily overridden, starting any server is convenient.
+[hotspot=8 file=0]`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
+the [hotspot=8 file=0]`ENTRYPOINT` instruction to start an Open Liberty server and the [hotspot=9 file=0]`CMD` instruction to indicate
+which server to start. Because the [hotspot=9 file=0]`CMD` instruction is easily overridden, starting any server is convenient.
 
 For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation^].
 
@@ -162,10 +162,15 @@ as the Dockerfile to its build context, making them available for use in instruc
 To make image building faster, add all files and directories that aren't necessary for building your
 image to a `.dockerignore` file. This excludes them from the build context.
 
-A `.dockerignore` file is available to you in the `start` directory. This file includes the `src`
-directory, the `pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
+A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=2 file=0]`src`
+directory, the [hotspot=1 file=1]`pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
 
 
+.dockerignore
+[source, text, linenums, role="code_column"]
+----
+include::finish/.dockerignore[tags=**]
+----
 // =================================================================================================
 // Building the image
 // =================================================================================================
