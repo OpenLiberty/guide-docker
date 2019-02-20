@@ -121,7 +121,7 @@ container. Every Dockerfile begins with a parent or base image on top of which v
 are run. For example, you can start your image from scratch and execute commands that download and
 install Java, or you can start from an image that already contains a Java installation.
 
-Navigate to your `start` directory.
+Navigate to the `start` directory to begin.
 
 [role="code_command hotspot",subs="quotes"]
 ----
