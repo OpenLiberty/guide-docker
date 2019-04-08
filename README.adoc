@@ -148,7 +148,7 @@ Note that since the Open Liberty Docker image runs by default with user `1001` (
 we must temporarily switch to the `root` user to create the symlink. This is done by using 
 the [hotspot=4 hotspot=7 file=0]`USER` instruction. 
 
-The [hotspot=10 file=0]`ENTRYPOINT` and [hotspot=9]`CMD` instructions define a default command that executes when the image runs as
+The [hotspot=10 file=0]`ENTRYPOINT` and [hotspot=11]`CMD` instructions define a default command that executes when the image runs as
 a container. These two instructions function the same way, except that the [hotspot=11 file=0]`CMD` instruction is overridden
 with any arguments that are passed at the end of the `docker run` command. In contrast, the
 [hotspot=10 file=0]`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
