@@ -145,7 +145,7 @@ The [hotspot=6 file=0]`RUN` instruction executes various shell commands in a new
 In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 Note that since the Open Liberty Docker image runs by default with user `1001` (which is a non-root user),
-we must temporarily switch to the `root` user to create the symlink. This is done by using 
+you must temporarily switch to the `root` user to create the symlink. This is done by using 
 the [hotspot=4 hotspot=7 file=0]`USER` instruction. 
 
 The [hotspot=10 file=0]`ENTRYPOINT` and [hotspot=11]`CMD` instructions define a default command that executes when the image runs as
@@ -275,7 +275,7 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 
 [system]#*{linux}*#
 
-We use the `-u` flag to override the default user within the container to match the user 
+Use the `-u` flag to override the default user within the container to match the user 
 id on your host machine. This is to ensure the default user has correct permissions to the 
 server directory. 
 
