@@ -104,7 +104,7 @@ Before you begin, build your application. To do this, navigate to the `start` di
 mvn install
 ```
 
-Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=181-192]`<execution/>` element.
+Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=185-196]`<execution/>` element.
 
 Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository^].
 
