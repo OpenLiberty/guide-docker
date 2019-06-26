@@ -265,16 +265,38 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 == Containerize your application
 
 Now that your image is built, execute the Docker `run` command with the absolute path to this guide:
-****
-[system]#*{win} | {mac}*#
 
+[.tab_link]
+[.windows_link]
+`*WINDOWS*`
+[.tab_link]
+[.mac_link]
+`*MAC*`
+[.tab_link]
+[.linux_link]
+`*LINUX*`
+
+[.tab_content]
+[.windows_section]
+--
 [role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime
 ```
+--
 
-[system]#*{linux}*#
+[.tab_content]
+[.mac_section]
+--
+[role='command']
+```
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime
+```
+--
 
+[.tab_content]
+[.linux_section]
+--
 Use the `-u` flag to override the default user within the container to match the user 
 id on your host machine. This is to ensure the default user has correct permissions to the 
 server directory. 
@@ -283,24 +305,46 @@ server directory.
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers -u `id -u` ol-runtime
 ```
-****
+--
 
 Alternatively, you can also execute the `run` command to mount a single server instead of the whole `servers` directory:
 [role='command']
 
-****
-[system]#*{win} | {mac}*#
+[.tab_link]
+[.windows_link]
+`*WINDOWS*`
+[.tab_link]
+[.mac_link]
+`*MAC*`
+[.tab_link]
+[.linux_link]
+`*LINUX*`
+
+[.tab_content]
+[.windows_section]
+--
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
+--
 
-[system]#*{linux}*#
+[.tab_content]
+[.mac_section]
+--
+```
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
+```
+--
 
+[.tab_content]
+[.linux_section]
+--
 [role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer -u `id -u` ol-runtime
 ```
-****
+--
+
 Let's break down the flags:
 
 [cols="15, 100", options="header"]
