@@ -323,6 +323,7 @@ Alternatively, you can also execute the `run` command to mount a single server i
 [.tab_content]
 [.windows_section]
 --
+[role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
@@ -331,6 +332,7 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 [.tab_content]
 [.mac_section]
 --
+[role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
