@@ -266,18 +266,14 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 
 Now that your image is built, execute the Docker `run` command with the absolute path to this guide:
 
-[.tab_link]
-[.windows_link]
+[.tab_link.windows_link]
 `*WINDOWS*`
-[.tab_link]
-[.mac_link]
+[.tab_link.mac_link]
 `*MAC*`
-[.tab_link]
-[.linux_link]
+[.tab_link.linux_link]
 `*LINUX*`
 
-[.tab_content]
-[.windows_section]
+[.tab_content.windows_section.mac_section]
 --
 [role='command']
 ```
@@ -285,17 +281,7 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 ```
 --
 
-[.tab_content]
-[.mac_section]
---
-[role='command']
-```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime
-```
---
-
-[.tab_content]
-[.linux_section]
+[.tab_content.linux_section]
 --
 Use the `-u` flag to override the default user within the container to match the user 
 id on your host machine. This is to ensure the default user has correct permissions to the 
@@ -310,18 +296,14 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 Alternatively, you can also execute the `run` command to mount a single server instead of the whole `servers` directory:
 [role='command']
 
-[.tab_link]
-[.windows_link]
+[.tab_link.windows_link]
 `*WINDOWS*`
-[.tab_link]
-[.mac_link]
+[.tab_link.mac_link]
 `*MAC*`
-[.tab_link]
-[.linux_link]
+[.tab_link.linux_link]
 `*LINUX*`
 
-[.tab_content]
-[.windows_section]
+[.tab_content.windows_section.mac_section
 --
 [role='command']
 ```
@@ -329,17 +311,7 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 ```
 --
 
-[.tab_content]
-[.mac_section]
---
-[role='command']
-```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
-```
---
-
-[.tab_content]
-[.linux_section]
+[.tab_content.linux_section]
 --
 [role='command']
 ```
