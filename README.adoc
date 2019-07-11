@@ -8,7 +8,7 @@
 :projectid: docker
 :page-layout: guide-multipane
 :page-duration: 20 minutes
-:page-description: Learn how to containerize a microservice with Docker for iterative development.
+:page-description: Learn how to use Docker containers for iterative development. 
 :page-releasedate: 2017-12-27
 :page-tags: ['Docker']
 :page-related-guides: ['rest-intro']
