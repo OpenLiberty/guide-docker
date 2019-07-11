@@ -36,7 +36,7 @@ Learn how to containerize a microservice with Docker for iterative development
 
 == What you'll learn
 
-You will learn how to run and continuously develop a simple REST application with Open Liberty and Docker.
+You will learn how to setup, run and iteratively develop a simple REST application in a container with Open Liberty and Docker.
 
 The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
