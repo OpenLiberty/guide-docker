@@ -1,4 +1,4 @@
-// Copyright (c) 2017 IBM Corporation and others.
+// Copyright (c) 2017, 2019 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -24,7 +24,7 @@
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Learn how to containerize a microservice with Docker for iterative development
+Learn how to use Docker containers for iterative development.
 
 :linux: LINUX
 :win: WINDOWS
@@ -42,7 +42,7 @@ The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
-To containerize your application, first build it with Maven and add it to the servers of
+To iteratively develop your application in a container, first build it with Maven and add it to the servers of
 your choice. Second, create a Docker image that contains an Open Liberty runtime. Third, run this image
 and mount a single server directory or the directory that contains all of your servers to the container's
 file system. Finally, run one of the mounted servers inside of a container.
@@ -384,8 +384,9 @@ include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java
 
 == Great work! You're done!
 
-You containerized a simple REST application in Open Liberty. You can now continuously deliver changes to the application,
-and they will reflect automatically when the application rebuilds.
+You have learned how to set up, run, iteractively develop a simple REST application in a container with
+Open Liberty and Docker. Whenever you make changes to your application code, they will now reflect
+automatically on the Open Liberty server running in a container when the application rebuilds.
 
 
 
