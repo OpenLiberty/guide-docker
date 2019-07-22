@@ -259,10 +259,10 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 
 
 // =================================================================================================
-// Containerize your application
+// Running your application in Docker container
 // =================================================================================================
 
-== Containerize your application
+== Running your application in Docker container
 
 Now that your image is built, execute the Docker `run` command with the absolute path to this guide:
 ****
