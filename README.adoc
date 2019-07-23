@@ -266,12 +266,15 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 
 Now that your image is built, execute the Docker `run` command with the absolute path to this guide:
 
-[.tab_link.windows_link]
-`*WINDOWS*`
-[.tab_link.mac_link]
-`*MAC*`
-[.tab_link.linux_link]
-`*LINUX*`
+//[.tab_link.windows_link]
+//`*WINDOWS*`
+//[.tab_link.mac_link]
+//`*MAC*`
+//[.tab_link.linux_link]
+//`*LINUX*`
+
+[role='command']
+include::{common-includes}/test.adoc[]
 
 [.tab_content.windows_section.mac_section]
 --
