@@ -273,6 +273,7 @@ Now that your image is built, execute the Docker `run` command with the absolute
 //[.tab_link.linux_link]
 //`*LINUX*`
 
+[role='command']
 include::{common-includes}/test.adoc[]
 
 [.tab_content.windows_section.mac_section]
@@ -305,7 +306,7 @@ Alternatively, you can also execute the `run` command to mount a single server i
 [.tab_link.linux_link]
 `*LINUX*`
 
-[.tab_content.windows_section.mac_section
+[.tab_content.windows_section.mac_section]
 --
 [role='command']
 ```
