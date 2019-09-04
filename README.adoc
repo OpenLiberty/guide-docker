@@ -266,13 +266,6 @@ Learn more about the image build process on the https://docs.docker.com/engine/r
 
 Now that your image is built, execute the Docker `run` command with the absolute path to this guide:
 
-//[.tab_link.windows_link]
-//`*WINDOWS*`
-//[.tab_link.mac_link]
-//`*MAC*`
-//[.tab_link.linux_link]
-//`*LINUX*`
-
 include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section.mac_section]
@@ -298,12 +291,7 @@ docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to gui
 Alternatively, you can also execute the `run` command to mount a single server instead of the whole `servers` directory:
 [role='command']
 
-[.tab_link.windows_link]
-`*WINDOWS*`
-[.tab_link.mac_link]
-`*MAC*`
-[.tab_link.linux_link]
-`*LINUX*`
+include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section.mac_section]
 --
