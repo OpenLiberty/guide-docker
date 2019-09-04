@@ -273,7 +273,6 @@ Now that your image is built, execute the Docker `run` command with the absolute
 //[.tab_link.linux_link]
 //`*LINUX*`
 
-[role='command']
 include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section.mac_section]
