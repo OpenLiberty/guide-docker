@@ -16,7 +16,7 @@
 :page-essential: true
 :page-essential-order: 4
 :page-permalink: /guides/{projectid}
-:common-includes: ../guides-common/
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
 :guide-author: Open Liberty
 = Using Docker containers to develop microservices
