@@ -106,7 +106,10 @@ mvn install
 
 Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=185-196]`<execution/>` element.
 
-Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/master/docs/install-apps.md[Maven Liberty plug-in repository^].
+The `install-apps` goal copies the application into the specified directory of the specified server.
+In this case, the goal copies the `rest.war` file into the `apps` directory of the `defaultServer` server.
+
+Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/2.x/docs/install-apps.md[Maven Liberty plug-in repository^].
 
 pom.xml
 [source, xml, linenums, role="code_column"]
