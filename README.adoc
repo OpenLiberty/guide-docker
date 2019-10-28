@@ -310,6 +310,8 @@ include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section]
 --
+Make sure you substitute the absolute path to this guide.
+
 [role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
