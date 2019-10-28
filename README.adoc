@@ -271,13 +271,25 @@ Now that your image is built, execute the Docker `run` command with the absolute
 
 include::{common-includes}/os-tabs.adoc[]
 
-[.tab_content.windows_section.mac_section]
+[.tab_content.windows_section]
 --
+Make sure you substitute the absolute path to this guide.
+
 [role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime
 ```
 --
+
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v $(pwd)/target/liberty/wlp/usr/servers:/servers ol-runtime
+```
+--
+
 
 [.tab_content.linux_section]
 --
@@ -287,7 +299,7 @@ server directory.
 
 [role='command']
 ```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers -u `id -u` ol-runtime
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v $(pwd)/target/liberty/wlp/usr/servers:/servers -u `id -u` ol-runtime
 ```
 --
 
@@ -296,19 +308,31 @@ Alternatively, you can also execute the `run` command to mount a single server i
 
 include::{common-includes}/os-tabs.adoc[]
 
-[.tab_content.windows_section.mac_section]
+[.tab_content.windows_section]
 --
+Make sure you substitute the absolute path to this guide.
+
 [role='command']
 ```
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
 ```
 --
 
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v $(pwd)/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer ol-runtime
+```
+--
+
+
 [.tab_content.linux_section]
 --
 [role='command']
 ```
-docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer -u `id -u` ol-runtime
+docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v $(pwd)/target/liberty/wlp/usr/servers/defaultServer:/servers/defaultServer -u `id -u` ol-runtime
 ```
 --
 
