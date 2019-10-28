@@ -8,5 +8,5 @@
   <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
       id="defaultHttpEndpoint" host="*" />
 
-  <webApplication location="rest.war" contextRoot="${app.context.root}"/>
+  <webApplication location="guide-docker.war" contextRoot="${app.context.root}"/>
 </server>

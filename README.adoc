@@ -104,17 +104,17 @@ Before you begin, build your application. To do this, navigate to the `start` di
 mvn install
 ```
 
-Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=185-196]`<execution/>` element.
+Your [hotspot]`pom.xml` file is already configured to add your REST application to the `defaultServer`. But you can tweak this configuration or add your own for another server by updating the [hotspot=execution]`<execution/>` element.
 
-The [hotspot=189]`install-apps` goal copies the application into the specified directory of the specified server.
-In this case, the goal copies the `rest.war` file into the [hotspot=192]`apps` directory of the `defaultServer` server.
+The [hotspot=install-apps]`install-apps` goal copies the application into the specified directory of the specified server.
+In this case, the goal copies the `rest.war` file into the [hotspot=apps]`apps` directory of the `defaultServer` server.
 
 Learn more about this goal on the official https://github.com/WASdev/ci.maven/blob/2.x/docs/install-apps.md[Maven Liberty plug-in repository^].
 
 pom.xml
 [source, xml, linenums, role="code_column"]
 ----
-include::finish/pom.xml[tags=**]
+include::finish/pom.xml[]
 ----
 
 // =================================================================================================
@@ -136,7 +136,7 @@ Navigate to the `start` directory to begin.
 `Dockerfile`
 ----
 
-The [hotspot=2 file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your
+The [hotspot=from file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
 base image. 
 
@@ -144,26 +144,26 @@ In this case, you're using the `openliberty/open-liberty:javaee8` image as your 
 image, which comes with the latest Open Liberty runtime.
 
 
-The [hotspot=6 file=0]`RUN` instruction executes various shell commands in a new layer on top of the current image.
+The [hotspot=link file=0]`RUN` instruction executes various shell commands in a new layer on top of the current image.
 In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
 directory. This way, you can mount your servers more easily because you don't need to use long path names.
 Note that since the Open Liberty Docker image runs by default with user `1001` (which is a non-root user),
 you must temporarily switch to the `root` user to create the symlink. This is done by using 
-the [hotspot=4 hotspot=7 file=0]`USER` instruction. 
+the [hotspot=user-root hotspot=user file=0]`USER` instruction. 
 
-The [hotspot=10 file=0]`ENTRYPOINT` and [hotspot=11]`CMD` instructions define a default command that executes when the image runs as
-a container. These two instructions function the same way, except that the [hotspot=11 file=0]`CMD` instruction is overridden
+The [hotspot=entrypoint file=0]`ENTRYPOINT` and [hotspot=default-start]`CMD` instructions define a default command that executes when the image runs as
+a container. These two instructions function the same way, except that the [hotspot=default-start file=0]`CMD` instruction is overridden
 with any arguments that are passed at the end of the `docker run` command. In contrast, the
-[hotspot=10 file=0]`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
-the [hotspot=10 file=0]`ENTRYPOINT` instruction to start an Open Liberty server and the [hotspot=11 file=0]`CMD` instruction to indicate
-which server to start. Because the [hotspot=11 file=0]`CMD` instruction is easily overridden, starting any server is convenient.
+[hotspot=entrypoint file=0]`ENTRYPOINT` instruction requires the `--entrypoint` flag to be overridden. In this case, you use
+the [hotspot=entrypoint file=0]`ENTRYPOINT` instruction to start an Open Liberty server and the [hotspot=default-start file=0]`CMD` instruction to indicate
+which server to start. Because the [hotspot=default-start file=0]`CMD` instruction is easily overridden, starting any server is convenient.
 
 For a complete list of available instructions, see the https://docs.docker.com/engine/reference/builder[Docker documentation^].
 
 Dockerfile
 [source, text, linenums, role="code_column"]
 ----
-include::finish/Dockerfile[tags=**]
+include::finish/Dockerfile[]
 ----
 
 === Optional: Writing a .dockerignore file
@@ -173,19 +173,19 @@ as the Dockerfile to its build context, making them available for use in instruc
 To make image building faster, add all files and directories that aren't necessary for building your
 image to a `.dockerignore` file. This excludes them from the build context.
 
-A [hotspot file=0]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=2 file=0]`src`
+A [hotspot file=0]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=src file=0]`src`
 directory, the [hotspot file=1]`pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
 
 `.dockerignore`
 [source, text, linenums, role="code_column"]
 ----
-include::finish/.dockerignore[tags=**]
+include::finish/.dockerignore[]
 ----
 
 pom.xml
 [source, xml, linenums, role="code_column"]
 ----
-include::finish/pom.xml[tags=**]
+include::finish/pom.xml[]
 ----
 // =================================================================================================
 // Building the image
@@ -386,7 +386,7 @@ where you can see a JSON file that contains the system properties of the JVM in 
 ----
 
 [role="edit_command_text"]
-Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=18]`@Path`
+Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=Path]`@Path`
 annotation to `"properties-new"`.
 
 
@@ -412,9 +412,9 @@ find the cause of the issue, remove the faulty container with the `docker rm res
 your image, and start the container again.
 
 PropertiesResource.java
-[source, Java, linenums, role="code_column"]
+[source, Java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[tags=**;!comment]
+include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
 ----
 
 == Great work! You're done!
