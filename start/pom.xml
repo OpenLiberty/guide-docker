@@ -101,6 +101,7 @@ xsi:schemaLocation=
     </dependencies>
 
     <build>
+        <finalName>rest</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
