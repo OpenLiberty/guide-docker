@@ -7,7 +7,7 @@ xsi:schemaLocation=
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>rest</artifactId>
+    <artifactId>guide-docker</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -113,6 +113,7 @@ xsi:schemaLocation=
     </dependencies>
 
     <build>
+        <finalName>rest</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -182,18 +183,24 @@ xsi:schemaLocation=
                         </goals>
                     </execution>
                     <!-- Install the app into the apps/ directory of defaultServer -->
+                    <!-- tag::execution[] -->
                     <execution>
                         <id>install-app</id>
                         <phase>package</phase>
                         <goals>
+                            <!-- tag::install-apps[] -->
                             <goal>install-apps</goal>
+                            <!-- end::install-apps[] -->
                         </goals>
                         <configuration>
+                            <!-- tag::apps[] -->
                             <appsDirectory>apps</appsDirectory>
+                            <!-- end::apps[] -->
                             <stripVersion>true</stripVersion>
                             <installAppPackages>project</installAppPackages>
                         </configuration>
                     </execution>
+                    <!-- end::execution[] -->
                     <!-- Test start and stop server -->
                     <execution>
                         <id>start-server</id>
