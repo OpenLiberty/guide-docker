@@ -54,9 +54,9 @@ can think of Docker like a virtual machine that runs various applications. Howev
 machine, you can run these applications simultaneously on a single system and independent of
 one another.
 
-Learn more about Docker on the https://www.docker.com/what-docker[official Docker page^].
+Learn more about Docker on the https://www.docker.com/what-docker[official Docker website^].
 
-Learn how to install Docker on the https://docs.docker.com/engine/installation[official instructions page^].
+To install Docker, follow the instructions in the https://docs.docker.com/engine/installation[official Docker documentation^].
 
 === What is a container?
 
