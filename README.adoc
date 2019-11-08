@@ -65,7 +65,7 @@ with the entire environment that it needs to run. Containers are small compared 
 run on any environment where Docker is set up. Moreover, you can run multiple containers on a single
 machine at the same time in isolation from each other.
 
-Learn more about containers on the https://www.docker.com/what-container[official Docker page^].
+Learn more about containers on the https://www.docker.com/what-container[official Docker website^].
 
 === Why use containers?
 
@@ -357,7 +357,7 @@ server in the `CMD` instruction. For example, if your `servers` directory also c
 docker run -d --name rest-app -p 9080:9080 -p 9443:9443 -v <absolute path to guide>/start/target/liberty/wlp/usr/servers:/servers ol-runtime testServer
 ```
 
-Learn more about running containers on the https://docs.docker.com/engine/reference/run[official Docker page^]
+Learn more about running containers on the https://docs.docker.com/engine/reference/run[official Docker website^]
 
 // =================================================================================================
 // Testing the container
