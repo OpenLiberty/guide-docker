@@ -18,6 +18,8 @@
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
+:page-seo-title: Learn how to use Docker containers for iterative development. 
+:page-seo-description: A tutorial on how to use Docker containers for iterative development.
 :guide-author: Open Liberty
 = Using Docker containers to develop microservices
 
