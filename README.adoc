@@ -18,8 +18,8 @@
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-:page-seo-title: Iteratively developing a RESTful Java application in a Docker container 
-:page-seo-description: A getting started tutorial and an example on how to iteratively develop and run a simple RESTful Java microservice in a Docker container by building a Docker image using a Dockerfile.
+:page-seo-title: Learn how to use Docker containers for iterative development 
+:page-seo-description: A getting started tutorial with examples of how to run a simple RESTful Java microservice in a Docker container built from a Dockerfile.
 :guide-author: Open Liberty
 = Using Docker containers to develop microservices
 
