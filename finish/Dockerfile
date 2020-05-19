@@ -1,6 +1,6 @@
 # Start with OL runtime.
 # tag::from[]
-FROM open-liberty
+FROM openliberty/open-liberty:kernel-java8-openj9-ubi
 # end::from[]
 
 # tag::user-root[]
