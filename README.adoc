@@ -193,6 +193,8 @@ include::finish/pom.xml[]
 
 == Building the image
 
+include::{common-includes}/ol-docker-pull.adoc[]
+
 To build your image, make sure that your Docker daemon is running and execute the Docker `build` command
 from the command line. If you execute your build from the same directory as your Dockerfile, you can
 use the period character (`.`) notation to specify the location for the build context. Otherwise, use
