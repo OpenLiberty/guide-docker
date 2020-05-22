@@ -142,9 +142,7 @@ The [hotspot=from file=0]`FROM` instruction initializes a new build stage and in
 image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
 base image. 
 
-In this case, you're using the `openliberty/open-liberty:javaee8` image as your parent
-image, which comes with the latest Open Liberty runtime.
-
+In this case, you're using the `openliberty/open-liberty:kernel-java8-openj9-ubi` image as your parent image, which comes with the latest Open Liberty runtime.
 
 The [hotspot=link file=0]`RUN` instruction executes various shell commands in a new layer on top of the current image.
 In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
@@ -195,10 +193,12 @@ include::finish/pom.xml[]
 
 == Building the image
 
-To build your image, make sure that your Docker daemon is running and execute the Docker `build` command
-from the command line. If you execute your build from the same directory as your Dockerfile, you can
-use the period character (`.`) notation to specify the location for the build context. Otherwise, use
-the `-f` flag to point to your Dockerfile:
+include::{common-includes}/ol-kernel-docker-pull.adoc[]
+
+Next, to build your image, make sure that your Docker daemon is running and execute the Docker `build`
+command from the command line. If you execute your build from the same directory as your Dockerfile,
+you can use the period character (`.`) notation to specify the location for the build context. 
+Otherwise, use the `-f` flag to point to your Dockerfile:
 [role='command']
 ```
 docker build -t ol-runtime .
