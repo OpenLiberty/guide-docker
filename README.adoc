@@ -214,8 +214,8 @@ If your build runs successfully, you'll see an output similar to the following:
 [role="no_copy"]
 ----
 Sending build context to Docker daemon  148.9MB
-Step 1/4 : FROM open-liberty
-latest: Pulling from library/open-liberty
+Step 1/4 : FROM openliberty/open-liberty:kernel-java8-openj9-ubi
+latest: Pulling from library/openliberty/open-liberty:kernel-java8-openj9-ubi
 7b8b6451c85f: Pull complete 
 ab4d1096d9ba: Pull complete 
 e6797d1788ac: Pull complete 
@@ -227,7 +227,7 @@ aa35dfd74487: Pull complete
 cd6dff6d245d: Pull complete 
 82450af30afc: Pull complete 
 Digest: sha256:b7576e4278030537765d4185c4641ee2769194226263f979109ed4fa0e1aa4e4
-Status: Downloaded newer image for open-liberty:latest
+Status: Downloaded newer image for openliberty/open-liberty:kernel-java8-openj9-ubi
  ---> 45d4b67ace5b
 Step 2/4 : RUN ln -s /opt/ol/wlp/usr/servers /servers
  ---> Running in cbeb275770ab
