@@ -1,6 +1,6 @@
 # Start with OL runtime.
 # tag::from[]
-FROM guidesbot/olguides:cl200420200401-1714
+FROM open-liberty
 # end::from[]
 
 # tag::user-root[]
