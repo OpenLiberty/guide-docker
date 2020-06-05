@@ -9,7 +9,7 @@ set -euxo pipefail
 
 mvn -q clean install
 
-docker pull open-liberty
+docker pull openliberty/open-liberty:kernel-java8-openj9-ubi
 
 docker build -t ol-runtime .
 
