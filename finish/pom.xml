@@ -20,9 +20,6 @@ xsi:schemaLocation=
         <!-- Liberty configuration -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
-        <warContext>${app.name}</warContext>
-        <package.file>${project.build.directory}/${app.name}.zip</package.file>
-        <packaging.type>usr</packaging.type>
     </properties>
 
     <dependencyManagement>
@@ -50,18 +47,6 @@ xsi:schemaLocation=
             <artifactId>microprofile</artifactId>
             <version>3.3</version>
             <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jaxrs-2.1</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jsonp-1.1</artifactId>
-            <type>esa</type>
             <scope>provided</scope>
         </dependency>
         <!-- For tests -->
@@ -104,7 +89,7 @@ xsi:schemaLocation=
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <packagingExcludes>pom.xml</packagingExcludes>
@@ -114,7 +99,7 @@ xsi:schemaLocation=
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.22.2</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
@@ -137,7 +122,7 @@ xsi:schemaLocation=
                 <version>2.6.1</version> -->
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.2.1</version>
                 <configuration>
                     <runtimeArtifact>
                          <groupId>io.openliberty</groupId>
@@ -152,67 +137,15 @@ xsi:schemaLocation=
                     <bootstrapProperties>
                         <default.http.port>${liberty.var.default.http.port}</default.http.port>
                         <default.https.port>${liberty.var.default.https.port}</default.https.port>
-                        <app.context.root>${warContext}</app.context.root>
+                        <app.context.root>${app.name}</app.context.root>
                     </bootstrapProperties>
                 </configuration>
-                <executions>
-                    <!-- Install the OL runtime -->
-                    <execution>
-                        <id>install-liberty</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>install</goal>
-                        </goals>
-                    </execution>
-                    <!-- Create defaultServer -->
-                    <execution>
-                        <id>create-server</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                    <!-- Install the app into the apps/ directory of defaultServer -->
-                    <!-- tag::execution[] -->
-                    <execution>
-                        <id>install-app</id>
-                        <phase>package</phase>
-                        <goals>
-                            <!-- tag::install-apps[] -->
-                            <goal>install-apps</goal>
-                            <!-- end::install-apps[] -->
-                        </goals>
-                        <configuration>
-                            <!-- tag::apps[] -->
-                            <appsDirectory>apps</appsDirectory>
-                            <!-- end::apps[] -->
-                            <stripVersion>true</stripVersion>
-                            <installAppPackages>project</installAppPackages>
-                        </configuration>
-                    </execution>
-                    <!-- end::execution[] -->
-                    <!-- Test start and stop server -->
-                    <execution>
-                        <id>start-server</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>test-start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-server</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>test-stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <!-- Plugin to run functional tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.22.2</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -228,7 +161,7 @@ xsi:schemaLocation=
                                 <liberty.test.port>
                                     ${liberty.var.default.http.port}
                                 </liberty.test.port>
-                                <war.name>${warContext}</war.name>
+                                <war.name>${app.name}</war.name>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
