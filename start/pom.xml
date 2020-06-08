@@ -17,8 +17,9 @@ xsi:schemaLocation=
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <app.name>LibertyProject</app.name>
-        <testServerHttpPort>9080</testServerHttpPort>
-        <testServerHttpsPort>9443</testServerHttpsPort>
+        <!-- Liberty configuration -->
+        <liberty.var.default.http.port>9080</liberty.var.default.http.port>
+        <liberty.var.default.https.port>9443</liberty.var.default.https.port>
         <warContext>${app.name}</warContext>
         <package.file>${project.build.directory}/${app.name}.zip</package.file>
         <packaging.type>usr</packaging.type>
@@ -37,6 +38,21 @@ xsi:schemaLocation=
     </dependencyManagement>
 
     <dependencies>
+        <!-- Provided dependencies -->
+        <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>8.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>3.3</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>io.openliberty.features</groupId>
             <artifactId>jaxrs-2.1</artifactId>
@@ -49,6 +65,7 @@ xsi:schemaLocation=
             <type>esa</type>
             <scope>provided</scope>
         </dependency>
+        <!-- For tests -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -78,24 +95,6 @@ xsi:schemaLocation=
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>2.3.0.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.3.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -148,8 +147,8 @@ xsi:schemaLocation=
                     <packageFile>${package.file}</packageFile>
                     <include>${packaging.type}</include>
                     <bootstrapProperties>
-                        <default.http.port>${testServerHttpPort}</default.http.port>
-                        <default.https.port>${testServerHttpsPort}</default.https.port>
+                        <default.http.port>${liberty.var.default.http.port}</default.http.port>
+                        <default.https.port>${liberty.var.default.https.port}</default.https.port>
                         <app.context.root>${warContext}</app.context.root>
                     </bootstrapProperties>
                 </configuration>
@@ -218,7 +217,7 @@ xsi:schemaLocation=
                             </includes>
                             <systemPropertyVariables>
                                 <liberty.test.port>
-                                    ${testServerHttpPort}
+                                    ${liberty.var.default.https.port}
                                 </liberty.test.port>
                                 <war.name>${warContext}</war.name>
                             </systemPropertyVariables>
