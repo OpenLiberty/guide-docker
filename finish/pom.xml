@@ -78,9 +78,6 @@ xsi:schemaLocation=
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
-                <configuration>
-                    <packagingExcludes>pom.xml</packagingExcludes>
-                </configuration>
             </plugin>
             <!-- Plugin to run unit tests -->
             <plugin>
