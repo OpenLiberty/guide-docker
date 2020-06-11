@@ -58,8 +58,6 @@ one another.
 
 Learn more about Docker on the https://www.docker.com/what-docker[official Docker website^].
 
-To install Docker, follow the instructions in the https://docs.docker.com/engine/installation[official Docker documentation^].
-
 === What is a container?
 
 A container is a lightweight, stand-alone package that contains a piece of software that is bundled together
@@ -85,6 +83,12 @@ on any machine that is running Docker regardless of how that machine's environme
 containers on a single machine in isolation from one another so that two containers that have different
 versions of Java do not interfere with each other. Containers are quick to run compared to individual VMs,
 and they take up only a fraction of the memory of a single virtual machine image.
+
+== Additional prerequisites
+
+Before you begin, Docker needs to be installed. For installation instructions, refer to the https://docs.docker.com/get-docker/[official Docker documentation^]. You will build and run the application in Docker containers.
+
+Make sure to start your Docker daemon before you proceed.
 
 // =================================================================================================
 // Getting Started
