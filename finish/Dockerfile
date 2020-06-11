@@ -32,8 +32,8 @@ USER 1001
 
 # Run the server script and start the defaultServer by default.
 # tag::entrypoint[]
-ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
+# ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
 # end::entrypoint[]
 # tag::default-start[]
-CMD ["defaultServer"]
+# CMD ["defaultServer"]
 # end::default-start[]
