@@ -20,26 +20,10 @@ xsi:schemaLocation=
         <!-- Liberty configuration -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
-        <warContext>${app.name}</warContext>
-        <package.file>${project.build.directory}/${app.name}.zip</package.file>
-        <packaging.type>usr</packaging.type>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.openliberty.features</groupId>
-                <artifactId>features-bom</artifactId>
-                <version>RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!-- Provided dependencies -->
-        <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
@@ -51,18 +35,6 @@ xsi:schemaLocation=
             <artifactId>microprofile</artifactId>
             <version>3.3</version>
             <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jaxrs-2.1</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jsonp-1.1</artifactId>
-            <type>esa</type>
             <scope>provided</scope>
         </dependency>
         <!-- For tests -->
@@ -105,138 +77,47 @@ xsi:schemaLocation=
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <packagingExcludes>pom.xml</packagingExcludes>
-                </configuration>
+                <version>3.2.3</version>
             </plugin>
             <!-- Plugin to run unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <id>default-test</id>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/it/**</exclude>
-                            </excludes>
-                            <reportsDirectory>
-                                ${project.build.directory}/test-reports/unit
-                            </reportsDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
+                <version>2.22.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/it/**</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <!-- Enable liberty-maven plugin -->
             <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>2.6.1</version>
+                <version>3.2.2-SNAPSHOT</version>
                 <configuration>
-                    <assemblyArtifact>
-                         <groupId>io.openliberty</groupId>
-                         <artifactId>openliberty-runtime</artifactId>
-                         <version>RELEASE</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <configFile>src/main/liberty/config/server.xml</configFile>
-                    <packageFile>${package.file}</packageFile>
-                    <include>${packaging.type}</include>
                     <bootstrapProperties>
                         <default.http.port>${liberty.var.default.http.port}</default.http.port>
-                        <default.https.port>${liberty.var.default.https.port}</default.https.port>
-                        <app.context.root>${warContext}</app.context.root>
+                        <default.https.port>${liberty.var.default.http.port}</default.https.port>
+                        <app.context.root>${app.name}</app.context.root>
                     </bootstrapProperties>
                 </configuration>
-                <executions>
-                    <!-- Install the OL runtime -->
-                    <execution>
-                        <id>install-liberty</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>install-server</goal>
-                        </goals>
-                    </execution>
-                    <!-- Create defaultServer -->
-                    <execution>
-                        <id>create-server</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>create-server</goal>
-                        </goals>
-                    </execution>
-                    <!-- Install the app into the apps/ directory of defaultServer -->
-                    <execution>
-                        <id>install-app</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-apps</goal>
-                        </goals>
-                        <configuration>
-                            <appsDirectory>apps</appsDirectory>
-                            <stripVersion>true</stripVersion>
-                            <installAppPackages>project</installAppPackages>
-                        </configuration>
-                    </execution>
-                    <!-- Test start and stop server -->
-                    <execution>
-                        <id>start-server</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>test-start-server</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-server</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>test-stop-server</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <!-- Plugin to run functional tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
-                <executions>
-                    <execution>
-                        <phase>integration-test</phase>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/it/**</include>
-                            </includes>
-                            <systemPropertyVariables>
-                                <liberty.test.port>
-                                    ${liberty.var.default.https.port}
-                                </liberty.test.port>
-                                <war.name>${warContext}</war.name>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify-results</id>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>2.22.2</version>
                 <configuration>
-                    <summaryFile>
-                        ${project.build.directory}/test-reports/it/failsafe-summary.xml
-                    </summaryFile>
-                    <reportsDirectory>
-                        ${project.build.directory}/test-reports/it
-                    </reportsDirectory>
+                    <includes>
+                        <include>**/it/**</include>
+                    </includes>
+                    <systemPropertyVariables>
+                        <liberty.test.port>
+                            ${liberty.var.default.http.port}
+                        </liberty.test.port>
+                        <war.name>${app.name}</war.name>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
