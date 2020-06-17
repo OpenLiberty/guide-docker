@@ -133,6 +133,7 @@ where you can see a JSON file that contains the system properties of the JVM in 
 
 == Updating the server while the container is running
 
+[role="code_command hotspot", subs="quotes"]
 ----
 #Update the `PropertiesResource` class.#
 `src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
@@ -152,7 +153,7 @@ point your browser to http://localhost:9080/LibertyProject/System/properties-new
 
 == Testing the container 
 
-You can test this service manually by starting a server and pointing a web browser at the [http://localhost:9080/LibertyProject/System/properties-new^]URL.
+You can test this service manually by starting a server and pointing a web browser at the http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^]URL.
 Automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server, or they
