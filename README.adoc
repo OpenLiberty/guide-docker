@@ -118,9 +118,15 @@ container is running and didn’t crash:
 docker ps 
 ```
 
-You should see the following output:
+You should see something similar to the following output:
 
-[IMAGE]
+[role="no_copy"]
+----
+$ docker ps
+CONTAINER ID        IMAGE               CREATED             STATUS              NAMES
+6493c5704c34        dev-mode-image      16 seconds ago      Up 15 seconds       "/opt/ol/helpers/run…" 
+----
+
 
 To view a full list of all available containers, run the docker ps -a command from the command line.
 
@@ -182,3 +188,11 @@ Results :
 
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
+
+When you are finished, press `CTRL +C` in the session that the server is running in. This will both stop and remove the container for you. 
+You can check that the container was stopped by running the `docker ps` command.
+
+
+
+
+
