@@ -130,7 +130,7 @@ CONTAINER ID        IMAGE               CREATED             STATUS              
 
 To view a full list of all available containers, run the docker ps -a command from the command line.
 
-If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties, 
+If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^ 
 where you can see a JSON file that contains the system properties of the JVM in your container.
 
 // =================================================================================================
@@ -159,7 +159,7 @@ point your browser to http://localhost:9080/LibertyProject/System/properties-new
 
 == Testing the container 
 
-You can test this service manually by starting a server and pointing a web browser at the http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^]URL.
+You can test this service manually by starting a server and pointing a web browser to the http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
 Automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server, or they
@@ -189,10 +189,5 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-When you are finished, press `CTRL +C` in the session that the server is running in. This will both stop and remove the container for you. 
+When you are finished, press `CTRL+C` in the session that the server is running in. This will both stop and remove the container for you. 
 You can check that the container was stopped by running the `docker ps` command.
-
-
-
-
-
