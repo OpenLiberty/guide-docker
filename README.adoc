@@ -99,9 +99,10 @@ include::{common-includes}/gitclone.adoc[]
 == Running the container 
 
 The Open Liberty Maven plug-in includes a `devc` goal that builds and runs a Docker container and listens
-for any changes in the project, including application source code or configuration. The Open Liberty server 
-automatically reruns the `docker build` command. This goal allows for quicker turnarounds and an improved developer 
-experience.
+for any changes in the project, including application source code or configuration. If a Dockerfile is present 
+development mode with will use it to build the image, otherwise the default Open Liberty image will be used. The default 
+Open Liberty Image can be found here (`openliberty/open-liberty:kernel-java8-openj9-ubi`).
+
 
 Build and run the container by running the `liberty:devc` goal in the `start directory`
 
@@ -109,6 +110,8 @@ Build and run the container by running the `liberty:devc` goal in the `start dir
 ```
 mvn liberty:devc
 ```
+
+Because there is no Dockerfile present in this directory, the default Open Liberty is being used.  
 
 Before you access your application from the browser, run the docker ps command from the command line to make sure that your
 container is running and didn’t crash:
@@ -134,7 +137,58 @@ If your container is running without problems, point your browser to http://loca
 where you can see a JSON file that contains the system properties of the JVM in your container.
 
 // =================================================================================================
-// Updating the server while the container is running 
+// Creating the Dockerfile
+// =================================================================================================
+
+== Creating the Dockerfile
+
+A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
+container. Every Dockerfile begins with a parent or base image on top of which various commands
+are run. For example, you can start your image from scratch and execute commands that download and
+install Java, or you can start from an image that already contains a Java installation.
+
+Navigate to the `start` directory to begin.
+
+[role="code_command hotspot",subs="quotes"]
+----
+#Create the `Dockerfile`.#
+`Dockerfile`
+----
+
+The FROM instruction initializes a new build stage and indicates the parent image from which your image
+is built. If you don’t need a parent image, then use FROM scratch, which makes your image a base image.
+
+In this case, you’re using the openliberty/open-liberty:kernel-java8-openj9-ubi image as your parent image, 
+which comes with the latest Open Liberty runtime.
+
+Run the following command to inspect the descrititon field of the label that you specified in the Dockerfile 
+
+[role='command']
+```
+docker inspect --format='{{.Config.Labels.description}}' dev-mode-image
+```
+
+As you can see, the Dockerfile you created is being used to run the container. 
+
+=== Optional: Writing a .dockerignore file
+
+When Docker runs a build, it sends all of the files and directories that are located in the same directory
+as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
+To make image building faster, add all files and directories that aren't necessary for building your
+image to a `.dockerignore` file. This excludes them from the build context.
+
+A [hotspot file=0]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=src file=0]`src`
+directory, the [hotspot file=1]`pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
+
+`.dockerignore`
+[source, text, linenums, role="code_column"]
+----
+include::finish/.dockerignore[]
+----
+
+
+// =================================================================================================
+// Updating the application while the container is running 
 // =================================================================================================
 
 == Updating the server while the container is running

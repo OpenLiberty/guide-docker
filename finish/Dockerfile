@@ -29,11 +29,3 @@ RUN ln -s /opt/ol/wlp/usr/servers /servers
 # tag::user[]
 USER 1001
 # end::user[]
-
-# Run the server script and start the defaultServer by default.
-# tag::entrypoint[]
-# ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
-# end::entrypoint[]
-# tag::default-start[]
-# CMD ["defaultServer"]
-# end::default-start[]
