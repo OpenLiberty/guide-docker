@@ -101,7 +101,7 @@ include::{common-includes}/gitclone.adoc[]
 The Open Liberty Maven plug-in includes a `devc` goal that builds and runs a Docker container and listens
 for any changes in the project, including application source code or configuration. If a Dockerfile is present 
 development mode with will be used to build the image (container?), otherwise the default Open Liberty image, 
-openliberty/open-liberty:kernel-java8-openj9-ubi, will be used.
+`openliberty/open-liberty:kernel-java8-openj9-ubi`, will be used.
 
 
 Build and run the container by running the `liberty:devc` goal in the `start directory`
@@ -113,7 +113,7 @@ mvn liberty:devc
 
 Because there is no Dockerfile present in this directory, the default Open Liberty is being used.  
 
-Before you access your application from the browser, run the docker ps command from the command line to make sure that your
+Before you access your application from the browser, run the `docker ps` command from the command line to make sure that your
 container is running and didn’t crash:
 
 [role='command']
@@ -131,10 +131,39 @@ CONTAINER ID        IMAGE               CREATED             STATUS              
 ----
 
 
-To view a full list of all available containers, run the docker ps -a command from the command line.
+To view a full list of all available containers, run the `docker ps -a` command from the command line.
 
 If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^] 
 where you can see a JSON file that contains the system properties of the JVM in your container.
+
+// =================================================================================================
+// Updating the application while the container is running 
+// =================================================================================================
+
+== Updating the server while the container is running
+
+[role="code_command hotspot", subs="quotes"]
+----
+#Update the `PropertiesResource` class.#
+`src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
+----
+
+[role="edit_command_text"]
+Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=Path]`@Path`
+annotation to `"properties-new"`.
+
+After you make the file changes, Open Liberty automatically restarts(?) the container. To see these changes reflected in the container, 
+point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
+
+When you need to stop the container, press `CTRL+C` in the session that the container was started in or run 
+the `mvn liberty:stop` goal from the `start` directory in another shell session. This will both stop and 
+remove the container for you. You can check that the container was stopped by  running the `docker ps` 
+command again.
+
+[role='command']
+```
+mvn liberty:stop
+```
 
 // =================================================================================================
 // Creating the Dockerfile
@@ -159,7 +188,7 @@ Let's try running development mode with a Dockerfile. Navigate to the `start` di
 The FROM instruction initializes a new build stage and indicates the parent image from which your image
 is built. If you don’t need a parent image, then use FROM scratch, which makes your image a base image.
 
-In this case, you’re using the openliberty/open-liberty:kernel-java8-openj9-ubi image as your parent image, 
+In this case, you’re using the `openliberty/open-liberty:kernel-java8-openj9-ubi` image as your parent image, 
 which comes with the latest Open Liberty runtime.
 
 The [hotspot=link file=0]`RUN` instruction executes various shell commands in a new layer on top of the current image.
@@ -169,15 +198,14 @@ Note that since the Open Liberty Docker image runs by default with user `1001` (
 you must temporarily switch to the `root` user to create the symlink. This is done by using 
 the [hotspot=user-root hotspot=user file=0]`USER` instruction. 
 
-Run the following command to inspect the descrititon field of the label that you specified in the Dockerfile 
+Run the following command to inspect the descripton `field` of the `LABEL` that you specified in the Dockerfile 
 
 [role='command']
 ```
 docker inspect --format='{{.Config.Labels.description}}' dev-mode-image
 ```
 
-This command will output the `summary` field othe `LABEL` you specified in the Dockerfile. 
-As you can see by this, the Dockerfile you created is being used to run the container. 
+As you can see, the Dockerfile you created is being used to run the container. 
 
 === Optional: Writing a .dockerignore file
 
@@ -195,34 +223,14 @@ directory, the [hotspot file=1]`pom.xml` file, and some system files. Feel free 
 include::finish/.dockerignore[]
 ----
 
-
-// =================================================================================================
-// Updating the application while the container is running 
-// =================================================================================================
-
-== Updating the server while the container is running
-
-[role="code_command hotspot", subs="quotes"]
-----
-#Update the `PropertiesResource` class.#
-`src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
-----
-
-[role="edit_command_text"]
-Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=Path]`@Path`
-annotation to `"properties-new"`.
-
-After you make the file changes, Open Liberty automatically restarts(?) the container. To see these changes reflected in the container, 
-point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
-
-
 // =================================================================================================
 // Testing the container 
 // =================================================================================================
 
 == Testing the container 
 
-You can test this service manually by starting a server and pointing a web browser to the http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
+You can test this service manually by starting a server and pointing a web browser to the 
+http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^] URL. 
 Automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server, or they
