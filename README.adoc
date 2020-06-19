@@ -100,8 +100,8 @@ include::{common-includes}/gitclone.adoc[]
 
 The Open Liberty Maven plug-in includes a `devc` goal that builds and runs a Docker container and listens
 for any changes in the project, including application source code or configuration. If a Dockerfile is present 
-development mode with will use it to build the image, otherwise the default Open Liberty image will be used. The default 
-Open Liberty Image can be found here (`openliberty/open-liberty:kernel-java8-openj9-ubi`).
+development mode with will be used to build the image (container?), otherwise the default Open Liberty image, 
+openliberty/open-liberty:kernel-java8-openj9-ubi, will be used.
 
 
 Build and run the container by running the `liberty:devc` goal in the `start directory`
@@ -142,12 +142,13 @@ where you can see a JSON file that contains the system properties of the JVM in 
 
 == Creating the Dockerfile
 
+As mentioned previously, development mode with a container can be used with or without a Dockerfile. 
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
 container. Every Dockerfile begins with a parent or base image on top of which various commands
 are run. For example, you can start your image from scratch and execute commands that download and
 install Java, or you can start from an image that already contains a Java installation.
 
-Navigate to the `start` directory to begin.
+Let's try running development mode with a Dockerfile. Navigate to the `start` directory to begin.
 
 [role="code_command hotspot",subs="quotes"]
 ----
@@ -161,6 +162,13 @@ is built. If you don’t need a parent image, then use FROM scratch, which makes
 In this case, you’re using the openliberty/open-liberty:kernel-java8-openj9-ubi image as your parent image, 
 which comes with the latest Open Liberty runtime.
 
+The [hotspot=link file=0]`RUN` instruction executes various shell commands in a new layer on top of the current image.
+In this case, you create a symlink between the `/opt/ol/wlp/usr/servers` directory and the `/servers`
+directory. This way, you can mount your servers more easily because you don't need to use long path names.
+Note that since the Open Liberty Docker image runs by default with user `1001` (which is a non-root user),
+you must temporarily switch to the `root` user to create the symlink. This is done by using 
+the [hotspot=user-root hotspot=user file=0]`USER` instruction. 
+
 Run the following command to inspect the descrititon field of the label that you specified in the Dockerfile 
 
 [role='command']
@@ -168,7 +176,8 @@ Run the following command to inspect the descrititon field of the label that you
 docker inspect --format='{{.Config.Labels.description}}' dev-mode-image
 ```
 
-As you can see, the Dockerfile you created is being used to run the container. 
+This command will output the `summary` field othe `LABEL` you specified in the Dockerfile. 
+As you can see by this, the Dockerfile you created is being used to run the container. 
 
 === Optional: Writing a .dockerignore file
 
@@ -203,7 +212,7 @@ include::finish/.dockerignore[]
 Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=Path]`@Path`
 annotation to `"properties-new"`.
 
-After you make the file changes, Open Liberty automatically reruns the container. To see these changes reflected in the container, 
+After you make the file changes, Open Liberty automatically restarts(?) the container. To see these changes reflected in the container, 
 point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
 
 

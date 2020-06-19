@@ -45,7 +45,7 @@ public class EndpointIT {
         // end::clientSetup[]
 
         // tag::request[]
-        WebTarget target = client.target(url + "System/properties");
+        WebTarget target = client.target(url + "System/properties-new");
         Response response = target.request().get();
         // end::request[]
 

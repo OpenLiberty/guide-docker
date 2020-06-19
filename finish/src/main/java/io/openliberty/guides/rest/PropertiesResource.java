@@ -29,7 +29,7 @@ import javax.json.JsonNumber;
 
 // tag::class[]
 // tag::Path[]
-@Path("properties")
+@Path("properties-new")
 // end::Path[]
 public class PropertiesResource {
 // end::class[]
