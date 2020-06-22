@@ -170,7 +170,7 @@ mvn liberty:stop
 PropertiesResource.java
 [source, java, linenums, role="code_column"]
 ----
-include::finish/PropertiesResource.java[]
+include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
 ----
 
 // =================================================================================================
@@ -316,5 +316,5 @@ You can check that the container was stopped by running the `docker ps` command.
 `.EndpointIT.java`
 [source, java, linenums, role="code_column"]
 ----
-include::finish/EndpointIT.java[]
+include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
 ----
