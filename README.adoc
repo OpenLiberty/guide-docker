@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2019 IBM Corporation and others.
+// Copyright (c) 2017, 2020 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -100,7 +100,7 @@ include::{common-includes}/gitclone.adoc[]
 
 The Open Liberty Maven plug-in includes a `devc` goal that builds and runs a Docker container and listens
 for any changes in the project, including application source code or configuration. If a Dockerfile is present 
-development mode with will be used to build the image (container?), otherwise the default Open Liberty image, 
+development mode with will be used to build the image and container, otherwise the default Open Liberty image, 
 `openliberty/open-liberty:kernel-java8-openj9-ubi`, will be used.
 
 
@@ -168,7 +168,7 @@ mvn liberty:stop
 ```
 
 PropertiesResource.java
-[source, text, linenums, role="code_column"]
+[source, java, linenums, role="code_column"]
 ----
 include::finish/PropertiesResource.java[]
 ----
@@ -312,3 +312,9 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 When you are finished, press `CTRL+C` in the session that the server is running in. This will both stop and remove the container for you. 
 You can check that the container was stopped by running the `docker ps` command.
+
+`.EndpointIT.java`
+[source, java, linenums, role="code_column"]
+----
+include::finish/EndpointIT.java[]
+----
