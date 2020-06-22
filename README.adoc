@@ -167,6 +167,12 @@ command again.
 mvn liberty:stop
 ```
 
+PropertiesResource.java
+[source, text, linenums, role="code_column"]
+----
+include::finish/PropertiesResource.java[]
+----
+
 // =================================================================================================
 // Creating the Dockerfile
 // =================================================================================================
@@ -209,6 +215,12 @@ docker inspect --format='{{.Config.Labels.description}}' dev-mode-image
 ```
 
 As you can see, the Dockerfile you created is being used to run the container. 
+
+Dockerfile
+[source, text, linenums, role="code_column"]
+----
+include::finish/Dockerfile[]
+----
 
 === Optional: Writing a .dockerignore file
 
