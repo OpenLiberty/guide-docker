@@ -140,7 +140,7 @@ where you can see a JSON file that contains the system properties of the JVM in 
 // Updating the application while the container is running 
 // =================================================================================================
 
-== Updating the server while the container is running
+=== Updating the server while the container is running
 
 With your container running, make the following update to the source code.
 
@@ -177,7 +177,7 @@ include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java
 // Creating the Dockerfile
 // =================================================================================================
 
-== Creating the Dockerfile
+=== Creating the Dockerfile
 
 As mentioned previously, development mode with a container can be used with or without a Dockerfile. 
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
@@ -242,7 +242,7 @@ include::finish/.dockerignore[]
 // Starting development mode with run options 
 // =================================================================================================
 
-== Starting development mode with run options
+=== Starting development mode with run options
 
 Another useful feature of development mode with a container is the ability to pass addtional options
 for the `docker run` command. This can be done using the `-DdockerRunOpts` option with the `devc` goal.
@@ -275,7 +275,7 @@ tab of the Liberty Maven Plugin as such:
 // Testing the container 
 // =================================================================================================
 
-== Testing the container 
+=== Testing the container 
 
 You can test this service manually by starting a server and pointing a web browser to the 
 http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^] URL. 
