@@ -96,7 +96,7 @@ include::{common-includes}/gitclone.adoc[]
 // Running the container 
 // =================================================================================================
 
-== Running the container 
+=== Running the container 
 
 The Open Liberty Maven plug-in includes a `devc` goal that builds and runs a Docker container and listens
 for any changes in the project, including application source code or configuration. If a Dockerfile is present 
