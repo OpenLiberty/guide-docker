@@ -104,14 +104,14 @@ development mode with will be used to build the image (container?), otherwise th
 `openliberty/open-liberty:kernel-java8-openj9-ubi`, will be used.
 
 
-Build and run the container by running the `liberty:devc` goal in the `start directory`
+Build and run the container by running the `devc` goal in the `start` directory
 
 [role='command']
 ```
 mvn liberty:devc
 ```
 
-Because there is no Dockerfile present in this directory, the default Open Liberty is being used.  
+Because there is no Dockerfile present in this directory, the default Open Liberty image is being used.  
 
 Before you access your application from the browser, run the `docker ps` command from the command line to make sure that your
 container is running and didn’t crash:
@@ -141,6 +141,8 @@ where you can see a JSON file that contains the system properties of the JVM in 
 // =================================================================================================
 
 == Updating the server while the container is running
+
+With your container running, make the following update to the source code.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -222,6 +224,42 @@ directory, the [hotspot file=1]`pom.xml` file, and some system files. Feel free 
 ----
 include::finish/.dockerignore[]
 ----
+
+// =================================================================================================
+// Starting development mode with run options 
+// =================================================================================================
+
+== Starting development mode with run options
+
+Another useful feature of development mode with a container is the ability to pass addtional options
+for the `docker run` command. This can be done using the `-DdockerRunOpts` option with the `devc` command.
+Any options that you would normally add to the `docker run` command, can be added to this options. Below
+is an example of an environment variable being passed in.
+
+[role="no_copy"]
+----
+mvn liberty:devc -DdockerRunOpts="--env VAR=123"
+----
+
+If the dockerfile isn't located in the directory that the `devc` goal is being run from, you can also 
+the `-Ddockerfile` goal to specify the location. 
+
+Additionally, both of these options can be added to the `pom.xml` file as part under the `<configuration>` 
+tab of the Liberty Maven Plugin as such:
+
+[role="no_copy"]
+----
+mvn liberty:devc -DdockerRunOpts="--env JAVA_HOME=/opt/java/openjdk"
+----
+```
+<groupId>io.openliberty.tools</groupId>
+<artifactId>liberty-maven-plugin</artifactId>
+<version>3.2.2</version>
+<configuration>
+    <dockerRunOpts> ... </dockerRunOpts>
+    <dockerFile> ... </dockerFile>
+</configuration>
+```
 
 // =================================================================================================
 // Testing the container 
