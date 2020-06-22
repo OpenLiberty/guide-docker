@@ -96,9 +96,9 @@ include::{common-includes}/gitclone.adoc[]
 
 == Running the container 
 
-The Open Liberty Maven plug-in includes a `devc` goal, known as "development mode with a container", that builds a Docker image, mounts the required directories,
+The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image, mounts the required directories,
 binds the required ports, and then runs the application inside of a container. This development mode will also listen for any 
-changes in the application source code or configuration and will rebuild the image and/or restart the container as nessecary.
+changes in the application source code or configuration and will rebuild the image and restart the container as necessary.
 If a Dockerfile is present, development mode will use it to build the image and container, otherwise the default Open Liberty image, 
 `openliberty/open-liberty:kernel-java8-openj9-ubi`, will be used.
 
@@ -192,7 +192,7 @@ include::finish/Dockerfile[]
 include::finish/.dockerignore[]
 ----
 
-As mentioned previously, development mode with a container can be used with or without a Dockerfile. 
+As mentioned previously, the `devc` goal can be used with or without a Dockerfile. 
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
 container. Every Dockerfile begins with a parent or base image on top of which various commands
 are run. For example, you can start your image from scratch and execute commands that download and
