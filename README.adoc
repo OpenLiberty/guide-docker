@@ -140,7 +140,14 @@ where you can see a JSON file that contains the system properties of the JVM in 
 // Updating the application while the container is running 
 // =================================================================================================
 
-== Updating the server while the container is running
+== Updating the application while the container is running
+
+// File 0 
+PropertiesResource.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
+----
 
 With your container running, make the following update to the source code.
 
@@ -167,17 +174,18 @@ command again.
 mvn liberty:stop
 ```
 
-PropertiesResource.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
-----
-
 // =================================================================================================
 // Creating the Dockerfile
 // =================================================================================================
 
 == Creating the Dockerfile
+
+// File 0
+Dockerfile
+[source, text, linenums, role="code_column"]
+----
+include::finish/Dockerfile[]
+----
 
 As mentioned previously, development mode with a container can be used with or without a Dockerfile. 
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
@@ -215,12 +223,6 @@ docker inspect --format='{{.Config.Labels.description}}' dev-mode-image
 ```
 
 As you can see, the Dockerfile you created is being used to run the container. 
-
-Dockerfile
-[source, text, linenums, role="code_column"]
-----
-include::finish/Dockerfile[]
-----
 
 === Optional: Writing a .dockerignore file
 
