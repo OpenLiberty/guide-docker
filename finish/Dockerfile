@@ -17,8 +17,9 @@ LABEL \
   name="system" \
   version="$VERSION-$REVISION" \
   summary="The system microservice from the Docker Guide" \
+  # tag::description[]
   description="This image contains the system microservice running with the Open Liberty runtime."
-
+  # tag::description[]
 # tag::user-root[]
 USER root
 # end::user-root[]

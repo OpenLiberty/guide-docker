@@ -239,7 +239,7 @@ To make image building faster, add all files and directories that aren't necessa
 image to a `.dockerignore` file. This excludes them from the build context.
 
 A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=src file=1]`src`
-directory, the `pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
+directory, the [hotspot=pom.xml file=1]`pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
 
 // =================================================================================================
 // Starting development mode with run options 
