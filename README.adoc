@@ -44,10 +44,9 @@ The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
-To iteratively develop your application in a container, first build it with Maven and add it to the servers of
-your choice. Second, create a Docker image that contains an Open Liberty runtime. Third, run this image
-and mount a single server directory or the directory that contains all of your servers to the container's
-file system. Finally, run one of the mounted servers inside of a container.
+To iteratively develop your application in a container, you can use development mode, which will automatically
+build a Docker image, mount the required directories, bind the required ports, and run the application inside of a container. 
+Development mode will also listen for any changes and rebuild the image and restart the container as nessecary. 
 
 === What is Docker?
 
@@ -98,9 +97,10 @@ include::{common-includes}/gitclone.adoc[]
 
 == Running the container 
 
-The Open Liberty Maven plug-in includes a `devc` goal that builds and runs a Docker container and listens
-for any changes in the project, including application source code or configuration. If a Dockerfile is present 
-development mode with will be used to build the image and container, otherwise the default Open Liberty image, 
+The Open Liberty Maven plug-in includes a `devc` goal, known as "development mode with a container" that builds a Docker image, mounts the required directories,
+binds the required ports, and then runs the application inside of a container. This development mode will also listen for any 
+changes in the application source code or configuration and will rebuild the image and/or restart the container as nessecary.
+If a Dockerfile is present, development mode will use it to build the image and container, otherwise the default Open Liberty image, 
 `openliberty/open-liberty:kernel-java8-openj9-ubi`, will be used.
 
 
@@ -160,7 +160,7 @@ With your container running, make the following update to the source code.
 Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=Path]`@Path`
 annotation to `"properties-new"`.
 
-After you make the file changes, Open Liberty automatically restarts the container. To see these changes reflected in the container, 
+After you make the file changes, Open Liberty automatically restarts the container. To see these changes reflected in the application, 
 point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
 
 When you need to stop the container, press `CTRL+C` in the session that the container was started in or run 
@@ -247,20 +247,20 @@ directory, the [hotspot=pom.xml file=1]`pom.xml` file, and some system files. Fe
 == Starting development mode with run options
 
 Another useful feature of development mode with a container is the ability to pass addtional options
-for the `docker run` command. This can be done using the `-DdockerRunOpts` option with the `devc` goal.
-Any options that you would normally add to the `docker run` command, can be added to this option. Below
-is an example of an environment variable being passed in.
+to the `docker run` command. This can be done using the `-DdockerRunOpts` option with the `devc` goal.
+Any options that you would normally add to the `docker run` command, can be added to this option. Here
+is an example of an environment variable being passed in:
 
 [role="no_copy"]
 ----
 mvn liberty:devc -DdockerRunOpts="--env JAVA_HOME=/opt/java/openjdk"
 ----
 
-If the dockerfile isn't located in the directory that the `devc` goal is being run from, you can also 
+If the Dockerfile isn't located in the directory that the `devc` goal is being run from, you can also 
 use the `-Ddockerfile` option to specify the location. 
 
-Additionally, both of these options can be added to the `pom.xml` file as part under the `<configuration>` 
-tab of the Liberty Maven Plugin as such:
+Additionally, both of these options can be added to the `pom.xml` file as under the `<configuration>` 
+tag of the Liberty Maven Plugin as such:
 
 [role="no_copy"]
 ----
@@ -317,5 +317,5 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-When you are finished, press `CTRL+C` in the session that the server is running in. This will both stop and remove the container for you. 
+When you are finished, press `CTRL+C` in the session that the container was started from. This will both stop and remove the container for you. 
 You can check that the container was stopped by running the `docker ps` command.
