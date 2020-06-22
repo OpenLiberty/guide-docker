@@ -104,7 +104,7 @@ development mode with will be used to build the image and container, otherwise t
 `openliberty/open-liberty:kernel-java8-openj9-ubi`, will be used.
 
 
-Build and run the container by running the `devc` goal in the `start` directory
+Build and run the container by running the `devc` goal from the `start` directory
 
 [role='command']
 ```
@@ -125,7 +125,6 @@ You should see something similar to the following output:
 
 [role="no_copy"]
 ----
-$ docker ps
 CONTAINER ID        IMAGE               CREATED             STATUS              NAMES
 6493c5704c34        dev-mode-image      16 seconds ago      Up 15 seconds       "/opt/ol/helpers/run…" 
 ----
@@ -222,7 +221,7 @@ Note that since the Open Liberty Docker image runs by default with user `1001` (
 you must temporarily switch to the `root` user to create the symlink. This is done by using 
 the [hotspot=user-root hotspot=user file=0]`USER` instruction. 
 
-Run the following command to inspect the descripton `field` of the `LABEL` that you specified in the Dockerfile 
+Run the following command to inspect the [hotspot=description file=0]`descripton` field of the [hotspot=label file=0]`LABEL` that you specified in the Dockerfile 
 
 [role='command']
 ```

@@ -5,7 +5,7 @@ FROM openliberty/open-liberty:kernel-java8-openj9-ubi
 
 ARG VERSION=1.0
 ARG REVISION=SNAPSHOT
-
+# tag::label[]
 LABEL \
   org.opencontainers.image.authors="Your Name" \
   org.opencontainers.image.vendor="IBM" \
@@ -19,7 +19,8 @@ LABEL \
   summary="The system microservice from the Docker Guide" \
   # tag::description[]
   description="This image contains the system microservice running with the Open Liberty runtime."
-  # tag::description[]
+  # end::description[]
+# end::label[]
 # tag::user-root[]
 USER root
 # end::user-root[]
