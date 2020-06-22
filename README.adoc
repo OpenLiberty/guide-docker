@@ -45,7 +45,7 @@ The implementation of the REST application can be found in the
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
 This guide will introduce development mode with a container. With a single command, this mode automatically builds 
-a Docker Image and runs it as a container, all while listening for changes in the source code and configuration.
+a Docker image and runs it as a container, all while listening for changes in the source code and configuration.
 
 === What is Docker?
 
