@@ -44,9 +44,8 @@ The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
-To iteratively develop your application in a container, you can use development mode, which will automatically
-build a Docker image, mount the required directories, bind the required ports, and run the application inside of a container. 
-Development mode will also listen for any changes and rebuild the image and/or restart the container as nessecary. 
+This guide will introduce development mode with a container. With a single command, this mode automatically builds 
+a Docker Image and runs it as a container, all while listening for changes in the source code and configuration.
 
 === What is Docker?
 
