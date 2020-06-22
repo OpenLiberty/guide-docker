@@ -151,7 +151,7 @@ include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java
 
 With your container running, make the following update to the source code.
 
-[role="code_command hotspot", subs="quotes"]
+[role="code_command hotspot hotspot file=0", subs="quotes"]
 ----
 #Update the `PropertiesResource` class.#
 `src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
@@ -187,6 +187,13 @@ Dockerfile
 include::finish/Dockerfile[]
 ----
 
+// File 1
+`.dockerignore`
+[source, text, linenums, role="code_column"]
+----
+include::finish/.dockerignore[]
+----
+
 As mentioned previously, development mode with a container can be used with or without a Dockerfile. 
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
 container. Every Dockerfile begins with a parent or base image on top of which various commands
@@ -195,7 +202,7 @@ install Java, or you can start from an image that already contains a Java instal
 
 Let's try running development mode with a Dockerfile. Navigate to the `start` directory to begin.
 
-[role="code_command hotspot",subs="quotes"]
+[role="code_command hotspot file=0",subs="quotes"]
 ----
 #Create the `Dockerfile`.#
 `Dockerfile`
@@ -231,14 +238,8 @@ as the Dockerfile to its build context, making them available for use in instruc
 To make image building faster, add all files and directories that aren't necessary for building your
 image to a `.dockerignore` file. This excludes them from the build context.
 
-A [hotspot file=0]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=src file=0]`src`
-directory, the [hotspot file=1]`pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
-
-`.dockerignore`
-[source, text, linenums, role="code_column"]
-----
-include::finish/.dockerignore[]
-----
+A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=src file=1]`src`
+directory, the `pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
 
 // =================================================================================================
 // Starting development mode with run options 
@@ -279,6 +280,13 @@ tab of the Liberty Maven Plugin as such:
 
 == Testing the container 
 
+// File 0
+EndpointIT.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
+----
+
 You can test this service manually by starting a server and pointing a web browser to the 
 http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^] URL. 
 Automated tests are a much better approach because they trigger a failure if a change introduces a bug.
@@ -286,7 +294,7 @@ JUnit and the JAX-RS Client API provide a simple environment to test the applica
 You can write tests for the individual units of code outside of a running application server, or they
 can be written to call the application server directly. In this example, you will create a test that does the latter.
 
-[role="code_command hotspot", subs="quotes"]
+[role="code_command hotspot file=0", subs="quotes"]
 ----
 #Create the `EndpointIT` class.#
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
@@ -312,9 +320,3 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 When you are finished, press `CTRL+C` in the session that the server is running in. This will both stop and remove the container for you. 
 You can check that the container was stopped by running the `docker ps` command.
-
-EndpointIT.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
-----
