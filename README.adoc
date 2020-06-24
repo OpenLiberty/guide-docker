@@ -44,9 +44,6 @@ The implementation of the REST application can be found in the
 `start/src` directory. To learn more about this application and how to build it, read
 https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
-This guide will introduce development mode with a container. With a single command, this mode automatically builds 
-a Docker image and runs it as a container, all while listening for changes in the source code and configuration.
-
 === What is Docker?
 
 Docker is a tool that you can use to deploy and run applications with containers. You
@@ -108,7 +105,7 @@ The defaultServer server is ready to run a smarter planet.
 ----
 
 Point your browser to the http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^] URL where 
-you can see a JSON file that contains the system properties of the JVM in your container.
+you can see a JSON file that contains the system properties of the running JVM.
 
 When you are done checking out the application, press `CRTL+C` in the shell session where you started
 the server from. Alternatively, you can run the liberty:stop goal in another shell session. 
@@ -160,11 +157,14 @@ They copy local files into the specified destination within your Docker image.
 In this case, the server configuration files that are located at `src/main/liberty/config` 
 are copied to the `/config/` destination directory.
 
+This Dockerfile is setup this way so that you do not need to change it when transitioning between a development
+and a production environment. 
+
 === Optional: Writing a .dockerignore file
 
 When Docker runs a build, it sends all of the files and directories that are located in the same directory
 as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
-To make image building faster, add all files and directories that aren't necessary for building your
+To make your image build faster, add all files and directories that aren't necessary for building your
 image to a `.dockerignore` file. This excludes them from the build context.
 
 A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes 
@@ -210,8 +210,6 @@ To view a full list of all available containers, run the `docker ps -a` command 
 
 If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^] 
 where you can see a JSON file that contains the system properties of the JVM in your container.
-
-As you can see, the Dockerfile you created is being used to run the container. 
 
 
 // =================================================================================================
@@ -259,7 +257,7 @@ mvn liberty:stop
 == Starting development mode with run options
 
 Another useful feature of development mode with a container is the ability to pass additional options
-to the `docker run` command. You can do this by adding the `<dockerRunOpts>` tag to the `pom.xml` under 
+to the `docker run` command. You can do this by adding the `<dockerRunOpts>` tag to the `pom.xml` file under 
 the `<configuration>` tag of the Liberty Maven Plugin. Here is an example of an environment variable 
 being passed in:
 
