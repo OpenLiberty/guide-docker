@@ -25,9 +25,10 @@ LABEL \
 USER root
 # end::user-root[]
 # Symlink servers directory for easier mounts.
-# tag::link[]
-RUN ln -s /opt/ol/wlp/usr/servers /servers
-# end::link[]
+
+COPY --chown=1001:0 src/main/liberty/config/ /config/
+COPY --chown=1001:0 target/*.war /config/apps/
+
 # tag::user[]
 USER 1001
 # end::user[]
