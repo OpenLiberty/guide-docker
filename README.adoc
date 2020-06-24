@@ -200,7 +200,7 @@ include::finish/pom.xml[]
 include::{common-includes}/ol-kernel-docker-pull.adoc[]
 
 Next, to build your image, make sure that your Docker daemon is running and execute the Docker `build`
-command from the command line. If you execute your build from the same directory as your Dockerfile,
+command from the active command-line session. If you execute your build from the same directory as your Dockerfile,
 you can use the period character (`.`) notation to specify the location for the build context. 
 Otherwise, use the `-f` flag to point to your Dockerfile:
 [role='command']
@@ -371,8 +371,8 @@ Learn more about running containers on the https://docs.docker.com/engine/refere
 
 == Testing the container
 
-Before you access your application from the browser, run the `docker ps` command from the
-command line to make sure that your container is running and didn't crash:
+Before you access your application from the browser, run the `docker ps` command from the active
+command-line session to make sure that your container is running and didn't crash:
 
 [role="no_copy"]
 ----
@@ -381,7 +381,7 @@ CONTAINER ID        IMAGE               CREATED             STATUS              
 2720cea71700        ol-runtime          2 seconds ago       Up 1 second         rest-app
 ----
 
-To view a full list of all available containers, run the `docker ps -a` command from the command line.
+To view a full list of all available containers, run the `docker ps -a` command in the command-line session.
 
 If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^],
 where you can see a JSON file that contains the system properties of the JVM in your container.
@@ -396,7 +396,7 @@ Change the endpoint of your application from `properties` to `properties-new` by
 annotation to `"properties-new"`.
 
 
-To see these changes reflected in the container, run the following command from the command line to
+To see these changes reflected in the container, run the following command in the command-line session to
 rebuild your application and point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
 [role='command']
 ```
@@ -404,7 +404,7 @@ mvn package
 ```
 You see the same JSON file that you saw previously.
 
-To stop your container, run the following command from the command line.
+To stop your container, run the following command in the command-line session.
 [role='command']
 ```
 docker stop rest-app
