@@ -91,8 +91,8 @@ and they take up only a fraction of the memory of a single virtual machine image
 include::{common-includes}/gitclone.adoc[]
 
 
-To try out the application that is going to be in inside your Docker container, navigate to the 
-`start` directory are the the following Maven goal. This will build your application and run it inside 
+To try out the application that is going to be running inside your Docker container, navigate to the 
+`start` directory and run the following Maven goal. This will build your application and run it inside 
 Open Liberty:
 
 [role='command']
@@ -107,7 +107,7 @@ After you see the following message, your application server is ready.
 The defaultServer server is ready to run a smarter planet.
 ----
 
-Point your browser to the localhost:9080/LibertyProject/System/properties[localhost:9080/LibertyProject/System/properties^] URL where 
+Point your browser to the http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^] URL where 
 you can see a JSON file that contains the system properties of the JVM in your container.
 
 When you are done checking out the application, press `CRTL+C` in the shell session where you started
@@ -160,16 +160,6 @@ They copy local files into the specified destination within your Docker image.
 In this case, the server configuration files that are located at `src/main/liberty/config` 
 are copied to the `/config/` destination directory.
 
-Run the following command to inspect the [hotspot=description file=0]`descripton` field
-of the [hotspot=label file=0]`LABEL` that you specified in the Dockerfile 
-
-[role='command']
-```
-docker inspect --format='{{.Config.Labels.description}}' dev-mode-image
-```
-
-As you can see, the Dockerfile you created is being used to run the container. 
-
 === Optional: Writing a .dockerignore file
 
 When Docker runs a build, it sends all of the files and directories that are located in the same directory
@@ -220,6 +210,8 @@ To view a full list of all available containers, run the `docker ps -a` command 
 
 If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^] 
 where you can see a JSON file that contains the system properties of the JVM in your container.
+
+As you can see, the Dockerfile you created is being used to run the container. 
 
 
 // =================================================================================================
