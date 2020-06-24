@@ -1,5 +1,2 @@
 .DS_Store
-# tag::src[]
-src/
-# end::src[]
 pom.xml

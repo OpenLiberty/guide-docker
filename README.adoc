@@ -91,16 +91,8 @@ and they take up only a fraction of the memory of a single virtual machine image
 include::{common-includes}/gitclone.adoc[]
 
 
-// =================================================================================================
-// Packaging your application 
-// =================================================================================================
-
-== Packaging your application
-
-First, run the Maven package goal to build the application `.war` file. 
-
 To try out the application that is going to be in inside your Docker container, navigate to the 
-`start` directory are the the following Maven goal. This will build you application and run it inside 
+`start` directory are the the following Maven goal. This will build your application and run it inside 
 Open Liberty:
 
 [role='command']
@@ -118,13 +110,8 @@ The defaultServer server is ready to run a smarter planet.
 Point your browser to the localhost:9080/LibertyProject/System/properties[localhost:9080/LibertyProject/System/properties^] URL where 
 you can see a JSON file that contains the system properties of the JVM in your container.
 
-When you are done checking out the application, package it so that it is ready to be run from a Docker 
-container. Run the Maven package goal to build the application .war file in the `target` directory.
-
-[role='command']
-```
-mvn package
-```
+When you are done checking out the application, press `CRTL+C` in the shell session where you started
+the server from. Alternatively, you can run the liberty:stop goal in another shell session. 
 
 // =================================================================================================
 // Creating the Dockerfile
@@ -146,6 +133,7 @@ include::finish/Dockerfile[]
 include::finish/.dockerignore[]
 ----
 
+The first step to running your application inside of a Docker container is creating a Dockerfile.
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
 container. Every Dockerfile begins with a parent or base image on top of which various commands
 are run. For example, you can start your image from scratch and execute commands that download and
@@ -189,8 +177,8 @@ as the Dockerfile to its build context, making them available for use in instruc
 To make image building faster, add all files and directories that aren't necessary for building your
 image to a `.dockerignore` file. This excludes them from the build context.
 
-A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes the [hotspot=src file=1]`src`
-directory, the [hotspot=pom.xml file=1]`pom.xml` file, and some system files. Feel free to add anything else that you want to exclude.
+A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes 
+the [hotspot=pom.xml file=1]`pom.xml` file and some system files. Feel free to add anything else that you want to exclude.
 
 
 // =================================================================================================
@@ -289,7 +277,7 @@ being passed in:
 <artifactId>liberty-maven-plugin</artifactId>
 <version>3.2.2</version>
 <configuration>
-    <dockerRunOpts>"--env JAVA_HOME=/opt/java/openjdk"</dockerRunOpts>
+    <dockerRunOpts>--env JAVA_HOME=/opt/java/openjdk</dockerRunOpts>
 </configuration>
 ----
 
