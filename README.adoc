@@ -108,7 +108,12 @@ Point your browser to the http://localhost:9080/LibertyProject/System/properties
 you can see a JSON file that contains the system properties of the running JVM.
 
 When you are done checking out the application, press `CRTL+C` in the shell session where you started
-the server from. Alternatively, you can run the liberty:stop goal in another shell session. 
+the server from. Alternatively, you can run the `liberty:stop` goal in another shell session. 
+
+[role='command']
+```
+mvn liberty:stop
+```
 
 // =================================================================================================
 // Creating the Dockerfile
@@ -151,14 +156,11 @@ base image.
 In this case, you’re using the `openliberty/open-liberty:kernel-java8-openj9-ubi` image as your parent image, 
 which comes with the latest Open Liberty runtime.
 
-The `COPY` instructions are structured as `COPY` 
+The `COPY` instructions are structured as [hotspot=copy file=0]`COPY` 
 `[--chown=<user>:<group>]` `<source>` `<destination>`. 
 They copy local files into the specified destination within your Docker image.
 In this case, the server configuration files that are located at `src/main/liberty/config` 
 are copied to the `/config/` destination directory.
-
-This Dockerfile is setup this way so that you do not need to change it when transitioning between a development
-and a production environment. 
 
 === Optional: Writing a .dockerignore file
 
@@ -168,7 +170,7 @@ To make your image build faster, add all files and directories that aren't neces
 image to a `.dockerignore` file. This excludes them from the build context.
 
 A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes 
-the [hotspot=pom.xml file=1]`pom.xml` file and some system files. Feel free to add anything else that you want to exclude.
+the `pom.xml` file and some system files. Feel free to add anything else that you want to exclude.
 
 
 // =================================================================================================
@@ -202,7 +204,7 @@ You should see something similar to the following output:
 [role="no_copy"]
 ----
 CONTAINER ID        IMAGE               CREATED             STATUS              NAMES
-6493c5704c34        dev-mode-image      16 seconds ago      Up 15 seconds       "/opt/ol/helpers/run…" 
+6493c5704c34        liberty-dev-mode    16 seconds ago      Up 15 seconds       "/opt/ol/helpers/run…" 
 ----
 
 

@@ -24,11 +24,11 @@ LABEL \
 # tag::user-root[]
 USER root
 # end::user-root[]
-# Symlink servers directory for easier mounts.
 
+# tag::copy[]
 COPY --chown=1001:0 src/main/liberty/config/ /config/
 COPY --chown=1001:0 target/*.war /config/apps/
-
+# end::copy[]
 # tag::user[]
 USER 1001
 # end::user[]
