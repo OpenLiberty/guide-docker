@@ -42,8 +42,8 @@ You will learn how to set up, run, and iteratively develop a simple REST applica
 
 Open Liberty is an application server designed for the cloud. It’s small, lightweight, and designed with modern cloud-native
 application development in mind. Open Liberty simplifies the development process for these applications by automating 
-the repetative actions associated with running applications inside containers, like rebuilding your image and stopping and starting 
-your container. 
+the repetative actions associated with running applications inside containers, like rebuilding the image and stopping and starting 
+the container. 
 
 You'll also learn how to create and run automated tests for your application and container.
 

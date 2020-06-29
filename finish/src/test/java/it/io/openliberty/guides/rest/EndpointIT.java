@@ -56,9 +56,10 @@ public class EndpointIT {
         // tag::body[]
         JsonObject obj = response.readEntity(JsonObject.class);
 
-        assertEquals(System.getProperty("os.name"),
-                     obj.getString("os.name"),
-                     "The system property for the local and remote JVM should match");
+        assertEquals("The system property for the server output directory should match with the Open Liberty container image.",
+                   "/opt/ol/wlp/output/defaultServer/",
+                   obj.getString("server.output.dir"));
+                   
         // end::body[]
         response.close();
     }
