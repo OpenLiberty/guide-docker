@@ -70,6 +70,8 @@ with the entire environment that it needs to run. Containers are small compared 
 run on any environment where Docker is set up. Moreover, you can run multiple containers on a single
 machine at the same time in isolation from each other.
 
+Learn more about containers on the https://www.docker.com/what-container[official Docker website^].
+
 === Why use a container to develop?
 
 Consider a scenario where you need to deploy your application on another environment. Your application
@@ -85,8 +87,6 @@ entire environment that it needs to run. By doing this, you know that at any poi
 the application can run inside that container in any other environment that is running Docker.
 This helps avoid any unpleasant surprises when you go to test or deploy your application down the road. 
 Containers are quick to run and do not have a major impact on the speed of your interative development. 
-
-Learn more about containers on the https://www.docker.com/what-container[official Docker website^].
 
 // =================================================================================================
 // Getting started
