@@ -218,38 +218,6 @@ After you make the file changes, Open Liberty automatically updates the applicat
 point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
 
 // =================================================================================================
-// Starting development mode with run options 
-// =================================================================================================
-
-== Starting development mode with run options
-
-Another useful feature of development mode with a container is the ability to pass additional options
-to the `docker run` command. You can do this by adding the `<dockerRunOpts>` tag to the `pom.xml` file under 
-the `<configuration>` tag of the Liberty Maven Plugin. Here is an example of an environment variable 
-being passed in:
-
-[role="no_copy"]
-----
-<groupId>io.openliberty.tools</groupId>
-<artifactId>liberty-maven-plugin</artifactId>
-<version>3.2.2</version>
-<configuration>
-    <dockerRunOpts>-e JAVA_HOME=/opt/java/openjdk</dockerRunOpts>
-</configuration>
-----
-
-If the Dockerfile isn't located in the directory that the `devc` goal is being run from, you can add
-the `<dockerFile>` tag to specify the location. 
-
-Additionally, both of these options can passed from the command line when running the `devc` goal by
-adding `-D` as such:
-
-[role="no_copy"]
-----
-mvn liberty:devc -DdockerRunOpts="--env JAVA_HOME=/opt/java/openjdk" -DdockerFile="./path/to/file" 
-----
-
-// =================================================================================================
 // Testing the container 
 // =================================================================================================
 
@@ -295,3 +263,35 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 When you are finished, press `CTRL+C` in the session that the container was started from. This will both stop and remove the container for you. 
 You can check that the container was stopped by running the `docker ps` command.
+
+// =================================================================================================
+// Starting development mode with run options 
+// =================================================================================================
+
+== Starting development mode with run options
+
+Another useful feature of development mode with a container is the ability to pass additional options
+to the `docker run` command. You can do this by adding the `<dockerRunOpts>` tag to the `pom.xml` file under 
+the `<configuration>` tag of the Liberty Maven Plugin. Here is an example of an environment variable 
+being passed in:
+
+[role="no_copy"]
+----
+<groupId>io.openliberty.tools</groupId>
+<artifactId>liberty-maven-plugin</artifactId>
+<version>3.2.2</version>
+<configuration>
+    <dockerRunOpts>-e JAVA_HOME=/opt/java/openjdk</dockerRunOpts>
+</configuration>
+----
+
+If the Dockerfile isn't located in the directory that the `devc` goal is being run from, you can add
+the `<dockerFile>` tag to specify the location. 
+
+Additionally, both of these options can passed from the command line when running the `devc` goal by
+adding `-D` as such:
+
+[role="no_copy"]
+----
+mvn liberty:devc -DdockerRunOpts="--env JAVA_HOME=/opt/java/openjdk" -DdockerFile="./path/to/file" 
+----
