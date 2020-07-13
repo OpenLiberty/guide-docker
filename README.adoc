@@ -75,18 +75,17 @@ Learn more about containers on the https://www.docker.com/what-container[officia
 === Why use a container to develop?
 
 Consider a scenario where you need to deploy your application on another environment. Your application
-works on your local machine, but when you try to run it on a different environment, it breaks. You do
-some debugging and discover that you built your application with Java 8,
-but this new environment has only Java 11 installed. Although this issue is generally easy to fix,
-you don't want your application to be missing dozens of version-specific dependencies.
-You can create a virtual machine specifically for testing your application, but VM images generally
-take up a huge amount of space and are slow to run.
+works on your local machine, but when you try to run it on your cloud production environment, it breaks. You do
+some debugging and discover that you built your application with Java 8, but this container environment has only 
+Java 11 installed. Although this issue is generally easy to fix, you don't want your application to be missing 
+dozens of version-specific dependencies. You can develop your application in this container environment, but that 
+requires you to rebuild and repackage your application every time you update your code and wish to test it.
 
-To avoid this kind of problem, you can instead choose to develop your application in a container, bundled together with the
+To avoid this kind of problem, you can instead choose to develop your application in a container locally, bundled together with the
 entire environment that it needs to run. By doing this, you know that at any point in your iterative development process,
-the application can run inside that container in any other environment that is running Docker.
-This helps avoid any unpleasant surprises when you go to test or deploy your application down the road. 
-Containers are quick to run and do not have a major impact on the speed of your interative development. 
+the application can run inside that container. This helps avoid any unpleasant surprises when you go to test or
+deploy your application down the road. Containers are quick to run and do not have a major impact on the speed
+of your iterative development. 
 
 // =================================================================================================
 // Getting started
