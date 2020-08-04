@@ -240,7 +240,7 @@ If your build runs successfully, you'll see an output similar to the following:
 [role="no_copy"]
 ----
 Sending build context to Docker daemon  316.5MB
-Step 1/6 : FROM open-liberty
+Step 1/6 : FROM openliberty/open-liberty:kernel-java8-openj9-ubi
  ---> c3cd510a72a2
 Step 2/6 : USER root
  ---> Running in a63a1bed8026
