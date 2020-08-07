@@ -199,10 +199,32 @@ include::finish/pom.xml[]
 
 include::{common-includes}/ol-kernel-docker-pull.adoc[]
 
+You'll see an output similar to the following:
+
+[role="no_copy"]
+----
+kernel-java8-openj9-ubi: Pulling from openliberty/open-liberty
+7f24bdb73d53: Pull complete 
+264aaa453271: Pull complete 
+b095666e9645: Pull complete 
+6d080a23bd35: Pull complete 
+7bdfdc073f3b: Pull complete 
+7cf1f897277a: Pull complete 
+38693ac81335: Pull complete 
+1207f8b498f1: Pull complete 
+531978dfef2c: Pull complete 
+b67203a348c6: Pull complete 
+d0386355392b: Pull complete 
+Digest: sha256:676f0137e439e42b8f3250060a1ec2c4b9ae0ca851a4cb3cb2683256add838ec
+Status: Downloaded newer image for openliberty/open-liberty:kernel-java8-openj9-ubi
+docker.io/openliberty/open-liberty:kernel-java8-openj9-ubi
+----
+
 Next, to build your image, make sure that your Docker daemon is running and execute the Docker `build`
 command from the active command-line session. If you execute your build from the same directory as your Dockerfile,
 you can use the period character (`.`) notation to specify the location for the build context. 
 Otherwise, use the `-f` flag to point to your Dockerfile:
+
 [role='command']
 ```
 docker build -t ol-runtime .
@@ -217,35 +239,30 @@ If your build runs successfully, you'll see an output similar to the following:
 
 [role="no_copy"]
 ----
-Sending build context to Docker daemon  148.9MB
-Step 1/4 : FROM openliberty/open-liberty:kernel-java8-openj9-ubi
-latest: Pulling from library/openliberty/open-liberty:kernel-java8-openj9-ubi
-7b8b6451c85f: Pull complete 
-ab4d1096d9ba: Pull complete 
-e6797d1788ac: Pull complete 
-e25c5c290bde: Pull complete 
-27b2fbbc72b1: Pull complete 
-aa35dfd74487: Pull complete 
-1ade56d64661: Pull complete 
-3493ef172f60: Pull complete 
-cd6dff6d245d: Pull complete 
-82450af30afc: Pull complete 
-Digest: sha256:b7576e4278030537765d4185c4641ee2769194226263f979109ed4fa0e1aa4e4
-Status: Downloaded newer image for openliberty/open-liberty:kernel-java8-openj9-ubi
- ---> 45d4b67ace5b
-Step 2/4 : RUN ln -s /opt/ol/wlp/usr/servers /servers
- ---> Running in cbeb275770ab
-Removing intermediate container cbeb275770ab
- ---> 937183f8460b
-Step 3/4 : ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
- ---> Running in 856a4bdec82b
-Removing intermediate container 856a4bdec82b
- ---> 6cf732381877
-Step 4/4 : CMD ["defaultServer"]
- ---> Running in 1a543a9e37d8
-Removing intermediate container 1a543a9e37d8
- ---> 8fdcad065d25
-Successfully built 8fdcad065d25
+Sending build context to Docker daemon  316.5MB
+Step 1/6 : FROM openliberty/open-liberty:kernel-java8-openj9-ubi
+ ---> c3cd510a72a2
+Step 2/6 : USER root
+ ---> Running in a63a1bed8026
+Removing intermediate container a63a1bed8026
+ ---> ace3b840f2fd
+Step 3/6 : RUN ln -s /opt/ol/wlp/usr/servers /servers
+ ---> Running in 504b98ddff9a
+Removing intermediate container 504b98ddff9a
+ ---> 1628ec9873b1
+Step 4/6 : USER 1001
+ ---> Running in 1d8601e3896e
+Removing intermediate container 1d8601e3896e
+ ---> a75cddf7cfc6
+Step 5/6 : ENTRYPOINT ["/opt/ol/wlp/bin/server", "run"]
+ ---> Running in 231f5b20fb0c
+Removing intermediate container 231f5b20fb0c
+ ---> 87501190599c
+Step 6/6 : CMD ["defaultServer"]
+ ---> Running in 9377b2104726
+Removing intermediate container 9377b2104726
+ ---> d8fd3f885f8f
+Successfully built d8fd3f885f8f
 Successfully tagged ol-runtime:latest
 ----
 
