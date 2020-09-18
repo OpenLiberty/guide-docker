@@ -20,6 +20,9 @@ docker run -d --name rest-app \
 
 sleep 60
 
+docker exec -it rest-app cat /logs/messages.log | grep product
+docker exec -it rest-app cat /logs/messages.log | grep java
+
 status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/LibertyProject/System/properties")"
 if [ "$status" == "200" ]
 then
