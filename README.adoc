@@ -107,6 +107,7 @@ Before you begin, build your application. To do this, navigate to the `start` di
 
 [role='command']
 ```
+cd start
 mvn install
 ```
 
@@ -133,8 +134,6 @@ A Dockerfile is a collection of instructions for building a Docker image that ca
 container. Every Dockerfile begins with a parent or base image on top of which various commands
 are run. For example, you can start your image from scratch and execute commands that download and
 install Java, or you can start from an image that already contains a Java installation.
-
-Navigate to the `start` directory to begin.
 
 [role="code_command hotspot",subs="quotes"]
 ----
