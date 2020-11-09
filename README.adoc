@@ -42,7 +42,7 @@ You will learn how to set up, run, and iteratively develop a simple REST applica
 
 Open Liberty is an application server designed for the cloud. It’s small, lightweight, and designed with modern cloud-native
 application development in mind. Open Liberty simplifies the development process for these applications by automating 
-the repetative actions associated with running applications inside containers, like rebuilding the image and stopping and starting 
+the repetitive actions associated with running applications inside containers, like rebuilding the image and stopping and starting 
 the container. 
 
 You'll also learn how to create and run automated tests for your application and container.
@@ -116,7 +116,7 @@ include::finish/.dockerignore[]
 The first step to running your application inside of a Docker container is creating a Dockerfile.
 A Dockerfile is a collection of instructions for building a Docker image that can then be run as a
 container. Every Dockerfile begins with a parent or base image on top of which various commands
-are run. For example, you can start your image from scratch and execute commands that download and
+are run. For example, you can start your image from scratch and run commands that download and
 install Java, or you can start from an image that already contains a Java installation.
 
 Navigate to the `start` directory to begin.
@@ -243,7 +243,7 @@ can be written to call the application server directly. In this example, you wil
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
 ----
 
-This test make a request to the `/system/properties-new` enpoint and checks to
+This test make a request to the `/system/properties-new` endpoint and checks to
 make sure that the response has a valid status code, and that the information in
 the response is correct. 
 
@@ -283,7 +283,7 @@ being passed in:
 ----
 <groupId>io.openliberty.tools</groupId>
 <artifactId>liberty-maven-plugin</artifactId>
-<version>3.2.2</version>
+<version>3.3</version>
 <configuration>
     <dockerRunOpts>-e JAVA_HOME=/opt/java/openjdk</dockerRunOpts>
 </configuration>
@@ -292,7 +292,7 @@ being passed in:
 If the Dockerfile isn't located in the directory that the `devc` goal is being run from, you can add
 the `<dockerFile>` tag to specify the location. 
 
-Additionally, both of these options can passed from the command line when running the `devc` goal by
+Additionally, both of these options can be passed from the command line when running the `devc` goal by
 adding `-D` as such:
 
 [role="no_copy"]
