@@ -48,8 +48,8 @@ the container.
 You'll also learn how to create and run automated tests for your application and container.
 
 The implementation of the REST application can be found in the
-`start/src` directory. To learn more about this application and how to build it, read
-https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
+`start/src` directory. To learn more about this application and how to build it, check out the
+https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^] guide.
 
 === What is Docker?
 
@@ -134,7 +134,7 @@ base image.
 In this case, you’re using the `openliberty/open-liberty:kernel-java8-openj9-ubi` image as your parent image, 
 which comes with the latest Open Liberty runtime.
 
-The `COPY` instructions are structured as [hotspot=copy file=0]`COPY` 
+The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` 
 `[--chown=<user>:<group>]` `<source>` `<destination>`. 
 They copy local files into the specified destination within your Docker image.
 In this case, the server configuration files that are located at `src/main/liberty/config` 
@@ -160,14 +160,14 @@ The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image
 binds the required ports, and then runs the application inside of a container. This development mode will also listen for any 
 changes in the application source code or configuration and will rebuild the image and restart the container as necessary.
 
-Build and run the container by running the `devc` goal from the `start` directory
+Build and run the container by running the `devc` goal from the `start` directory:
 
 [role='command']
 ```
 mvn liberty:devc
 ```
 
-Before you access your application from the browser, run the `docker ps` command from the command line to make sure that your
+Open another command-line session and run the following command to make sure that your
 container is running and didn’t crash:
 
 [role='command']
@@ -184,9 +184,9 @@ ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes
 ----
 
 
-To view a full list of all available containers, run the `docker ps -a` command from the command line.
+To view a full list of all available containers, you can run the `docker ps -a` command from the command line.
 
-If your container is running without problems, point your browser to http://localhost:9080/LibertyProject/System/properties[http://localhost:9080/LibertyProject/System/properties^] 
+If your container is running without problems, point your browser to http://localhost:9080/system/properties[http://localhost:9080/system/properties^] 
 where you can see a JSON file that contains the system properties of the JVM in your container.
 
 // =================================================================================================
@@ -202,7 +202,7 @@ PropertiesResource.java
 include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
 ----
 
-With your container running, make the following update to the source code.
+With your container running, make the following update to the source code:
 
 [role="code_command hotspot hotspot file=0", subs="quotes"]
 ----
@@ -230,9 +230,9 @@ EndpointIT.java
 include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
 ----
 
-You can test this service manually by starting a server and pointing a web browser to the 
-http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^] URL. 
-Automated tests are a much better approach because they trigger a failure if a change introduces a bug.
+You could test this service manually by starting a server and pointing a web browser to the 
+http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^] URL. 
+However, automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server, or they
 can be written to call the application server directly. In this example, you will create a test that does the latter.
@@ -242,6 +242,10 @@ can be written to call the application server directly. In this example, you wil
 #Create the `EndpointIT` class.#
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
 ----
+
+This test make a request to the `/system/properties-new` enpoint and checks to
+make sure that the response has a valid status code, and that the information in
+the response is correct. 
 
 [role='command']
 include::{common-includes}/devmode-test.adoc[]
@@ -261,7 +265,7 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-When you are finished, press `CTRL+C` in the session that the container was started from. This will both stop and remove the container for you. 
+When you are finished, press `CTRL+C` in the session that the dev mode was started from. This will both stop and remove the container for you. 
 You can check that the container was stopped by running the `docker ps` command.
 
 // =================================================================================================
