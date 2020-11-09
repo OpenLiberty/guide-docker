@@ -20,7 +20,7 @@ docker run -d --name rest-app \
 
 sleep 60
 
-status="$(sudo curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/LibertyProject/System/properties")"
+sudo status="$(sudo curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/LibertyProject/System/properties")"
 if [ "$status" == "200" ]
 then
   echo ENDPOINT OK
