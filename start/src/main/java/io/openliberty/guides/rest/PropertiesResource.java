@@ -24,7 +24,7 @@ import javax.json.JsonObjectBuilder;
 import javax.json.Json;
 
 // tag::Path[]
-@Path("properties-new")
+@Path("properties")
 // end::Path[]
 public class PropertiesResource {
 
