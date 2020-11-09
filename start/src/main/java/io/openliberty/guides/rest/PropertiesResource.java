@@ -1,6 +1,6 @@
 // tag::comment[]
 /*******************************************************************************
- * Copyright (c) 2017 IBM Corporation and others.
+ * Copyright (c) 2017, 2020 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,28 +13,21 @@
 package io.openliberty.guides.rest;
 
 import java.util.Properties;
-import java.util.Map;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.GET;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonArray;
 import javax.json.Json;
-import javax.json.JsonNumber;
 
-// tag::class[]
 // tag::Path[]
-@Path("properties")
+@Path("properties-new")
 // end::Path[]
 public class PropertiesResource {
-// end::class[]
 
-    // tag::getProperties[]
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject getProperties() {
@@ -49,5 +42,5 @@ public class PropertiesResource {
 
        return builder.build();
     }
-    // end::getProperties[]
 }
+ 
