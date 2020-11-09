@@ -184,7 +184,7 @@ ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes
 ----
 
 
-To view a full list of all available containers, you can run the `docker ps -a` command from the command line.
+To view a full list of all available containers, you can run the `docker ps -a` command.
 
 If your container is running without problems, point your browser to http://localhost:9080/system/properties[http://localhost:9080/system/properties^] 
 where you can see a JSON file that contains the system properties of the JVM in your container.
@@ -215,7 +215,7 @@ Change the endpoint of your application from `properties` to `properties-new` by
 annotation to `"properties-new"`.
 
 After you make the file changes, Open Liberty automatically updates the application. To see these changes reflected in the application, 
-point your browser to http://localhost:9080/LibertyProject/System/properties-new[http://localhost:9080/LibertyProject/System/properties-new^].
+point your browser to http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^].
 
 // =================================================================================================
 // Testing the container 
