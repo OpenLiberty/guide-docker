@@ -16,7 +16,6 @@ xsi:schemaLocation=
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <app.name>LibertyProject</app.name>
         <!-- Liberty configuration -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
@@ -93,12 +92,11 @@ xsi:schemaLocation=
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.2.3-SNAPSHOT</version>
+                <version>3.3-M4</version>
                 <configuration>
                     <bootstrapProperties>
                         <default.http.port>${liberty.var.default.http.port}</default.http.port>
                         <default.https.port>${liberty.var.default.http.port}</default.https.port>
-                        <app.context.root>${app.name}</app.context.root>
                     </bootstrapProperties>
                 </configuration>
             </plugin>
@@ -115,7 +113,6 @@ xsi:schemaLocation=
                         <liberty.test.port>
                             ${liberty.var.default.http.port}
                         </liberty.test.port>
-                        <war.name>${app.name}</war.name>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

@@ -179,8 +179,8 @@ You should see something similar to the following output:
 
 [role="no_copy"]
 ----
-CONTAINER ID        IMAGE               CREATED             STATUS              NAMES
-6493c5704c34        liberty-dev-mode    16 seconds ago      Up 15 seconds       "/opt/ol/helpers/run…" 
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                                    NAMES
+ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes ago       Up 2 minutes        0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty_dev
 ----
 
 

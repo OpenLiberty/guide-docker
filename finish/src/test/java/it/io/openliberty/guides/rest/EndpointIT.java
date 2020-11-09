@@ -35,8 +35,7 @@ public class EndpointIT {
     public void testGetProperties() {
         // tag::systemProperties[]
         String port = System.getProperty("liberty.test.port");
-        String war = System.getProperty("war.name");
-        String url = "http://localhost:" + port + "/" + war + "/";
+        String url = "http://localhost:" + port + "/";
         // end::systemProperties[]
 
         // tag::clientSetup[]
@@ -45,7 +44,7 @@ public class EndpointIT {
         // end::clientSetup[]
 
         // tag::request[]
-        WebTarget target = client.target(url + "System/properties-new");
+        WebTarget target = client.target(url + "system/properties-new");
         Response response = target.request().get();
         // end::request[]
 
@@ -56,10 +55,8 @@ public class EndpointIT {
         // tag::body[]
         JsonObject obj = response.readEntity(JsonObject.class);
 
-        assertEquals("The system property for the server output directory should match with the Open Liberty container image.",
-                   "/opt/ol/wlp/output/defaultServer/",
-                   obj.getString("server.output.dir"));
-                   
+        assertEquals("/opt/ol/wlp/output/defaultServer/", obj.getString("server.output.dir"),
+                    "The system property for the server output directory should match the Open Liberty container image.");
         // end::body[]
         response.close();
     }
