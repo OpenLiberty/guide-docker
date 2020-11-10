@@ -41,8 +41,10 @@ public class EndpointIT {
 
         assertEquals(200, response.getStatus(), "Incorrect response code from " + url);
 
-        assertEquals("/opt/ol/wlp/output/defaultServer/", obj.getString("server.output.dir"),
-                    "The system property for the server output directory should match the Open Liberty container image.");
+        assertEquals("/opt/ol/wlp/output/defaultServer/",
+                     obj.getString("server.output.dir"),
+                     "The system property for the server output directory should match "
+                     + "the Open Liberty container image.");
 
         response.close();
     }

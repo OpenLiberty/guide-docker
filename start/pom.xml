@@ -96,7 +96,7 @@ xsi:schemaLocation=
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.3-M4</version>
+                <version>3.3</version>
                 <configuration>
                     <bootstrapProperties>
                         <default.http.port>${liberty.var.default.http.port}</default.http.port>

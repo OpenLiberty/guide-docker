@@ -285,7 +285,7 @@ being passed in:
 <artifactId>liberty-maven-plugin</artifactId>
 <version>3.3</version>
 <configuration>
-    <dockerRunOpts>-e JAVA_HOME=/opt/java/openjdk</dockerRunOpts>
+    <dockerRunOpts>-e ENV_VAR=exampleValue</dockerRunOpts>
 </configuration>
 ----
 
@@ -297,5 +297,11 @@ adding `-D` as such:
 
 [role="no_copy"]
 ----
-mvn liberty:devc -DdockerRunOpts="--env JAVA_HOME=/opt/java/openjdk" -DdockerFile="./path/to/file" 
+mvn liberty:devc \
+-DdockerRunOpts= "--env ENV_VAR=exampleValue" \
+-DdockerFile="./path/to/file" \
 ----
+
+To learn more about development mode with a container and it's different
+features, check out the  
+https://github.com/OpenLiberty/ci.maven/blob/master/docs/dev.md#devc-container-mode[Documentation].
