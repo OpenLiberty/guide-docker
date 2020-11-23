@@ -298,8 +298,8 @@ adding `-D` as such:
 [role="no_copy"]
 ----
 mvn liberty:devc \
--DdockerRunOpts= "--env ENV_VAR=exampleValue" \
--DdockerFile="./path/to/file" \
+-DdockerRunOpts="-e ENV_VAR=exampleValue" \
+-DdockerFile="./path/to/file"
 ----
 
 To learn more about development mode with a container and its different
