@@ -172,6 +172,13 @@ Build and run the container by running the `devc` goal from the `start` director
 mvn liberty:devc
 ```
 
+After you see the following message, your application server in dev mode is ready:
+[role="no_copy"]
+----
+************************************************************************
+*    Liberty is running in dev mode.
+----
+
 Open another command-line session and run the following command to make sure that your
 container is running and didn’t crash:
 
