@@ -97,12 +97,6 @@ xsi:schemaLocation=
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>3.3.1</version>
-                <configuration>
-                    <bootstrapProperties>
-                        <default.http.port>${liberty.var.default.http.port}</default.http.port>
-                        <default.https.port>${liberty.var.default.http.port}</default.https.port>
-                    </bootstrapProperties>
-                </configuration>
             </plugin>
 
             <!-- Plugin to run functional tests -->
