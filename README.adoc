@@ -255,7 +255,7 @@ can be written to call the application server directly. In this example, you wil
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
 ----
 
-This test make a request to the `/system/properties-new` endpoint and checks to
+This test makes a request to the `/system/properties-new` endpoint and checks to
 make sure that the response has a valid status code, and that the information in
 the response is correct. 
 
