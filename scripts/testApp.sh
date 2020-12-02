@@ -1,12 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-##############################################################################
-##
-##  Travis CI test script
-##
-##############################################################################
-
 mvn -q clean install
 
 docker pull openliberty/open-liberty:kernel-java8-openj9-ubi
