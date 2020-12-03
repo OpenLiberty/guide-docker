@@ -142,8 +142,8 @@ which comes with the latest Open Liberty runtime.
 The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` 
 `[--chown=<user>:<group>]` `<source>` `<destination>`. 
 They copy local files into the specified destination within your Docker image.
-In this case, the server configuration files that are located at `src/main/liberty/config` 
-are copied to the `/config/` destination directory.
+In this case, the server configuration file that is located at `src/main/liberty/config/server.xml` 
+is copied to the `/config/` destination directory.
 
 === Optional: Writing a .dockerignore file
 
@@ -295,7 +295,7 @@ being passed in:
 ----
 <groupId>io.openliberty.tools</groupId>
 <artifactId>liberty-maven-plugin</artifactId>
-<version>3.3.1</version>
+<version>3.3.2</version>
 <configuration>
     <dockerRunOpts>-e ENV_VAR=exampleValue</dockerRunOpts>
 </configuration>
