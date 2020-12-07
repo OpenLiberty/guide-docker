@@ -192,7 +192,7 @@ You should see something similar to the following output:
 [role="no_copy"]
 ----
 CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                                    NAMES
-ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes ago       Up 2 minutes        0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty_dev
+ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes ago       Up 2 minutes        0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty-dev
 ----
 
 
@@ -301,8 +301,10 @@ being passed in:
 </configuration>
 ----
 
-If the Dockerfile isn't located in the directory that the `devc` goal is being run from, you can add
-the `<dockerFile>` tag to specify the location. 
+If the Dockerfile isn't located in the directory that the `devc` goal is being
+run from, you can add the `<dockerfile>` tag to specify the location. Note that
+using this parameter will set the context for building the Docker image to the
+directory that contains this file.
 
 Additionally, both of these options can be passed from the command line when running the `devc` goal by
 adding `-D` as such:
@@ -311,7 +313,7 @@ adding `-D` as such:
 ----
 mvn liberty:devc \
 -DdockerRunOpts="-e ENV_VAR=exampleValue" \
--DdockerFile="./path/to/file"
+-Ddockerfile="./path/to/file"
 ----
 
 To learn more about development mode with a container and its different

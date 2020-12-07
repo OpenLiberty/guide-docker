@@ -12,8 +12,6 @@
  // end::comment[]
 package io.openliberty.guides.rest;
 
-import java.util.Properties;
-
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.GET;
