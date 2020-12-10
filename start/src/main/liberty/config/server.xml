@@ -4,9 +4,12 @@
       <feature>jaxrs-2.1</feature>
       <feature>jsonp-1.1</feature>
   </featureManager>
+  
+  <variable name="default.http.port" defaultValue="9080"/>
+  <variable name="default.https.port" defaultValue="9443"/>
 
   <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
       id="defaultHttpEndpoint" host="*" />
 
-  <webApplication location="rest.war" contextRoot="${app.context.root}"/>
+  <webApplication location="rest.war" contextRoot="/"/>
 </server>
