@@ -14,6 +14,8 @@ docker run -d --name rest-app \
 
 sleep 60
 
+docker logs rest-app
+
 status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/LibertyProject/System/properties")"
 if [ "$status" == "200" ]
 then
