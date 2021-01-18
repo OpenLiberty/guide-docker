@@ -276,7 +276,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
 When you are finished, press `CTRL+C` in the session that the dev mode was
-started from to stop and remove the container for you.
+started from to stop and remove the container.
 
 // =================================================================================================
 // Starting development mode with run options 
