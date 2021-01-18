@@ -60,8 +60,6 @@ one another.
 
 Learn more about Docker on the https://www.docker.com/what-docker[official Docker website^].
 
-To install Docker, follow the instructions in the https://docs.docker.com/engine/installation[official Docker documentation^].
-
 === What is a container?
 
 A container is a lightweight, stand-alone package that contains a piece of software that is bundled together
@@ -83,7 +81,7 @@ requires you to rebuild and repackage your application every time you update you
 To avoid this kind of problem, you can instead choose to develop your application in a container locally, bundled together with the
 entire environment that it needs to run. By doing this, you know that at any point in your iterative development process,
 the application can run inside that container. This helps avoid any unpleasant surprises when you go to test or
-deploy your application down the road. Containers are quick to run and do not have a major impact on the speed
+deploy your application down the road. Containers run quickly and do not have a major impact on the speed
 of your iterative development. 
 
 == Additional prerequisites
@@ -156,14 +154,14 @@ A [hotspot file=1]`.dockerignore` file is available to you in the `start` direct
 the `pom.xml` file and some system files. Feel free to add anything else that you want to exclude.
 
 // =================================================================================================
-// Launching Open Liberty in development mode  
+// Launching Open Liberty in dev mode  
 // =================================================================================================
 
-== Launching Open Liberty in development mode
+== Launching Open Liberty in dev mode
 
 The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image, mounts the required directories,
-binds the required ports, and then runs the application inside of a container. This development mode will also listen for any 
-changes in the application source code or configuration and will rebuild the image and restart the container as necessary.
+binds the required ports, and then runs the application inside of a container. This development mode, known as dev mode, also listens for any 
+changes in the application source code or configuration and rebuilds the image and restarts the container as necessary.
 
 Build and run the container by running the `devc` goal from the `start` directory:
 
@@ -198,7 +196,7 @@ ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes
 
 To view a full list of all available containers, you can run the `docker ps -a` command.
 
-If your container is running without problems, point your browser to http://localhost:9080/system/properties[http://localhost:9080/system/properties^] 
+If your container runs without problems, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL 
 where you can see a JSON file that contains the system properties of the JVM in your container.
 
 // =================================================================================================
@@ -227,7 +225,7 @@ Change the endpoint of your application from `properties` to `properties-new` by
 annotation to `"properties-new"`.
 
 After you make the file changes, Open Liberty automatically updates the application. To see these changes reflected in the application, 
-point your browser to http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^].
+go to the http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^] URL.
 
 // =================================================================================================
 // Testing the container 
@@ -242,12 +240,12 @@ EndpointIT.java
 include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
 ----
 
-You could test this service manually by starting a server and pointing a web browser to the 
+You can test this service manually by starting a server and going to the 
 http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^] URL. 
 However, automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server, or they
-can be written to call the application server directly. In this example, you will create a test that does the latter.
+can be written to call the application server directly. In this example, you will create a test that calls the application server directly.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -277,8 +275,8 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-When you are finished, press `CTRL+C` in the session that the dev mode was started from. This will both stop and remove the container for you. 
-You can check that the container was stopped by running the `docker ps` command.
+When you are finished, press `CTRL+C` in the session that the dev mode was
+started from to stop and remove the container for you.
 
 // =================================================================================================
 // Starting development mode with run options 
@@ -302,9 +300,9 @@ being passed in:
 ----
 
 If the Dockerfile isn't located in the directory that the `devc` goal is being
-run from, you can add the `<dockerfile>` tag to specify the location. Note that
-using this parameter will set the context for building the Docker image to the
-directory that contains this file.
+run from, you can add the `<dockerfile>` tag to specify the location. Using this
+parameter sets the context for building the Docker image to the directory that
+contains this file.
 
 Additionally, both of these options can be passed from the command line when running the `devc` goal by
 adding `-D` as such:
