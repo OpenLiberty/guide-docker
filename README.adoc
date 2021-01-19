@@ -143,15 +143,19 @@ They copy local files into the specified destination within your Docker image.
 In this case, the server configuration file that is located at `src/main/liberty/config/server.xml` 
 is copied to the `/config/` destination directory.
 
-=== Optional: Writing a .dockerignore file
+=== Writing a .dockerignore file
 
-When Docker runs a build, it sends all of the files and directories that are located in the same directory
-as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`.
-To make your image build faster, add all files and directories that aren't necessary for building your
-image to a `.dockerignore` file. This excludes them from the build context.
+When Docker runs a build, it sends all of the files and directories that are
+located in the same directory as the Dockerfile to its build context, making
+them available for use in instructions like `ADD` and `COPY`. If there are files
+or directories you wish to exlcude one from the build context, you can add them
+to a `.dockerignore` file. By adding files that aren't nessecary for building your
+image to the `.dockerignore` file, you can decrease the image's size and speed
+up the building process. You may also want to exclude files that contain
+sensitive information, such as a `.git` folder or private keys, from the build context. 
 
 A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes 
-the `pom.xml` file and some system files. Feel free to add anything else that you want to exclude.
+the `pom.xml` file and some system files.
 
 // =================================================================================================
 // Launching Open Liberty in dev mode  
@@ -279,12 +283,12 @@ When you are finished, press `CTRL+C` in the session that the dev mode was
 started from to stop and remove the container.
 
 // =================================================================================================
-// Starting development mode with run options 
+// Starting dev mode with run options 
 // =================================================================================================
 
-== Starting development mode with run options
+== Starting dev mode with run options
 
-Another useful feature of development mode with a container is the ability to pass additional options
+Another useful feature of dev mode with a container is the ability to pass additional options
 to the `docker run` command. You can do this by adding the `<dockerRunOpts>` tag to the `pom.xml` file under 
 the `<configuration>` tag of the Liberty Maven Plugin. Here is an example of an environment variable 
 being passed in:
@@ -314,6 +318,6 @@ mvn liberty:devc \
 -Ddockerfile="./path/to/file"
 ----
 
-To learn more about development mode with a container and its different
+To learn more about dev mode with a container and its different
 features, check out the  
 https://github.com/OpenLiberty/ci.maven/blob/master/docs/dev.md#devc-container-mode[Documentation].
