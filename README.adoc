@@ -148,7 +148,7 @@ is copied to the `/config/` destination directory.
 When Docker runs a build, it sends all of the files and directories that are
 located in the same directory as the Dockerfile to its build context, making
 them available for use in instructions like `ADD` and `COPY`. If there are files
-or directories you wish to exlcude one from the build context, you can add them
+or directories you wish to exlcude from the build context, you can add them
 to a `.dockerignore` file. By adding files that aren't nessecary for building your
 image to the `.dockerignore` file, you can decrease the image's size and speed
 up the building process. You may also want to exclude files that contain
