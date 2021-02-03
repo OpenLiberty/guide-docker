@@ -16,7 +16,8 @@ sleep 60
 
 docker logs rest-app
 
-status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/LibertyProject/System/properties")"
+status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/system/properties-new")"
+
 if [ "$status" == "200" ]
 then
   echo ENDPOINT OK
