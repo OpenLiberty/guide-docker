@@ -13,7 +13,7 @@ docker build -t ol-runtime .
 docker run -d --name rest-app \
   -p 9080:9080 -p 9443:9443 \
   -v "$(pwd)"/target/liberty/wlp/usr/servers:/servers \
-  -u $(id -u) ol-runtime
+  -u "$(id -u)" ol-runtime
 
 sleep 60
 
