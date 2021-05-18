@@ -20,6 +20,6 @@ cat pom.xml
 sed -i "s;FROM openliberty/open-liberty:full-java8-openj9-ubi;FROM $DOCKER_USERNAME/olguides:$BUILD;g" Dockerfile
 cat Dockerfile
 
-docker pull $DOCKER_USERNAME"/olguides:"$BUILD
+docker pull "$DOCKER_USERNAME""/olguides:""$BUILD"
 
 ../scripts/testApp.sh

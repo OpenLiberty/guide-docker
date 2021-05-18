@@ -1,7 +1,10 @@
 #!/bin/bash
 set -euxo pipefail
 
-mvn -q clean install
+mvn -Dhttp.keepAlive=false \
+    -Dmaven.wagon.http.pool=false \
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+    -q clean install
 
 docker pull openliberty/open-liberty:full-java11-openj9-ubi
 
@@ -9,8 +12,8 @@ docker build -t ol-runtime .
 
 docker run -d --name rest-app \
   -p 9080:9080 -p 9443:9443 \
-  -v $(pwd)/target/liberty/wlp/usr/servers:/servers \
-  -u `id -u` ol-runtime
+  -v "$(pwd)"/target/liberty/wlp/usr/servers:/servers \
+  -u $(id -u) ol-runtime
 
 sleep 60
 
@@ -22,7 +25,7 @@ if [ "$status" == "200" ]
 then
   echo ENDPOINT OK
 else
-  echo "$status_code"
+  echo "$status"
   echo ENDPOINT NOT OK
   exit 1
 fi
