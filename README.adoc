@@ -164,8 +164,9 @@ the `pom.xml` file and some system files.
 == Launching Open Liberty in dev mode
 
 The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image, mounts the required directories,
-binds the required ports, and then runs the application inside of a container. This development mode, known as dev mode, also listens for any 
-changes in the application source code or configuration and rebuilds the image and restarts the container as necessary.
+binds the required ports, and then runs the application inside of a container.
+This development mode, known as dev mode, also listens for any changes in the application source code or
+configuration and rebuilds the image and restarts the container as necessary.
 
 Build and run the container by running the `devc` goal from the `start` directory:
 
@@ -200,8 +201,22 @@ ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes
 
 To view a full list of all available containers, you can run the `docker ps -a` command.
 
+// Static guide instruction
+ifndef::cloud-hosted[]
 If your container runs without problems, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL 
 where you can see a JSON file that contains the system properties of the JVM in your container.
+endif::[]
+
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
+If your server runs without problems, run the following `curl` command to get a JSON file
+that contains the system properties of the JVM in your container.
+
+```
+curl http://localhost:9080/system/properties
+```
+{: codeblock}
+endif::[]
 
 // =================================================================================================
 // Updating the application while the container is running 
@@ -228,8 +243,23 @@ With your container running, make the following update to the source code:
 Change the endpoint of your application from `properties` to `properties-new` by changing the [hotspot=Path]`@Path`
 annotation to `"properties-new"`.
 
-After you make the file changes, Open Liberty automatically updates the application. To see these changes reflected in the application, 
+// Static guide instruction
+ifndef::cloud-hosted[]
+After you make the file changes, Open Liberty automatically updates the application.
+To see these changes reflected in the application, 
 go to the http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^] URL.
+endif::[]
+
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
+After you make the file changes, Open Liberty automatically updates the application.
+To see the changes reflected in the application, run the following command in a terminal:
+
+```
+curl http://localhost:9080/system/properties-new
+```
+{: codeblock}
+endif::[]
 
 // =================================================================================================
 // Testing the container 
@@ -297,7 +327,7 @@ being passed in:
 ----
 <groupId>io.openliberty.tools</groupId>
 <artifactId>liberty-maven-plugin</artifactId>
-<version>3.3.2</version>
+<version>3.3.4</version>
 <configuration>
     <dockerRunOpts>-e ENV_VAR=exampleValue</dockerRunOpts>
 </configuration>
