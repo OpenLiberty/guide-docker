@@ -350,4 +350,4 @@ mvn liberty:devc \
 
 To learn more about dev mode with a container and its different
 features, check out the  
-https://github.com/OpenLiberty/ci.maven/blob/master/docs/dev.md#devc-container-mode[Documentation].
+https://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-container-mode[Documentation].
