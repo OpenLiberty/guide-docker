@@ -373,3 +373,10 @@ mvn liberty:devc \
 To learn more about dev mode with a container and its different
 features, check out the  
 https://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-container-mode[Documentation].
+
+== Great work! You're done!
+
+You have just iteratively developed a simple REST application in a container with Open Liberty and Docker.
+
+include::{common-includes}/attribution.adoc[]
+
