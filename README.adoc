@@ -216,7 +216,7 @@ endif::[]
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-If your server runs without problems, run the following `curl` command to get a JSON file
+If your server runs without problems, run the following *curl* command to get a JSON file
 that contains the system properties of the JVM in your container.
 
 ```
