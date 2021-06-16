@@ -211,12 +211,12 @@ To view a full list of all available containers, you can run the `docker ps -a` 
 ifndef::cloud-hosted[]
 If your container runs without problems,
 go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL 
-where you can see a JSON file that contains the system properties of the JVM in your container.
+where you can see a JSON response that contains the system properties of the JVM in your container.
 endif::[]
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-If your server runs without problems, run the following *curl* command to get a JSON file
+If your container runs without problems, run the following *curl* command to get a JSON response
 that contains the system properties of the JVM in your container.
 
 ```
