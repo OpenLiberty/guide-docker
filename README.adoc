@@ -90,7 +90,7 @@ Containers run quickly and do not have a major impact on the speed of your itera
 
 == Additional prerequisites
 
-Before you begin, Docker needs to be installed.
+Before you begin, you need to install Docker if it is not already installed.
 For installation instructions, refer to the https://docs.docker.com/get-docker/[official Docker documentation^].
 You will build and run the application in Docker containers.
 
@@ -136,9 +136,9 @@ Navigate to the `start` directory to begin.
 `Dockerfile`
 ----
 
-The [hotspot=from file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your
-image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a
-base image. 
+The [hotspot=from file=0]`FROM` instruction initializes a new build stage
+and indicates the parent image from which your image is built.
+If you don't need a parent image, then use `FROM scratch`, which makes your image a base image. 
 
 In this case, you’re using the `openliberty/open-liberty:full-java8-openj9-ubi` image as your parent image, 
 which comes with the latest Open Liberty runtime.
@@ -288,7 +288,7 @@ http://localhost:9080/system/properties-new[http://localhost:9080/system/propert
 However, automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server,
-or they can be written to call the application server directly.
+or you can write them to call the application server directly.
 In this example, you will create a test that calls the application server directly.
 endif::[]
 
@@ -299,7 +299,7 @@ You can test this service manually by starting a server and going to the
 However, automated tests are a much better approach because they trigger a failure if a change introduces a bug.
 JUnit and the JAX-RS Client API provide a simple environment to test the application. 
 You can write tests for the individual units of code outside of a running application server,
-or they can be written to call the application server directly.
+or you can write them to call the application server directly.
 In this example, you will create a test that calls the application server directly.
 endif::[]
 
@@ -375,7 +375,7 @@ check out the http://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-
 
 == Great work! You're done!
 
-You have just iteratively developed a simple REST application in a container with Open Liberty and Docker.
+You just iteratively developed a simple REST application in a container with Open Liberty and Docker.
 
 include::{common-includes}/attribution.adoc[]
 
