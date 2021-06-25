@@ -16,7 +16,7 @@
 :page-essential: true
 :page-essential-order: 4
 :page-permalink: /guides/{projectid}
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 :page-seo-title: Learn how to use Docker containers for iterative development 
 :page-seo-description: A getting started tutorial with examples of how to run a simple RESTful Java microservice in a Docker container built from a Dockerfile.
@@ -378,4 +378,3 @@ check out the http://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-
 You just iteratively developed a simple REST application in a container with Open Liberty and Docker.
 
 include::{common-includes}/attribution.adoc[]
-
