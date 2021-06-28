@@ -16,7 +16,7 @@
 :page-essential: true
 :page-essential-order: 4
 :page-permalink: /guides/{projectid}
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 :page-seo-title: Learn how to use Docker containers for iterative development 
 :page-seo-description: A getting started tutorial with examples of how to run a simple RESTful Java microservice in a Docker container built from a Dockerfile.
@@ -320,4 +320,4 @@ mvn liberty:devc \
 
 To learn more about dev mode with a container and its different
 features, check out the  
-https://github.com/OpenLiberty/ci.maven/blob/master/docs/dev.md#devc-container-mode[Documentation].
+https://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-container-mode[Documentation].
