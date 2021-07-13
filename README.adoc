@@ -272,7 +272,7 @@ endif::[]
 // Testing the container 
 // =================================================================================================
 
-== Testing the container 
+== Testing the container
 
 // File 0
 EndpointIT.java
