@@ -220,7 +220,7 @@ If your container runs without problems, run the following **curl** command to g
 that contains the system properties of the JVM in your container.
 
 ```
-curl http://localhost:9080/system/properties
+curl -s http://localhost:9080/system/properties | jq
 ```
 {: codeblock}
 endif::[]
@@ -263,7 +263,7 @@ After you make the file changes, Open Liberty automatically updates the applicat
 To see the changes reflected in the application, run the following command in a terminal:
 
 ```
-curl http://localhost:9080/system/properties-new
+curl -s http://localhost:9080/system/properties-new | jq
 ```
 {: codeblock}
 endif::[]
