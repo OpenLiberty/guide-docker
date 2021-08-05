@@ -341,8 +341,8 @@ started from to stop and remove the container.
 == Starting dev mode with run options
 
 Another useful feature of dev mode with a container is the ability to pass additional options
-to the `docker run` command. You can do this by adding the `<dockerRunOpts>` tag to the `pom.xml` file under 
-the `<configuration>` tag of the Liberty Maven Plugin. Here is an example of an environment variable 
+to the `docker run` command. You can do this by adding the `dockerRunOpts` tag to the `pom.xml` file under 
+the `configuration` tag of the Liberty Maven Plugin. Here is an example of an environment variable 
 being passed in:
 
 [role="no_copy"]
@@ -356,7 +356,7 @@ being passed in:
 ----
 
 If the Dockerfile isn't located in the directory that the `devc` goal is being
-run from, you can add the `<dockerfile>` tag to specify the location. Using this
+run from, you can add the `dockerfile` tag to specify the location. Using this
 parameter sets the context for building the Docker image to the directory that
 contains this file.
 
