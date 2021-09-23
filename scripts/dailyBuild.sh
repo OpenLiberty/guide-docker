@@ -17,7 +17,7 @@ echo "Testing daily OpenLiberty image"
 sed -i "\#<assemblyArtifact>#,\#</assemblyArtifact>#c<install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER</runtimeUrl></install>" pom.xml
 cat pom.xml
 
-sed -i "s;FROM openliberty/open-liberty:full-java8-openj9-ubi;FROM $DOCKER_USERNAME/olguides:$BUILD;g" Dockerfile
+sed -i "s;FROM openliberty/open-liberty:full-java11-openj9-ubi;FROM $DOCKER_USERNAME/olguides:$BUILD;g" Dockerfile
 cat Dockerfile
 
 docker pull "$DOCKER_USERNAME""/olguides:""$BUILD"
