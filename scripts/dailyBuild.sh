@@ -20,4 +20,4 @@ cat Dockerfile
 
 docker pull "$DOCKER_USERNAME""/olguides:""$BUILD"
 
-../scripts/testApp.sh
+sudo ../scripts/testApp.sh
