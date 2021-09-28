@@ -6,8 +6,6 @@ mvn -Dhttp.keepAlive=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -q clean install
 
-docker pull openliberty/open-liberty:full-java11-openj9-ubi
-
 docker build -t ol-runtime .
 
 docker run -d --name rest-app \
