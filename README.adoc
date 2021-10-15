@@ -129,6 +129,13 @@ are run. For example, you can start your image from scratch and run commands tha
 install Java, or you can start from an image that already contains a Java installation.
 
 Navigate to the `start` directory to begin.
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+```
+cd /home/project/guide-docker/start
+```
+{: codeblock}
+endif::[]
 
 [role="code_command hotspot file=0",subs="quotes"]
 ----
