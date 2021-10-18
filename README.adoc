@@ -139,7 +139,7 @@ endif::[]
 
 [role="code_command hotspot file=0",subs="quotes"]
 ----
-#Create the `Dockerfile`.#
+#Create the `Dockerfile` in the `start` directory.#
 `Dockerfile`
 ----
 
@@ -312,7 +312,7 @@ endif::[]
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
-#Create the `EndpointIT` class.#
+#Create the `EndpointIT` class in the `start` directory.#
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
 ----
 
