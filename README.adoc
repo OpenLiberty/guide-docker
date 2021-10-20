@@ -312,7 +312,7 @@ endif::[]
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
-#Create the `EndpointIT` class in the `start` directory.#
+#Create the `EndpointIT` test class.#
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
 ----
 
