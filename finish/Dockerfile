@@ -1,6 +1,6 @@
 # Start with OL runtime.
 # tag::from[]
-FROM openliberty/open-liberty:full-java11-openj9-ubi
+FROM icr.io/appcafe/open-liberty:full-java11-openj9-ubi
 # end::from[]
 
 ARG VERSION=1.0
