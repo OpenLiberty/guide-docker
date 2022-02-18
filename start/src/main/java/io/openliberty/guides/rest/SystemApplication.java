@@ -9,7 +9,7 @@
  * Contributors:
  *     IBM Corporation - Initial implementation
  *******************************************************************************/
-// end::comment[]
+// end::copyright[]
 package io.openliberty.guides.rest;
 
 import jakarta.ws.rs.core.Application;
