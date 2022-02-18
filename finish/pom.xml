@@ -48,13 +48,13 @@ xsi:schemaLocation=
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
-            <version>3.2.6</version>
+            <version>6.0.0.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-json-binding-provider</artifactId>
-            <version>3.2.6</version>
+            <version>6.0.0.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
