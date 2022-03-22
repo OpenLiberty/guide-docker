@@ -82,20 +82,6 @@ include::{common-includes}/gitclone.adoc[]
 
 == Creating the Dockerfile
 
-// File 0
-Dockerfile
-[source, text, linenums, role="code_column"]
-----
-include::finish/Dockerfile[]
-----
-
-// File 1
-`.dockerignore`
-[source, text, linenums, role="code_column"]
-----
-include::finish/.dockerignore[]
-----
-
 The first step to running your application inside of a Docker container is creating a Dockerfile. A Dockerfile is a collection of instructions for building a Docker image that can then be run as a container. Every Dockerfile begins with a parent or base image on top of which various commands are run. For example, you can start your image from scratch and run commands that download and install Java, or you can start from an image that already contains a Java installation.
 
 Navigate to the `start` directory to begin.
@@ -113,6 +99,13 @@ endif::[]
 `Dockerfile`
 ----
 
+// File 0
+Dockerfile
+[source, text, linenums, role="code_column"]
+----
+include::finish/Dockerfile[]
+----
+
 The [hotspot=from file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a base image. 
 
 In this case, you’re using the `icr.io/appcafe/open-liberty:full-java11-openj9-ubi` image as your parent image, which comes with the latest Open Liberty runtime.
@@ -121,9 +114,16 @@ The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=
 
 === Writing a .dockerignore file
 
+// File 0
+`.dockerignore`
+[source, text, linenums, role="code_column"]
+----
+include::finish/.dockerignore[]
+----
+
 When Docker runs a build, it sends all of the files and directories that are located in the same directory as the Dockerfile to its build context, making them available for use in instructions like `ADD` and `COPY`. If there are files or directories you wish to exclude from the build context, you can add them to a `.dockerignore` file. By adding files that aren't nessecary for building your image to the `.dockerignore` file, you can decrease the image's size and speed up the building process. You may also want to exclude files that contain sensitive information, such as a `.git` folder or private keys, from the build context. 
 
-A [hotspot file=1]`.dockerignore` file is available to you in the `start` directory. This file includes the `pom.xml` file and some system files.
+A [hotspot file=0]`.dockerignore` file is available to you in the `start` directory. This file includes the `pom.xml` file and some system files.
 
 // =================================================================================================
 // Launching Open Liberty in dev mode  
@@ -186,19 +186,19 @@ endif::[]
 
 == Updating the application while the container is running
 
-// File 0 
-PropertiesResource.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
-----
-
 With your container running, make the following update to the source code:
 
 [role="code_command hotspot hotspot file=0", subs="quotes"]
 ----
 #Update the `PropertiesResource` class.#
 `src/main/java/io/openliberty/guides/rest/PropertiesResource.java`
+----
+
+// File 0 
+PropertiesResource.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
 ----
 
 [role="edit_command_text"]
@@ -225,13 +225,6 @@ endif::[]
 
 == Testing the container
 
-// File 0
-EndpointIT.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
-----
-
 // Static guide version
 ifndef::cloud-hosted[]
 You can test this service manually by starting a server and going to the http://localhost:9080/system/properties-new[http://localhost:9080/system/properties-new^] URL. However, automated tests are a much better approach because they trigger a failure if a change introduces a bug. JUnit and the JAX-RS Client API provide a simple environment to test the application. You can write tests for the individual units of code outside of a running application server, or you can write them to call the application server directly. In this example, you will create a test that calls the application server directly.
@@ -247,6 +240,13 @@ endif::[]
 ----
 #Create the `EndpointIT` test class.#
 `src/test/java/it/io/openliberty/guides/rest/EndpointIT.java`
+----
+
+// File 0
+EndpointIT.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
 ----
 
 This test makes a request to the `/system/properties-new` endpoint and checks to make sure that the response has a valid status code, and that the information in the response is correct. 
