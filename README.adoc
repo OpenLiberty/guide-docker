@@ -87,10 +87,9 @@ The first step to running your application inside of a Docker container is creat
 Navigate to the `start` directory to begin.
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-```
+```bash
 cd /home/project/guide-docker/start
 ```
-{: codeblock}
 endif::[]
 
 [role="code_command hotspot file=0",subs="quotes"]
@@ -172,12 +171,11 @@ endif::[]
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-If your container runs without problems, run the following **curl** command to get a JSON response that contains the system properties of the JVM in your container.
+If your container runs without problems, run the following ***curl*** command to get a JSON response that contains the system properties of the JVM in your container.
 
-```
+```bash
 curl -s http://localhost:9080/system/properties | jq
 ```
-{: codeblock}
 endif::[]
 
 // =================================================================================================
@@ -213,10 +211,9 @@ endif::[]
 ifdef::cloud-hosted[]
 After you make the file changes, Open Liberty automatically updates the application. To see the changes reflected in the application, run the following command in a terminal:
 
-```
+```bash
 curl -s http://localhost:9080/system/properties-new | jq
 ```
-{: codeblock}
 endif::[]
 
 // =================================================================================================
@@ -232,7 +229,7 @@ endif::[]
 
 // Cloud hosted guide version
 ifdef::cloud-hosted[]
-You can test this service manually by starting a server and going to the **http://localhost:9080/system/properties-new** URL.
+You can test this service manually by starting a server and going to the ***http://localhost:9080/system/properties-new*** URL.
 However, automated tests are a much better approach because they trigger a failure if a change introduces a bug. JUnit and the JAX-RS Client API provide a simple environment to test the application. You can write tests for the individual units of code outside of a running application server, or you can write them to call the application server directly. In this example, you will create a test that calls the application server directly.
 endif::[]
 
