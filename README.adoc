@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2022 IBM Corporation and others.
+// Copyright (c) 2017, 2023 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -76,6 +76,14 @@ Make sure to start your Docker daemon before you proceed.
 [role='command']
 include::{common-includes}/gitclone.adoc[]
 
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
+In this IBM Cloud environment, you need to change the user home to ***/home/project*** by running the following command:
+```bash
+sudo usermod -d /home/project theia
+```
+endif::[]
+
 // =================================================================================================
 // Creating the Dockerfile
 // =================================================================================================
@@ -134,10 +142,19 @@ The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image
 
 Build and run the container by running the `devc` goal from the `start` directory:
 
+ifndef::cloud-hosted[]
 [role='command']
 ```
 mvn liberty:devc
 ```
+endif::[]
+
+ifdef::cloud-hosted[]
+```bash
+chmod 777 /home/project/guide-docker/start/target/liberty/wlp/usr/servers/defaultServer/logs
+mvn liberty:devc
+```
+endif::[]
 
 After you see the following message, your application server in dev mode is ready:
 [role="no_copy"]
