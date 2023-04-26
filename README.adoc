@@ -212,7 +212,7 @@ With your container running, make the following update to the source code:
 
 // File 0 
 PropertiesResource.java
-[source, java, linenums, role='code_column hide_tags=comment']
+[source, java, linenums, role='code_column hide_tags=comment,copyright']
 ----
 include::finish/src/main/java/io/openliberty/guides/rest/PropertiesResource.java[]
 ----
@@ -259,7 +259,7 @@ endif::[]
 
 // File 0
 EndpointIT.java
-[source, java, linenums, role='code_column hide_tags=comment']
+[source, java, linenums, role='code_column hide_tags=comment,copyright']
 ----
 include::finish/src/test/java/it/io/openliberty/guides/rest/EndpointIT.java[]
 ----
@@ -299,7 +299,7 @@ Another useful feature of dev mode with a container is the ability to pass addit
 ----
 <groupId>io.openliberty.tools</groupId>
 <artifactId>liberty-maven-plugin</artifactId>
-<version>3.3.4</version>
+<version>3.7.1</version>
 <configuration>
     <dockerRunOpts>-e ENV_VAR=exampleValue</dockerRunOpts>
 </configuration>
