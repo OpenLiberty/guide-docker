@@ -29,8 +29,10 @@ USER root
 
 # tag::copy[]
 COPY --chown=1001:0 src/main/liberty/config/server.xml /config/
+RUN features.sh
 COPY --chown=1001:0 target/*.war /config/apps/
 # end::copy[]
+RUN configure.sh
 # tag::user[]
 USER 1001
 # end::user[]
