@@ -115,7 +115,7 @@ include::finish/Dockerfile[]
 
 The [hotspot=from file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a base image. 
 
-In this case, you’re using the `icr.io/appcafe/open-liberty:full-java11-openj9-ubi` image as your parent image, which comes with the latest Open Liberty runtime.
+In this case, you’re using the `icr.io/appcafe/open-liberty:kernel-slim-java11-openj9-ubi` image as your parent image, which comes with the latest Open Liberty runtime.
 
 The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your Docker image. In this case, the server configuration file that is located at `src/main/liberty/config/server.xml` is copied to the `/config/` destination directory.
 
