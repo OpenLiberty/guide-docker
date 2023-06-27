@@ -138,7 +138,7 @@ A [hotspot file=0]`.dockerignore` file is available to you in the `start` direct
 
 == Launching Open Liberty in dev mode
 
-The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image, mounts the required directories, binds the required ports, and then runs the application inside of a container. This development mode, known as dev mode, also listens for any changes in the application source code or configuration and rebuilds the image and restarts the container as necessary.
+The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker image, mounts the required directories, binds the required ports, and then runs the application inside of a container. This https://openliberty.io/docs/latest/development-mode.html[dev mode^], also listens for any changes in the application source code or configuration and rebuilds the image and restarts the container as necessary.
 
 ifdef::cloud-hosted[]
 In this IBM Cloud environment, you need to pre-create the ***logs*** directory by running the following commands:
