@@ -10,7 +10,7 @@
 :page-duration: 20 minutes
 :page-description: Learn how to use Docker containers for iterative development. 
 :page-releasedate: 2017-12-27
-:page-tags: ['Docker']
+:page-tags: ['docker']
 :page-related-guides: ['rest-intro', 'containerize']
 :page-guide-category: basic
 :page-essential: true
