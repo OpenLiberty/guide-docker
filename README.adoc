@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2023 IBM Corporation and others.
+// Copyright (c) 2017, 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -10,7 +10,7 @@
 :page-duration: 20 minutes
 :page-description: Learn how to use Docker containers for iterative development. 
 :page-releasedate: 2017-12-27
-:page-tags: ['Docker']
+:page-tags: ['docker']
 :page-related-guides: ['rest-intro', 'containerize']
 :page-guide-category: basic
 :page-essential: true
@@ -299,7 +299,7 @@ Another useful feature of dev mode with a container is the ability to pass addit
 ----
 <groupId>io.openliberty.tools</groupId>
 <artifactId>liberty-maven-plugin</artifactId>
-<version>3.8.2</version>
+<version>3.10</version>
 <configuration>
     <dockerRunOpts>-e ENV_VAR=exampleValue</dockerRunOpts>
 </configuration>
