@@ -119,7 +119,7 @@ The [hotspot=copy1 hotspot=copy2 file=0]`COPY` instructions are structured as `C
 
 The [hotspot=features hotspot=configure file=0]`RUN` instructions execute commands in a new layer on top of the current image and commit the results. In this case, they run the [hotspot=features file=0]`features.sh` and [hotspot=configure file=0]`configure.sh` scripts to install the required features and finalize the server configuration for your Open Liberty application.
 
-The [hotspot=features file=0]`features.sh` script adds the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using https://openliberty.io/docs/latest/reference/command/featureUtility-commands.html[featureUtility^]. Since you're using the [hotspot=from file=0]`kernel-slim` image, which provides just the bare minimum serve, the script reads your `server.xml` file to identify required features and installs them into your Docker image.
+The [hotspot=features file=0]`features.sh` script adds the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using https://openliberty.io/docs/latest/reference/command/featureUtility-commands.html[featureUtility^]. Since you're using the [hotspot=from file=0]`kernel-slim` image, which provides just the bare minimum server, the script reads your `server.xml` file to identify required features and installs them into your Docker image.
 
 The [hotspot=configure file=0]`configure.sh` script adds the requested server configurations, applies any interim fixes, and populates caches to optimize runtime.
 
