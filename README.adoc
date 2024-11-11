@@ -121,7 +121,7 @@ The [hotspot=features hotspot=configure file=0]`RUN` instructions execute comman
 
 The [hotspot=features file=0]`features.sh` script adds the requested XML snippets to enable Liberty features and grow image to be fit-for-purpose using https://openliberty.io/docs/latest/reference/command/featureUtility-commands.html[featureUtility^]. Because you're using the [hotspot=from file=0]`kernel-slim` image, which provides just the bare minimum server, the script reads your `server.xml` file to identify the required features and installs them into your Docker image.
 
-The [hotspot=configure file=0]`configure.sh` script adds the requested server configurations, applies any interim fixes, and populates caches to optimize runtime.
+The [hotspot=configure file=0]`configure.sh` script adds the requested server configurations, applies any interim fixes, and populates caches to optimize the runtime.
 
 === Writing a .dockerignore file
 
