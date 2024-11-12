@@ -113,11 +113,15 @@ Dockerfile
 include::finish/Dockerfile[]
 ----
 
-The [hotspot=from file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a base image. 
+The [hotspot=from file=0]`FROM` instruction initializes a new build stage and indicates the parent image from which your image is built. If you don't need a parent image, then use `FROM scratch`, which makes your image a base image. In this case, you’re using the `icr.io/appcafe/open-liberty:kernel-slim-java11-openj9-ubi` image as your parent image, which comes with the latest Open Liberty runtime.
 
-In this case, you’re using the `icr.io/appcafe/open-liberty:kernel-slim-java11-openj9-ubi` image as your parent image, which comes with the latest Open Liberty runtime.
+The [hotspot=copy1 hotspot=copy2 file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your Docker image. In this case, the Liberty configuration file that is located at `src/main/liberty/config/server.xml` is copied to the `/config/` destination directory.
 
-The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your Docker image. In this case, the Liberty configuration file that is located at `src/main/liberty/config/server.xml` is copied to the `/config/` destination directory.
+The [hotspot=features hotspot=configure file=0]`RUN` instructions execute commands in a new layer on top of the current image and commit the results. In this case, they run the [hotspot=features file=0]`features.sh` and [hotspot=configure file=0]`configure.sh` scripts to install the required features and finalize the server configuration for your Open Liberty application.
+
+The [hotspot=features file=0]`features.sh` script adds the requested XML snippets to enable Liberty features by using https://openliberty.io/docs/latest/reference/command/featureUtility-commands.html[featureUtility^]. Because you're starting with the [hotspot=from file=0]`kernel-slim` image, which provides only the bare minimum server, the script reads your `server.xml` file to identify the required features and installs them into your Docker image.
+
+The [hotspot=configure file=0]`configure.sh` script adds the requested server configurations, applies any interim fixes, and populates caches to optimize the runtime.
 
 === Writing a .dockerignore file
 

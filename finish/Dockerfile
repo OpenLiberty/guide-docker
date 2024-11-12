@@ -27,12 +27,18 @@ LABEL \
 USER root
 # end::user-root[]
 
-# tag::copy[]
+# tag::copy1[]
 COPY --chown=1001:0 src/main/liberty/config/server.xml /config/
+# end::copy1[]
+# tag::features[]
 RUN features.sh
+# end::features[]
+# tag::copy2[]
 COPY --chown=1001:0 target/*.war /config/apps/
-# end::copy[]
+# end::copy2[]
+# tag::configure[]
 RUN configure.sh
+# end::configure[]
 # tag::user[]
 USER 1001
 # end::user[]
