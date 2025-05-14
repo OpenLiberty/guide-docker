@@ -1,7 +1,9 @@
 #!/bin/bash
+./mvnw -version
+
 set -euxo pipefail
 
-mvn -Dhttp.keepAlive=false \
+./mvnw -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -q clean install
