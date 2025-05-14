@@ -159,9 +159,9 @@ Build and run the container by running the `devc` goal from the `start` director
 [.tab_content.windows_section]
 --
 [role='command']
-'''
+```
 mvnw.cmd liberty:devc
-'''
+```
 --
 
 [.tab_content.mac_section]
