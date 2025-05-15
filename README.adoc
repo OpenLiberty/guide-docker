@@ -362,12 +362,12 @@ mvnw.cmd liberty:devc \
 ```
 ./mvnw liberty:devc \
 -DdockerRunOpts="-e ENV_VAR=exampleValue" \
--Ddockerfile="./path/to/file"
+-Ddockerfile="./path/zto/file"
 ```
 --
 
 [role="no_copy"]
-----
+
 
 To learn more about dev mode with a container and its different features, check out the http://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-container-mode[Documentation^].
 
