@@ -166,18 +166,23 @@ mvnw.cmd liberty:devc
 --
 
 [.tab_content.mac_section]
+--
 [role='command']
 ```
 ./mvnw liberty:devc
 ```
----
+--
+
 [.tab_content.linux_section]
+--
 [role='command']
 ```
 ./mvnw liberty:devc
 ```
+--
 
 After you see the following message, your Liberty instance is ready in dev mode:
+
 [role="no_copy"]
 ----
 **************************************************************
