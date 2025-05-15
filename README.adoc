@@ -155,7 +155,8 @@ endif::[]
 
 
 Build and run the container by running the `devc` goal from the `start` directory:
-include::{common-includes}/os-tabs.adhoc[]
+include::{common-includes}/os-tabs.adoc[]
+
 [.tab_content.windows_section]
 --
 [role='command']
