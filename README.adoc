@@ -333,8 +333,7 @@ Another useful feature of dev mode with a container is the ability to pass addit
 If the Dockerfile isn't located in the directory that the `devc` goal is being run from, you can add the `dockerfile` tag to specify the location. Using this parameter sets the context for building the Docker image to the directory that contains this file.
 
 Additionally, both of these options can be passed from the command line when running the `devc` goal by adding `-D` as such:
-
-[role="no_copy"]
+include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section]
 --
@@ -362,12 +361,12 @@ mvnw.cmd liberty:devc \
 ```
 ./mvnw liberty:devc \
 -DdockerRunOpts="-e ENV_VAR=exampleValue" \
--Ddockerfile="./path/zto/file"
+-Ddockerfile="./path/to/file"
 ```
 --
 
 [role="no_copy"]
-
+----
 
 To learn more about dev mode with a container and its different features, check out the http://github.com/OpenLiberty/ci.maven/blob/main/docs/dev.md#devc-container-mode[Documentation^].
 
