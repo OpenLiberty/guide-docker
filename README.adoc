@@ -339,9 +339,9 @@ include::{common-includes}/os-tabs.adoc[]
 --
 [role='command']
 ```
-mvnw.cmd liberty:devc \
--DdockerRunOpts="-e ENV_VAR=exampleValue" \
--Ddockerfile="./path/to/file"
+mvnw.cmd liberty:devc ^
+-DdockerRunOpts="-e ENV_VAR=exampleValue" ^
+-Ddockerfile=".\path\to\file"
 ```
 --
 
