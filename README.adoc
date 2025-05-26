@@ -324,7 +324,7 @@ Another useful feature of dev mode with a container is the ability to pass addit
 ----
 <groupId>io.openliberty.tools</groupId>
 <artifactId>liberty-maven-plugin</artifactId>
-<version>3.11.2</version>
+<version>3.11.3</version>
 <configuration>
     <dockerRunOpts>-e ENV_VAR=exampleValue</dockerRunOpts>
 </configuration>
@@ -337,7 +337,7 @@ include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section]
 --
-[role='command']
+[role="no_copy"]
 ```
 mvnw.cmd liberty:devc ^
 -DdockerRunOpts="-e ENV_VAR=exampleValue" ^
@@ -347,7 +347,7 @@ mvnw.cmd liberty:devc ^
 
 [.tab_content.mac_section]
 --
-[role='command']
+[role="no_copy"]
 ```
 ./mvnw liberty:devc \
 -DdockerRunOpts="-e ENV_VAR=exampleValue" \
@@ -357,7 +357,7 @@ mvnw.cmd liberty:devc ^
 
 [.tab_content.linux_section]
 --
-[role='command']
+[role="no_copy"]
 ```
 ./mvnw liberty:devc \
 -DdockerRunOpts="-e ENV_VAR=exampleValue" \
